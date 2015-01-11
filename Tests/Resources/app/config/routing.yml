@@ -1,0 +1,6 @@
+api:
+    pattern: /api/{repository}/{path}
+    requirements:
+        path: .*
+    defaults:
+        _controller: Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController:get
