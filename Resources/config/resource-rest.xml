@@ -16,5 +16,7 @@
             <argument type="service" id="hateoas.generator.symfony" />
         </service>
 
+
+
     </services>
 </container>
