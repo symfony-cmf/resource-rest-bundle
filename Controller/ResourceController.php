@@ -2,26 +2,50 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Controller;
 
+use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Hateoas\HateoasBuilder;
+use Symfony\Component\HttpFoundation\Response;
+use Hateoas\UrlGenerator\UrlGeneratorInterface;
+use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
+
 class ResourceController
 {
     /**
-     * @var RepositoryInterface
+     * @var RepositoryRegistryInterface
      */
-    private $repository;
+    private $registry;
+
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
+
+    private $serializer;
 
     /**
      * @param RepositoryInterface
      */
     public function __construct(
-        RepositoryInterface $repository
+        SerializerInterface $serializer,
+        RepositoryRegistryInterface $registry,
+        UrlGeneratorInterface $urlGenerator
     )
     {
-        $this->repository = $repository;
+        $this->serializer = $serializer;
+        $this->registry = $registry;
+        $this->urlGenerator = $urlGenerator;
     }
 
-    public function resourceAction(Request $request)
+    public function resourceAction($repositoryName, $path)
     {
-        $path = $request->query->get('path');
-        var_dump($path);die();;
+        $repository = $this->registry->get($repositoryName);
+        $resource = $repository->get('/' . $path);
+
+        $json = $this->serializer->serialize($resource, 'json');
+
+        return new Response($json);
     }
 }

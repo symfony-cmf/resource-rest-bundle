@@ -17,11 +17,15 @@ class AppKernel extends TestKernel
 
         $this->addBundles(array(
             new \Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\TestBundle(),
+            new \Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle(),
+            new \Symfony\Cmf\Bundle\ResourceBundle\CmfResourceBundle(),
+            new \Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
+            new \JMS\SerializerBundle\JMSSerializerBundle(),
         ));
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config.php');
+        $loader->load(__DIR__.'/config/config.test.php');
     }
 }

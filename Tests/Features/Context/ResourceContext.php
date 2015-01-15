@@ -2,7 +2,7 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Features\Context;
 
-require_once(__DIR__ . '/../../Resources/app/AppKernel.php');
+require_once(__DIR__ . '/../../Resources/app/TestKernel.php');
 
 use Behat\WebApiExtension\Context\WebApiContext;
 use Behat\Symfony2Extension\Context\KernelDictionary;

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serializer>
+    <class name="Symfony\Cmf\Component\Resource\Repository\Resource\PhpcrOdmResource" exclusion-policy="ALL" exclude="true">
+        <h:relation rel="self">
+            <h:href route="_cmf_resource">
+                <h:parameter name="repositoryName" value="testrepo" />
+                <h:parameter name="path" value="expr(object.getPath())" />
+            </h:href>
+        </h:relation>
+        <h:relation rel="children">
+            <h:embedded>
+                <h:content>expr(object.listChildren())</h:content>
+            </h:embedded>
+        </h:relation>
+    </class>
+</serializer>

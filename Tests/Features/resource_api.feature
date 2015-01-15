@@ -10,7 +10,7 @@ Feature: Request Resources from the REST API
             repository:
                 doctrine_phpcr_odm:
                     testrepo:
-                        basepath: /cmf/articles
+                        basepath: /tests/cmf/articles
         """
 
 
@@ -19,7 +19,7 @@ Feature: Request Resources from the REST API
             | title | Article 1 |
             | body | This is my article |
         Then I send a GET request to "/api/testrepo/foo"
-        Then open response
+        Then print response
         And the response code should be 200
         And the response should contain json:
         """

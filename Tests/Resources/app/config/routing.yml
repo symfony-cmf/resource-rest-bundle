@@ -1,6 +1,7 @@
-api:
-    pattern: /api/{repository}/{path}
+_cmf_resource:
+    pattern: /api/{repositoryName}/{path}
     requirements:
         path: .*
     defaults:
-        _controller: Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController:get
+        _controller: cmf_resource_rest.controller.resource:resourceAction
+        _format: json

@@ -11,7 +11,9 @@ j
 
     <services>
 
-        <service id="cmf_resource_rest.controller" class=
+        <service id="cmf_resource_rest.controller" class="Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController">
+            <argument type="service" id="cmf_resource_rest.controller.resource" />
+        </service>
 
     </services>
 </container>
