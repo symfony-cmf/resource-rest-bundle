@@ -4,8 +4,7 @@ use Symfony\Cmf\Component\Testing\HttpKernel\TestKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 /**
- * This is the kernel used by the Behat test suite internally
- * (e.g. for creating ODM documents etc)
+ * This is the kernel used by the application being tested
  */
 class AppKernel extends TestKernel
 {
@@ -26,6 +25,6 @@ class AppKernel extends TestKernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config.test.php');
+        $loader->load(__DIR__.'/config/config.php');
     }
 }

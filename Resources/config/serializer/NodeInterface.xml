@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serializer>
+    <class name="PHPCR\NodeInterface" xmlns:h="https://github.com/willdurand/Hateoas" exclude-policy="all" exclude="true">
+    </class>
+</serializer>
+

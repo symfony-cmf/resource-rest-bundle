@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Hateoas\UrlGenerator\UrlGeneratorInterface;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
+use JMS\Serializer\SerializationContext;
 
 class ResourceController
 {
@@ -44,7 +45,11 @@ class ResourceController
         $repository = $this->registry->get($repositoryName);
         $resource = $repository->get('/' . $path);
 
-        $json = $this->serializer->serialize($resource, 'json');
+        $json = $this->serializer->serialize(
+            $resource,
+            'json',
+            SerializationContext::create()->enableMaxDepthChecks()
+        );
 
         return new Response($json);
     }

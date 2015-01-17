@@ -35,6 +35,10 @@ class CmfResourceRestExtension extends Extension implements PrependExtensionInte
                         'path' => __DIR__ . '/../Resources/config/serializer',
                         'namespace_prefix' => 'Puli\Repository\Resource',
                     ),
+                    array(
+                        'path' => __DIR__ . '/../Resources/config/serializer',
+                        'namespace_prefix' => 'PHPCR',
+                    ),
                 ),
             ),
         ));

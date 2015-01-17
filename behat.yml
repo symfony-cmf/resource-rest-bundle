@@ -3,6 +3,7 @@ default:
         default:
             contexts:
                 - Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Features\Context\ResourceContext
+                - Behat\WebApiExtension\Context\WebApiContext
             paths:
                 - Tests/Features
     extensions:

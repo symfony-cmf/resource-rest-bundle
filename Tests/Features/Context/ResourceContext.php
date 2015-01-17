@@ -2,8 +2,6 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Features\Context;
 
-require_once(__DIR__ . '/../../Resources/app/TestKernel.php');
-
 use Behat\WebApiExtension\Context\WebApiContext;
 use Behat\Symfony2Extension\Context\KernelDictionary;
 use Behat\Gherkin\Node\PyStringNode;
@@ -11,17 +9,33 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
 use PHPCR\Util\NodeHelper;
 use PHPCR\Util\PathHelper;
+use Behat\Symfony2Extension\Context\KernelAwareContext;
+use Behat\Behat\Context\Context;
+use Symfony\Component\HttpKernel\KernelInterface;
 
-class ResourceContext extends WebApiContext
+class ResourceContext implements Context, KernelAwareContext
 {
-    use KernelDictionary;
-
     private $session;
     private $manager;
+    private $kernel;
 
+    /**
+     * Return the path of the configuration file used by the AppKernel
+     *
+     * @static
+     * @return string
+     */
     public static function getConfigurationFile()
     {
         return __DIR__ . '/../../Resources/app/cache/resource.yml';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setKernel(KernelInterface $kernel)
+    {
+        $this->kernel = $kernel;
     }
 
     /**
@@ -33,7 +47,7 @@ class ResourceContext extends WebApiContext
             unlink(self::getConfigurationFile());
         }
 
-        $this->manager = $this->getContainer()->get('doctrine_phpcr.odm.document_manager');
+        $this->manager = $this->kernel->getContainer()->get('doctrine_phpcr.odm.document_manager');
         $this->session = $this->manager->getPhpcrSession();
 
         if ($this->session->getRootNode()->hasNode('tests')) {
