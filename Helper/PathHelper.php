@@ -11,6 +11,17 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Helper;
 
+/**
+ * Path helper.
+ *
+ * Used in the BazingaHateoasBundle expression language to provide
+ * the correct value for the route generator.
+ *
+ * Should be removed once BazingaHateoasBundle supports custom provider
+ * registration.
+ *
+ * @author Daniel Leech <daniel@dantleech.com>
+ */
 class PathHelper
 {
     /**
@@ -22,7 +33,6 @@ class PathHelper
      * @return string
      */
     public function relativize($path)
-
     {
         if (substr($path, 0, 1) == '/') {
             return substr($path, 1);

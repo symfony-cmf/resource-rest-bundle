@@ -3,12 +3,8 @@
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Controller;
 
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Hateoas\HateoasBuilder;
 use Symfony\Component\HttpFoundation\Response;
 use Hateoas\UrlGenerator\UrlGeneratorInterface;
-use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use JMS\Serializer\SerializationContext;
 
@@ -24,6 +20,9 @@ class ResourceController
      */
     private $urlGenerator;
 
+    /**
+     * @var SerializerInterface
+     */
     private $serializer;
 
     /**
@@ -33,8 +32,7 @@ class ResourceController
         SerializerInterface $serializer,
         RepositoryRegistryInterface $registry,
         UrlGeneratorInterface $urlGenerator
-    )
-    {
+    ) {
         $this->serializer = $serializer;
         $this->registry = $registry;
         $this->urlGenerator = $urlGenerator;

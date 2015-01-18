@@ -22,7 +22,8 @@
         "behat/behat": "~3.0.0",
         "behat/web-api-extension" : "~1.0",
         "behat/symfony2-extension": "~2.0@dev",
-        "phpcr/phpcr-shell": "~1.0"
+        "phpcr/phpcr-shell": "~1.0",
+        "nelmio/api-doc-bundle": "~2.7"
     },
     "suggest": {
         "doctrine/phpcr-odm": "To enable support for the PHPCR ODM documents",

@@ -9,13 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Handler;
 
-use JMS\Serializer\EventDispatcher\Events;
-use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
-use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Puli\Repository\Api\ResourceCollection;
-use JMS\Serializer\EventDispatcher\PreSerializeEvent;
 use Puli\Repository\Api\Resource\Resource;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use JMS\Serializer\GraphNavigator;
@@ -48,6 +44,7 @@ class CollectionHandler implements SubscribingHandlerInterface
         Context $context
     ) {
         $res = $visitor->visitarray($collection->toArray(), array('name' => 'Symfony\Cmf\Component\Resource\Repository\Resource\PhpcrOdmResource'), $context);
+
         return $res;
     }
 }

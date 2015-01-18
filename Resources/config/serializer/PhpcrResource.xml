@@ -7,5 +7,6 @@
                 <h:parameter name="path" value="expr(service('cmf_resource_rest.path_helper').relativize(object.getPath()))" />
             </h:href>
         </h:relation>
+        <virtual-property serialized-name="children" max-depth="3" method="listChildren"/>
     </class>
 </serializer>

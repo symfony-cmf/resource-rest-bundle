@@ -2,8 +2,6 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Features\Context;
 
-use Behat\WebApiExtension\Context\WebApiContext;
-use Behat\Symfony2Extension\Context\KernelDictionary;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
@@ -85,7 +83,7 @@ class ResourceContext implements Context, KernelAwareContext
             ));
         }
 
-        $document = new $class;
+        $document = new $class();
         $document->id = $path;
 
         foreach ($fields->getRowsHash() as $field => $value) {

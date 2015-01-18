@@ -26,7 +26,9 @@ before_script:
   - composer require symfony/symfony:${SYMFONY_VERSION} --prefer-source
   - vendor/symfony-cmf/testing/bin/travis/phpcr_odm_doctrine_dbal.sh
 
-script: phpunit --coverage-text
+script:
+    - phpunit --coverage-text
+    - ./vendor/bin/behat
 
 notifications:
   irc: "irc.freenode.org#symfony-cmf"
