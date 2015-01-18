@@ -19,11 +19,11 @@ use JMS\Serializer\JsonSerializationVisitor;
 use JMS\Serializer\Context;
 
 /**
- * Normalize Collection objects to flat arrays
+ * Serialize ResourceCollection instances into flat arrays
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
-class CollectionHandler implements SubscribingHandlerInterface
+class ResourceCollectionHandler implements SubscribingHandlerInterface
 {
     public static function getSubscribingMethods()
     {
@@ -31,19 +31,28 @@ class CollectionHandler implements SubscribingHandlerInterface
             array(
                 'event' => GraphNavigator::DIRECTION_SERIALIZATION,
                 'format' => 'json',
-                'type' => 'Puli\Repository\Resource\Collection\ArrayResourceCollection',
-                'method' => 'normalizeCollection',
+                'type' => 'Puli\Repository\Api\ResourceCollection',
+                'method' => 'serializeCollection',
             ),
         );
     }
 
-    public function normalizeCollection(
+    /**
+     * @param JsonSerializationVisitor $visitor
+     * @param ResourceCollection $resourceCollection
+     * @param array $type
+     * @param Context $context
+     */
+    public function serializeCollection(
         JsonSerializationVisitor $visitor,
         ResourceCollection $collection,
         array $type,
         Context $context
     ) {
-        $res = $visitor->visitarray($collection->toArray(), array('name' => 'Symfony\Cmf\Component\Resource\Repository\Resource\PhpcrOdmResource'), $context);
+        $res = array();
+        foreach ($collection as $resource) {
+            $res[$resource->getName()] = $context->accept($resource);
+        }
 
         return $res;
     }
