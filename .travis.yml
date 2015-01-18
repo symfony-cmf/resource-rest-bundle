@@ -1,7 +1,6 @@
 language: php
 
 php:
-    - 5.3
     - 5.4
     - 5.5
     - 5.6
@@ -28,6 +27,7 @@ before_script:
 
 script:
     - phpunit --coverage-text
+    - ./vendor/symfony-cmf/testing/bin/server
     - ./vendor/bin/behat
 
 notifications:
