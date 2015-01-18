@@ -1,8 +1,8 @@
-# Symfony CMF Resource Bundle
+# Symfony CMF Resource REST API Bundle
 
 [![Build Status](https://secure.travis-ci.org/symfony-cmf/ResourceRestBundle.png?branch=master)](http://travis-ci.org/symfony-cmf/ResourceRestBundle)
-[![Latest Stable Version](https://poser.pugx.org/symfony-cmf/resource-rest-bundle/version.png)](https://packagist.org/packages/symfony-cmf/resource-bundle)
-[![Total Downloads](https://poser.pugx.org/symfony-cmf/resource-rest-bundle/d/total.png)](https://packagist.org/packages/symfony-cmf/resource-bundle)
+[![Latest Stable Version](https://poser.pugx.org/symfony-cmf/resource-rest-bundle/version.png)](https://packagist.org/packages/symfony-cmf/resource-rest-bundle)
+[![Total Downloads](https://poser.pugx.org/symfony-cmf/resource-rest-bundle/d/total.png)](https://packagist.org/packages/symfony-cmf/resource-rest-bundle)
 
 This Bundle provides a REST API to [Puli](https://github.com/puliphp/puli)
 resources as provided by the
