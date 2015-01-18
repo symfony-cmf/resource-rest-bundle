@@ -17,13 +17,9 @@
     "require-dev": {
         "symfony-cmf/testing": "~1.1",
         "phpspec/prophecy-phpunit": "~1.0.0",
-        "matthiasnoback/symfony-dependency-injection-test": "0.*",
-        "matthiasnoback/symfony-config-test": "0.*",
         "behat/behat": "~3.0.0",
         "behat/web-api-extension" : "~1.0",
-        "behat/symfony2-extension": "~2.0@dev",
-        "phpcr/phpcr-shell": "~1.0",
-        "nelmio/api-doc-bundle": "~2.7"
+        "behat/symfony2-extension": "~2.0@dev"
     },
     "suggest": {
         "doctrine/phpcr-odm": "To enable support for the PHPCR ODM documents",
