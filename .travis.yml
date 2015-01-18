@@ -12,6 +12,7 @@ env:
 matrix:
   allow_failures:
     - env: SYMFONY_VERSION=dev-master
+    - php: hhvm
   include:
     - php: 5.5
       env: SYMFONY_VERSION=2.3.*
@@ -27,7 +28,7 @@ before_script:
 
 script:
     - phpunit --coverage-text
-    - ./vendor/symfony-cmf/testing/bin/server
+    - ./vendor/symfony-cmf/testing/bin/server &
     - ./vendor/bin/behat
 
 notifications:
