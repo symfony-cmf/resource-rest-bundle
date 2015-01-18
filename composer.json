@@ -1,0 +1,38 @@
+{
+    "name": "symfony-cmf/resource-rest-bundle",
+    "description": "Bundle which provides a REST API for resources",
+    "homepage": "http://cmf.symfony.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Symfony CMF Community",
+            "homepage": "https://github.com/symfony-cmf/symfony-cmf/contributors"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "symfony-cmf/resource-bundle": "~1.0",
+        "willdurand/hateoas-bundle": "~1.0"
+    },
+    "require-dev": {
+        "symfony-cmf/testing": "~1.1",
+        "phpspec/prophecy-phpunit": "~1.0.0",
+        "behat/behat": "~3.0.0",
+        "behat/web-api-extension" : "~1.0",
+        "behat/symfony2-extension": "~2.0@dev"
+    },
+    "suggest": {
+        "doctrine/phpcr-odm": "To enable support for the PHPCR ODM documents",
+        "doctrine/phpcr-bundle": "To enable support for the PHPCR ODM documents"
+    },
+    "autoload": {
+        "psr-4": {
+            "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

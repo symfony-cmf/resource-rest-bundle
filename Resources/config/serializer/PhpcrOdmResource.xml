@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serializer>
+    <class name="Symfony\Cmf\Component\Resource\Repository\Resource\PhpcrOdmResource" xmlns:h="https://github.com/willdurand/Hateoas">
+        <h:relation rel="self">
+            <h:href route="_cmf_resource">
+                <h:parameter name="repositoryName" value="expr(service('cmf_resource.registry').getName(object.getRepository()))" />
+                <h:parameter name="path" value="expr(service('cmf_resource_rest.path_helper').relativize(object.getPath()))" />
+            </h:href>
+        </h:relation>
+        <virtual-property serialized-name="children" max-depth="3" method="listChildren"/>
+    </class>
+</serializer>

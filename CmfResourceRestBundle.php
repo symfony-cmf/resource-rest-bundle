@@ -13,8 +13,6 @@ namespace Symfony\Cmf\Bundle\ResourceRestBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\Compiler\FactoryPass;
-use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\Compiler\CompositeRepositoryPass;
 
 class CmfResourceRestBundle extends Bundle
 {
