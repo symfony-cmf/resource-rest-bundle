@@ -25,6 +25,7 @@ Feature: Request Resources from the REST API
             | title | Article 2 |
             | body | This is my third article |
         Then I send a GET request to "/api/phpcrodm_repo/foo"
+        And print response
         And the response code should be 200
         And the response should contain json:
             """
