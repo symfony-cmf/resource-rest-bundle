@@ -16,6 +16,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\Config\Definition\Processor;
 
 class CmfResourceRestExtension extends Extension implements PrependExtensionInterface
 {
@@ -46,8 +47,25 @@ class CmfResourceRestExtension extends Extension implements PrependExtensionInte
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $processor = new Processor();
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $configuration = new Configuration();
+        $config = $processor->processConfiguration($configuration, $configs);
+
         $loader->load('serializer.xml');
         $loader->load('resource-rest.xml');
+
+        $this->configurePayloadAliasRegistry($container, $config['payload_alias_map']);
+    }
+
+    private function configurePayloadAliasRegistry(ContainerBuilder $container, $aliasMap)
+    {
+        $registry = $container->getDefinition('cmf_resource_rest.payload_alias_registry');
+        $registry->replaceArgument(0, $aliasMap);
+    }
+
+    public function getNamespace()
+    {
+        return 'http://cmf.symfony.com/schema/dic/' . $this->getAlias();
     }
 }

@@ -10,7 +10,10 @@ Feature: Request Resources from the REST API
                 repository:
                     doctrine_phpcr:
                         phpcr_repo:
-                            basepath: /tests/cmf/articles
+                        basepath: /tests/cmf/articles
+
+
+
             """
 
 

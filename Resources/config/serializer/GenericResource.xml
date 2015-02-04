@@ -2,5 +2,6 @@
 <serializer>
     <class name="Puli\Repository\Resource\GenericResource" xmlns:h="https://github.com/willdurand/Hateoas">
         <property name="repo" exclude="true" />
+        <property name="repo" exclude="true" />
     </class>
 </serializer>
