@@ -13,7 +13,7 @@ Feature: Request Resources from the REST API
                             basepath: /tests/cmf/articles
 
             cmf_resource_rest:
-                payload_alias:
+                payload_alias_map:
                     article: { repository: doctrine_phpcr_odm, type: "Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\Document\Article" }
             """
 
