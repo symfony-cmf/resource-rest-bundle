@@ -19,6 +19,7 @@ use Puli\Repository\Api\ResourceCollection;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Puli\Repository\Api\Resource\Resource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
+use Symfony\Cmf\Bundle\ResourceRestBundle\ResourceRest\PayloadAliasRegistry;
 
 /**
  * Force instaces of ResourceCollection to type "ResourceCollection"
@@ -28,10 +29,15 @@ use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 class ResourceSubscriber implements EventSubscriberInterface
 {
     private $registry;
+    private $payloadAliasRegistry;
 
-    public function __construct(RepositoryRegistryInterface $registry)
+    public function __construct(
+        RepositoryRegistryInterface $registry,
+        PayloadAliasRegistry $payloadAliasRegistry
+    )
     {
         $this->registry = $registry;
+        $this->payloadAliasRegistry = $payloadAliasRegistry;
     }
 
     public static function getSubscribedEvents()
@@ -53,8 +59,9 @@ class ResourceSubscriber implements EventSubscriberInterface
 
         if ($object instanceof Resource) {
             $visitor = $event->getVisitor();
-            $visitor->addData('repository', $this->registry->getName($object->getRepository()));
-            $visitor->addData('type', get_class($object));
+            $visitor->addData('repository_alias', $this->registry->getRepositoryAlias($object->getRepository()));
+            $visitor->addData('repository_type', $this->registry->getRepositoryType($object->getRepository()));
+            $visitor->addData('payload_alias', $this->payloadAliasRegistry->getPayloadAlias($object));
         }
     }
 }

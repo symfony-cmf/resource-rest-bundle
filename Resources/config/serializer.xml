@@ -29,6 +29,7 @@
         <service id="cmf_resource_rest.serializer.subscriber.resource" class="%cmf_resource_rest.serializer.subscriber.resource.class%">
             <tag name="jms_serializer.event_subscriber" />
             <argument type="service" id="cmf_resource.registry" />
+            <argument type="service" id="cmf_resource_rest.payload_alias_registry" />
         </service>
 
         <service id="cmf_resource_rest.serializer.subscriber.resource_collection" class="%cmf_resource_rest.serializer.subscriber.resource_collection.class%">

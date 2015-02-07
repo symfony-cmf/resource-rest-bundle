@@ -21,6 +21,7 @@
         <service id="cmf_resource_rest.path_helper" class="%cmf_resource_rest.path_helper.class%" />
 
         <service id="cmf_resource_rest.payload_alias_registry" class="%cmf_resource_rest.payload_alias_registry.class%">
+            <argument type="service" id="cmf_resource.registry" />
             <argument type="collection" />
         </service>
 

@@ -61,7 +61,7 @@ class CmfResourceRestExtension extends Extension implements PrependExtensionInte
     private function configurePayloadAliasRegistry(ContainerBuilder $container, $aliasMap)
     {
         $registry = $container->getDefinition('cmf_resource_rest.payload_alias_registry');
-        $registry->replaceArgument(0, $aliasMap);
+        $registry->replaceArgument(1, $aliasMap);
     }
 
     public function getNamespace()

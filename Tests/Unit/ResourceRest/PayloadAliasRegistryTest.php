@@ -51,14 +51,14 @@ class PayloadAliasRegistryTest extends ProphecyTestCase
     {
         $registry = $this->createRegistry($aliases);
 
-        $this->repositoryRegistry->getName(
+        $this->repositoryRegistry->getRepositoryAlias(
             $this->repository->reveal()
         )->willReturn($resource['repository']);
 
         $this->resource->getRepository()->willReturn($this->repository->reveal());
         $this->resource->getPayloadType()->willReturn($resource['type']);
 
-        $alias = $registry->getAlias($this->resource->reveal());
+        $alias = $registry->getPayloadAlias($this->resource->reveal());
         $this->assertEquals($expectedAlias, $alias);
     }
 
