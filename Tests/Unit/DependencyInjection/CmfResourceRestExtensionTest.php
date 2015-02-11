@@ -14,6 +14,7 @@ namespace Symfony\Cmf\Bundle\ResourceBundle\Tests\Unit\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\CmfResourceRestExtension;
+use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\Compiler\DecoratorPass;
 
 class CmfResourceRestExtensionTest extends AbstractExtensionTestCase
 {
@@ -33,8 +34,10 @@ class CmfResourceRestExtensionTest extends AbstractExtensionTestCase
                             'type' => 'Article',
                         ),
                     ),
+                    'decorator_map' => array(
+                        'some_repo' => array('payload'),
+                    ),
                 ),
-                array(),
             ),
         );
     }
@@ -42,9 +45,11 @@ class CmfResourceRestExtensionTest extends AbstractExtensionTestCase
     /**
      * @dataProvider provideExtension
      */
-    public function testExtension($config, $expectedServiceIds)
+    public function testExtension($config)
     {
+        $this->container->addCompilerPass(new DecoratorPass());
         $this->load($config);
+        $this->compile();
     }
 }
 

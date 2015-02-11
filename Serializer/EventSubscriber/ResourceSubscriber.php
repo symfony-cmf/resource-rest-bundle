@@ -19,7 +19,8 @@ use Puli\Repository\Api\ResourceCollection;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Puli\Repository\Api\Resource\Resource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
-use Symfony\Cmf\Bundle\ResourceRestBundle\PayloadAliasRegistry;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\DecoratorRegistry;
 
 /**
  * Force instaces of ResourceCollection to type "ResourceCollection"
@@ -30,13 +31,16 @@ class ResourceSubscriber implements EventSubscriberInterface
 {
     private $registry;
     private $payloadAliasRegistry;
+    private $decoratorRegistry;
 
     public function __construct(
         RepositoryRegistryInterface $registry,
-        PayloadAliasRegistry $payloadAliasRegistry
+        PayloadAliasRegistry $payloadAliasRegistry,
+        DecoratorRegistry $decoratorRegistry
     ) {
         $this->registry = $registry;
         $this->payloadAliasRegistry = $payloadAliasRegistry;
+        $this->decoratorRegistry = $decoratorRegistry;
     }
 
     public static function getSubscribedEvents()
@@ -46,7 +50,23 @@ class ResourceSubscriber implements EventSubscriberInterface
                 'event' => Events::POST_SERIALIZE,
                 'method' => 'onPostSerialize',
             ),
+            array(
+                'event' => Events::PRE_SERIALIZE,
+                'method' => 'onPreSerialize',
+            ),
         );
+    }
+
+    /**
+     * @param PreSerializeEvent $event
+     */
+    public function onPreSerialize(PreSerializeEvent $event)
+    {
+        $object = $event->getObject();
+
+        if ($object instanceof Resource) {
+            $event->setType('Puli\Repository\Api\Resource\Resource');
+        }
     }
 
     /**
@@ -56,11 +76,26 @@ class ResourceSubscriber implements EventSubscriberInterface
     {
         $object = $event->getObject();
 
-        if ($object instanceof Resource) {
-            $visitor = $event->getVisitor();
-            $visitor->addData('repository_alias', $this->registry->getRepositoryAlias($object->getRepository()));
-            $visitor->addData('repository_type', $this->registry->getRepositoryType($object->getRepository()));
-            $visitor->addData('payload_alias', $this->payloadAliasRegistry->getPayloadAlias($object));
+        if (!$object instanceof Resource) {
+            return;
+        }
+
+        $visitor = $event->getVisitor();
+        $context = $event->getContext();
+        $repositoryAlias = $this->registry->getRepositoryAlias($object->getRepository());
+
+        $visitor->addData('repository_alias', $repositoryAlias);
+        $visitor->addData('repository_type', $this->registry->getRepositoryType($object->getRepository()));
+        $visitor->addData('payload_alias', $this->payloadAliasRegistry->getPayloadAlias($object));
+        $visitor->addData('payload_type', $object->getPayloadType());
+        $visitor->addData('path', $object->getPath());
+        $visitor->addData('repository_path', $object->getRepositoryPath());
+        $visitor->addData('children', $context->accept($object->listChildren()));
+
+        $decorators = $this->decoratorRegistry->getDecorators($repositoryAlias);
+
+        foreach ($decorators as $decorator) {
+            $decorator->decorate($context, $object);
         }
     }
 }

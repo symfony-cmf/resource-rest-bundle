@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Registry;
 
 use Symfony\Cmf\Component\Resource\RepositoryFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -27,7 +27,7 @@ class PayloadAliasRegistry
     /**
      * @var array
      */
-    private $aliasesByRepository;
+    private $aliasesByRepository = array();
 
     /**
      * @var RepositoryRegistryInterface
@@ -57,7 +57,6 @@ class PayloadAliasRegistry
      * Return the alias for the given PHPCR resource
      *
      * @param Resource $resource
-     *
      * @return string
      */
     public function getPayloadAlias(Resource $resource)
@@ -73,15 +72,11 @@ class PayloadAliasRegistry
         }
 
         if (!isset($this->aliasesByRepository[$repositoryType])) {
-            throw new \RuntimeException(sprintf(
-                'No repositories registered with alias "%s". Known aliases "%s"',
-                $repositoryType,
-                implode('", "', array_keys($this->aliasesByRepository))
-            ));
+            return null;
         }
 
         if (!isset($this->aliasesByRepository[$repositoryType][$type])) {
-            return $type;
+            return null;
         }
 
         return $this->aliasesByRepository[$repositoryType][$type];

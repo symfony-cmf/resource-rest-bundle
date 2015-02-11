@@ -13,11 +13,13 @@ namespace Symfony\Cmf\Bundle\ResourceRestBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\Compiler\DecoratorPass;
 
 class CmfResourceRestBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
+        $container->addCompilerPass(new DecoratorPass());
         parent::build($container);
     }
 }

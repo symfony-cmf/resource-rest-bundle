@@ -54,14 +54,22 @@ class CmfResourceRestExtension extends Extension implements PrependExtensionInte
 
         $loader->load('serializer.xml');
         $loader->load('resource-rest.xml');
+        $loader->load('decorator.xml');
 
         $this->configurePayloadAliasRegistry($container, $config['payload_alias_map']);
+        $this->configureDecoratorMap($container, $config['decorator_map']);
     }
 
     private function configurePayloadAliasRegistry(ContainerBuilder $container, $aliasMap)
     {
-        $registry = $container->getDefinition('cmf_resource_rest.payload_alias_registry');
+        $registry = $container->getDefinition('cmf_resource_rest.registry.payload_alias');
         $registry->replaceArgument(1, $aliasMap);
+    }
+
+    private function configureDecoratorMap(ContainerBuilder $container, $decoratorMap)
+    {
+        $registry = $container->getDefinition('cmf_resource_rest.registry.decorator');
+        $registry->replaceArgument(1, $decoratorMap);
     }
 
     public function getNamespace()

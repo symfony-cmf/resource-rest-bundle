@@ -47,6 +47,7 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
                     'type' => 'Namespace\Article'
                 ),
             ),
+            'decorator_map' => array(),
         ), array($source));
     }
 }

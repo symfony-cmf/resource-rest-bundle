@@ -1,7 +1,7 @@
-Feature: Request Resources from the REST API
-    In order to retrieve data from the resource webservice
-    As a webservice user
-    I need to be able to query the webservice
+Feature: Resource decoration
+    In order to add additional data to resource REST responses
+    As a developer
+    I need to be able to register decorators which do this
 
     Background:
         Given the test application has the following configuration:
@@ -11,6 +11,10 @@ Feature: Request Resources from the REST API
                     doctrine_phpcr:
                         phpcr_repo:
                             basepath: /tests/cmf/articles
+
+            cmf_resource_rest:
+                decorator_map:
+                    phpcr_repo: [ 'payload' ]
 
             """
 
@@ -31,6 +35,16 @@ Feature: Request Resources from the REST API
                 "path": "\/foo",
                 "repository_path": "\/foo",
                 "children": [],
+                "payload": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:mixinTypes": [
+                        "phpcr:managed"
+                    ],
+                    "phpcr:class": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
+                    "phpcr:classparents": [],
+                    "title": "Article 1",
+                    "body": "This is my article"
+                },
                 "_links": {
                     "self": {
                         "href": "\/api\/phpcr_repo\/foo"

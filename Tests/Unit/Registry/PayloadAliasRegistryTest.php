@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Registry;
 
 use Prophecy\PhpUnit\ProphecyTestCase;
-use Symfony\Cmf\Bundle\ResourceRestBundle\PayloadAliasRegistry;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
 
 class PayloadAliasRegistryTest extends ProphecyTestCase
 {

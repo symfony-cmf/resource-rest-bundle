@@ -36,6 +36,12 @@ class Configuration implements ConfigurationInterface
                          ->end()
                     ->end()
                 ->end()
+                ->arrayNode('decorator_map')
+                    ->useAttributeAsKey('repository')
+                    ->prototype('array')
+                        ->prototype('scalar')->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
