@@ -25,9 +25,10 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $treeBuilder->root('cmf_resource_rest')
+            ->fixXmlConfig('payload_alias', 'payload_alias_map')
             ->children()
                 ->arrayNode('payload_alias_map')
-                    ->useAttributeAsKey('alias')
+                    ->useAttributeAsKey('name')
                     ->prototype('array')
                          ->children()
                              ->scalarNode('repository')->end()
