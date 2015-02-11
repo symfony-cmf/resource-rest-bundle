@@ -19,7 +19,7 @@ use Puli\Repository\Api\ResourceCollection;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Puli\Repository\Api\Resource\Resource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
-use Symfony\Cmf\Bundle\ResourceRestBundle\ResourceRest\PayloadAliasRegistry;
+use Symfony\Cmf\Bundle\ResourceRestBundle\PayloadAliasRegistry;
 
 /**
  * Force instaces of ResourceCollection to type "ResourceCollection"
@@ -34,8 +34,7 @@ class ResourceSubscriber implements EventSubscriberInterface
     public function __construct(
         RepositoryRegistryInterface $registry,
         PayloadAliasRegistry $payloadAliasRegistry
-    )
-    {
+    ) {
         $this->registry = $registry;
         $this->payloadAliasRegistry = $payloadAliasRegistry;
     }

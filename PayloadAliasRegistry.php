@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\ResourceRest;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle;
 
 use Symfony\Cmf\Component\Resource\RepositoryFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -41,8 +41,7 @@ class PayloadAliasRegistry
     public function __construct(
         RepositoryRegistryInterface $repositoryRegistry,
         array $aliases = array()
-    )
-    {
+    ) {
         $this->repositoryRegistry = $repositoryRegistry;
 
         foreach ($aliases as $alias => $config) {
@@ -75,7 +74,7 @@ class PayloadAliasRegistry
 
         if (!isset($this->aliasesByRepository[$repositoryType])) {
             throw new \RuntimeException(sprintf(
-                'No repositories registered with alias "%s". I know about "%s"',
+                'No repositories registered with alias "%s". Known aliases "%s"',
                 $repositoryType,
                 implode('", "', array_keys($this->aliasesByRepository))
             ));

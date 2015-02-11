@@ -7,7 +7,7 @@
     <parameters>
         <parameter key="cmf_resource_rest.controller.resource.class">Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController</parameter>
         <parameter key="cmf_resource_rest.path_helper.class">Symfony\Cmf\Bundle\ResourceRestBundle\Helper\PathHelper</parameter>
-        <parameter key="cmf_resource_rest.payload_alias_registry.class">Symfony\Cmf\Bundle\ResourceRestBundle\ResourceRest\PayloadAliasRegistry</parameter>
+        <parameter key="cmf_resource_rest.payload_alias_registry.class">Symfony\Cmf\Bundle\ResourceRestBundle\PayloadAliasRegistry</parameter>
     </parameters>
 
     <services>

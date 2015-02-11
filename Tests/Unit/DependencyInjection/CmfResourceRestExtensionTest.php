@@ -45,10 +45,6 @@ class CmfResourceRestExtensionTest extends AbstractExtensionTestCase
     public function testExtension($config, $expectedServiceIds)
     {
         $this->load($config);
-
-        foreach ($expectedServiceIds as $expectedServiceId) {
-            $this->assertContainerBuilderHasService($expectedServiceId);
-        }
     }
 }
 
