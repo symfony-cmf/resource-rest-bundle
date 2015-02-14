@@ -7,8 +7,10 @@
     <parameters>
         <parameter key="cmf_resource_rest.serializer.handler.resource_collection.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Handler\ResourceCollectionHandler</parameter>
         <parameter key="cmf_resource_rest.serializer.handler.phpcr_node.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Handler\PhpcrNodeHandler</parameter>
+        <parameter key="cmf_resource_rest.serializer.handler.resource.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Handler\ResourceHandler</parameter>
         <parameter key="cmf_resource_rest.serializer.subscriber.phpcr_node.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\EventSubscriber\PhpcrNodeSubscriber</parameter>
         <parameter key="cmf_resource_rest.serializer.subscriber.resource_collection.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\EventSubscriber\ResourceCollectionSubscriber</parameter>
+        <parameter key="cmf_resource_rest.serializer.subscriber.resource.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\EventSubscriber\ResourceSubscriber</parameter>
     </parameters>
 
     <services>
@@ -22,6 +24,13 @@
         </service>
 
         <service id="cmf_resource_rest.serializer.subscriber.phpcr_node" class="%cmf_resource_rest.serializer.subscriber.phpcr_node.class%">
+            <tag name="jms_serializer.event_subscriber" />
+        </service>
+
+        <service id="cmf_resource_rest.serializer.subscriber.resource" class="%cmf_resource_rest.serializer.subscriber.resource.class%">
+            <argument type="service" id="cmf_resource.registry" />
+            <argument type="service" id="cmf_resource_rest.registry.payload_alias" />
+            <argument type="service" id="cmf_resource_rest.registry.enhancer" />
             <tag name="jms_serializer.event_subscriber" />
         </service>
 

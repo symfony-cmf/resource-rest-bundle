@@ -19,7 +19,9 @@
         "phpspec/prophecy-phpunit": "~1.0.0",
         "behat/behat": "~3.0.0",
         "behat/web-api-extension" : "~1.0",
-        "behat/symfony2-extension": "~2.0@dev"
+        "behat/symfony2-extension": "~2.0@dev",
+        "matthiasnoback/symfony-dependency-injection-test": "0.*",
+        "matthiasnoback/symfony-config-test": "0.*"
     },
     "suggest": {
         "doctrine/phpcr-odm": "To enable support for the PHPCR ODM documents",

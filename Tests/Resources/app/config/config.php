@@ -8,7 +8,3 @@ $loader->import(CMF_TEST_CONFIG_DIR.'/dist/framework.yml');
 $loader->import(CMF_TEST_CONFIG_DIR.'/dist/monolog.yml');
 $loader->import(CMF_TEST_CONFIG_DIR.'/dist/doctrine.yml');
 $loader->import(CMF_TEST_CONFIG_DIR.'/phpcr_odm.php');
-
-if (file_exists(ResourceContext::getConfigurationFile())) {
-    $loader->import(ResourceContext::getConfigurationFile());
-}

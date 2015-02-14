@@ -1,0 +1,9 @@
+cmf_resource_rest:
+    payload_alias_map:
+        article:
+            repository: doctrine_phpcr_odm
+            type: Namespace\Article
+    enhancer_map:
+        -
+            enhancer: my_enhancer
+            repository: my_repo
