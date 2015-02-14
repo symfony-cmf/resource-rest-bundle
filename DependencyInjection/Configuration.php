@@ -26,6 +26,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $treeBuilder->root('cmf_resource_rest')
             ->fixXmlConfig('payload_alias', 'payload_alias_map')
+            ->fixXmlConfig('enhance', 'enhancer_map')
             ->children()
                 ->arrayNode('payload_alias_map')
                     ->useAttributeAsKey('name')
@@ -36,10 +37,12 @@ class Configuration implements ConfigurationInterface
                          ->end()
                     ->end()
                 ->end()
-                ->arrayNode('decorator_map')
-                    ->useAttributeAsKey('repository')
+                ->arrayNode('enhancer_map')
                     ->prototype('array')
-                        ->prototype('scalar')->end()
+                        ->children()
+                            ->scalarNode('repository')->isRequired()->end()
+                            ->scalarNode('enhancer')->isRequired()->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end();

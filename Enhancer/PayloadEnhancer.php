@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Decorator;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer;
 
 use JMS\Serializer\Context;
 use Puli\Repository\Api\Resource\Resource;
@@ -19,12 +19,12 @@ use Puli\Repository\Api\Resource\Resource;
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
-class PayloadDecorator implements DecoratorInterface
+class PayloadEnhancer implements EnhancerInterface
 {
     /**
      * {@inheritDoc}
      */
-    public function decorate(Context $context, Resource $resource)
+    public function enhance(Context $context, Resource $resource)
     {
         $visitor = $context->getVisitor();
         $visitor->addData('payload', $context->accept($resource->getPayload()));

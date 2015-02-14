@@ -9,27 +9,27 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Decorator;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer;
 
 use JMS\Serializer\Context;
 use Puli\Repository\Api\Resource\Resource;
 
 /**
- * Decorator classes decorate the REST response for resources
+ * Enhancer classes enhance the REST response for resources
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
-interface DecoratorInterface
+interface EnhancerInterface
 {
     /**
-     * Decorate the given serialization context.
+     * Enhance the given serialization context.
      *
      * For example:
      *
      *     $context->addData('foobar', 'Some value');
      *
      * @param Context Serialization context
-     * @param resource The resource being serialized
+     * @param Resource The resource being serialized
      */
-    public function decorate(Context $context, Resource $resource);
+    public function enhance(Context $context, Resource $resource);
 }

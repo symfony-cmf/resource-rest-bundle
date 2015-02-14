@@ -12,9 +12,9 @@
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Registry;
 
 use Prophecy\PhpUnit\ProphecyTestCase;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\DecoratorRegistry;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry;
 
-class DecoratorRegistryTest extends ProphecyTestCase
+class EnhancerRegistryTest extends ProphecyTestCase
 {
     private $registry;
 
@@ -28,11 +28,11 @@ class DecoratorRegistryTest extends ProphecyTestCase
         return array(
             array(
                 array(
-                    'phpcr_repo' => array('decorator_1', 'decorator_2'),
+                    'phpcr_repo' => array('enhancer_1', 'enhancer_2'),
                 ),
                 array(
-                    'decorator_1' => 'service_id.decorator_1',
-                    'decorator_2' => 'service_id.decorator_2',
+                    'enhancer_1' => 'service_id.enhancer_1',
+                    'enhancer_2' => 'service_id.enhancer_2',
                 ),
                 'phpcr_repo',
             ),
@@ -42,25 +42,25 @@ class DecoratorRegistryTest extends ProphecyTestCase
     /**
      * @dataProvider provideRegistry
      */
-    public function testRegistryGet($decoratorMap, $aliasMap, $target)
+    public function testRegistryGet($enhancerMap, $aliasMap, $target)
     {
-        $registry = $this->createRegistry($decoratorMap, $aliasMap);
+        $registry = $this->createRegistry($enhancerMap, $aliasMap);
 
-        $decorators = array();
+        $enhancers = array();
         foreach ($aliasMap as $alias => $serviceId) {
-            $decorator = $this->prophesize('Symfony\Cmf\Bundle\ResourceRestBundle\Decorator\DecoratorInterface');
+            $enhancer = $this->prophesize('Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer\EnhancerInterface');
             $this->container->get($serviceId)->willReturn(
-                $decorator
+                $enhancer
             );
         }
 
-        $result = $registry->getDecorators($target);
-        $this->assertCount(count($decoratorMap[$target]), $result);
+        $result = $registry->getEnhancers($target);
+        $this->assertCount(count($enhancerMap[$target]), $result);
     }
 
-    private function createRegistry($decoratorMap, $aliasMap)
+    private function createRegistry($enhancerMap, $aliasMap)
     {
-        return new DecoratorRegistry($this->container->reveal(), $decoratorMap, $aliasMap);
+        return new EnhancerRegistry($this->container->reveal(), $enhancerMap, $aliasMap);
     }
 }
 

@@ -20,7 +20,7 @@ use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Puli\Repository\Api\Resource\Resource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\DecoratorRegistry;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry;
 
 /**
  * Force instaces of ResourceCollection to type "ResourceCollection"
@@ -31,16 +31,16 @@ class ResourceSubscriber implements EventSubscriberInterface
 {
     private $registry;
     private $payloadAliasRegistry;
-    private $decoratorRegistry;
+    private $enhancerRegistry;
 
     public function __construct(
         RepositoryRegistryInterface $registry,
         PayloadAliasRegistry $payloadAliasRegistry,
-        DecoratorRegistry $decoratorRegistry
+        EnhancerRegistry $enhancerRegistry
     ) {
         $this->registry = $registry;
         $this->payloadAliasRegistry = $payloadAliasRegistry;
-        $this->decoratorRegistry = $decoratorRegistry;
+        $this->enhancerRegistry = $enhancerRegistry;
     }
 
     public static function getSubscribedEvents()
@@ -92,10 +92,10 @@ class ResourceSubscriber implements EventSubscriberInterface
         $visitor->addData('repository_path', $object->getRepositoryPath());
         $visitor->addData('children', $context->accept($object->listChildren()));
 
-        $decorators = $this->decoratorRegistry->getDecorators($repositoryAlias);
+        $enhancers = $this->enhancerRegistry->getEnhancers($repositoryAlias);
 
-        foreach ($decorators as $decorator) {
-            $decorator->decorate($context, $object);
+        foreach ($enhancers as $enhancer) {
+            $enhancer->enhance($context, $object);
         }
     }
 }

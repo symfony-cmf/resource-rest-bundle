@@ -54,10 +54,15 @@ class CmfResourceRestExtension extends Extension implements PrependExtensionInte
 
         $loader->load('serializer.xml');
         $loader->load('resource-rest.xml');
-        $loader->load('decorator.xml');
+        $loader->load('enhancer.xml');
 
         $this->configurePayloadAliasRegistry($container, $config['payload_alias_map']);
-        $this->configureDecoratorMap($container, $config['decorator_map']);
+        $this->configureEnhancerMap($container, $config['enhancer_map']);
+    }
+
+    public function getNamespace()
+    {
+        return 'http://cmf.symfony.com/schema/dic/' . $this->getAlias();
     }
 
     private function configurePayloadAliasRegistry(ContainerBuilder $container, $aliasMap)
@@ -66,14 +71,28 @@ class CmfResourceRestExtension extends Extension implements PrependExtensionInte
         $registry->replaceArgument(1, $aliasMap);
     }
 
-    private function configureDecoratorMap(ContainerBuilder $container, $decoratorMap)
+    private function configureEnhancerMap(ContainerBuilder $container, $enhancerMap)
     {
-        $registry = $container->getDefinition('cmf_resource_rest.registry.decorator');
-        $registry->replaceArgument(1, $decoratorMap);
+        $enhancerMap = $this->normalizeEnhancerMap($enhancerMap);
+        $registry = $container->getDefinition('cmf_resource_rest.registry.enhancer');
+        $registry->replaceArgument(1, $enhancerMap);
     }
 
-    public function getNamespace()
+    private function normalizeEnhancerMap($enhancerMap)
     {
-        return 'http://cmf.symfony.com/schema/dic/' . $this->getAlias();
+        // normalize enhancer map
+        $normalized = array();
+        foreach ($enhancerMap as $enhancerMapping) {
+            $repository = $enhancerMapping['repository'];
+            $enhancer = $enhancerMapping['enhancer'];
+
+            if (!isset($normalized[$repository])) {
+                $normalized[$repository] = array();
+            }
+
+            $normalized[$repository][] = $enhancer;
+        }
+
+        return $normalized;
     }
 }

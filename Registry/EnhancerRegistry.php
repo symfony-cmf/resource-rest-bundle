@@ -18,11 +18,11 @@ use Puli\Repository\Api\Resource\Resource;
 use Puli\Repository\Api\ResourceRepository;
 
 /**
- * Registry for resource decorators
+ * Registry for resource enhancers
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
-class DecoratorRegistry
+class EnhancerRegistry
 {
     /**
      * @var array
@@ -32,7 +32,7 @@ class DecoratorRegistry
     /**
      * @var array
      */
-    private $decoratorMap = array();
+    private $enhancerMap = array();
 
     /**
      * @var ContainerInterface
@@ -41,49 +41,49 @@ class DecoratorRegistry
 
     /**
      * @param ContainerInterface $container The service container
-     * @param array $decoratorMap Map of decorator aliases to repository names
-     * @param array $aliasMap Serice ID map for decorator aliases
+     * @param array $enhancerMap Map of enhancer aliases to repository names
+     * @param array $aliasMap Serice ID map for enhancer aliases
      */
     public function __construct(
         ContainerInterface $container,
-        $decoratorMap = array(),
+        $enhancerMap = array(),
         $aliasMap = array()
     )
     {
         $this->container = $container;
-        $this->decoratorMap = $decoratorMap;
+        $this->enhancerMap = $enhancerMap;
         $this->aliasMap = $aliasMap;
     }
 
     /**
-     * Return all of the decorators which are reigstered against
+     * Return all of the enhancers which are reigstered against
      * the repository with the given alias.
      *
      * @param string $repositoryAlias
-     * @return DecoratorInterface[]
+     * @return EnhancerInterface[]
      */
-    public function getDecorators($repositoryAlias)
+    public function getEnhancers($repositoryAlias)
     {
-        if (!isset($this->decoratorMap[$repositoryAlias])) {
+        if (!isset($this->enhancerMap[$repositoryAlias])) {
             return array();
         }
 
-        $aliases = $this->decoratorMap[$repositoryAlias];
+        $aliases = $this->enhancerMap[$repositoryAlias];
 
         foreach ($aliases as $alias) {
             if (!isset($this->aliasMap[$alias])) {
                 throw new \InvalidArgumentException(sprintf(
-                    'Unknown decorator alias "%s". Known aliases: "%s"',
+                    'Unknown enhancer alias "%s". Known aliases: "%s"',
                     implode('", "', array_keys($this->aliasMap))
                 ));
             }
 
-            $decorator = $this->container->get(
+            $enhancer = $this->container->get(
                 $this->aliasMap[$alias]
             );
-            $decorators[] = $decorator;
+            $enhancers[] = $enhancer;
         }
 
-        return $decorators;
+        return $enhancers;
     }
 }

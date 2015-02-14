@@ -8,7 +8,7 @@
         <parameter key="cmf_resource_rest.controller.resource.class">Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController</parameter>
         <parameter key="cmf_resource_rest.path_helper.class">Symfony\Cmf\Bundle\ResourceRestBundle\Helper\PathHelper</parameter>
         <parameter key="cmf_resource_rest.registry.payload_alias.class">Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry</parameter>
-        <parameter key="cmf_resource_rest.registry.decorator.class">Symfony\Cmf\Bundle\ResourceRestBundle\Registry\DecoratorRegistry</parameter>
+        <parameter key="cmf_resource_rest.registry.enhancer.class">Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry</parameter>
     </parameters>
 
     <services>
@@ -26,7 +26,7 @@
             <argument type="collection" />
         </service>
 
-        <service id="cmf_resource_rest.registry.decorator" class="%cmf_resource_rest.registry.decorator.class%">
+        <service id="cmf_resource_rest.registry.enhancer" class="%cmf_resource_rest.registry.enhancer.class%">
             <argument type="service" id="service_container" />
             <argument type="collection" />
             <argument type="collection" />

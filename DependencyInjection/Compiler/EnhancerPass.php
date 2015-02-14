@@ -19,22 +19,22 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 /**
  * @author Daniel Leech <daniel@dantleech.com>
  */
-class DecoratorPass implements CompilerPassInterface
+class EnhancerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has('cmf_resource_rest.registry.decorator')) {
+        if (!$container->has('cmf_resource_rest.registry.enhancer')) {
             return;
         }
 
-        $taggedIds = $container->findTaggedServiceIds('cmf_resource_rest.decorator');
+        $taggedIds = $container->findTaggedServiceIds('cmf_resource_rest.enhancer');
 
         $repositoryMap = array();
         $aliasMap = array();
         foreach ($taggedIds as $id => $attributes) {
             if (!isset($attributes[0]['alias'])) {
                 throw new InvalidArgumentException(sprintf(
-                    'Resource decorator "%s" has no "alias" attribute in its tag',
+                    'Resource enhancer "%s" has no "alias" attribute in its tag',
                     $id
                 ));
             }
@@ -43,7 +43,7 @@ class DecoratorPass implements CompilerPassInterface
 
             if (isset($aliasMap[$name])) {
                 throw new InvalidArgumentException(sprintf(
-                    'Decorator with name "%s" (id: "%s") has already been registered',
+                    'Enhancer with name "%s" (id: "%s") has already been registered',
                     $name,
                     $id
                 ));
@@ -52,7 +52,7 @@ class DecoratorPass implements CompilerPassInterface
             $aliasMap[$name] = $id;
         }
 
-        $registryDef = $container->getDefinition('cmf_resource_rest.registry.decorator');
+        $registryDef = $container->getDefinition('cmf_resource_rest.registry.enhancer');
         $registryDef->replaceArgument(2, $aliasMap);
     }
 }

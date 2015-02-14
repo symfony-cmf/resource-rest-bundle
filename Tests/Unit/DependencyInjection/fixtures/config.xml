@@ -5,5 +5,6 @@
         http://symfony.com/schema/dic/symfony http://symfony.com/schema/dic/symfony/symfony-1.0.xsd">
     <cmf_resource_rest:config>
         <cmf_resource_rest:payload_alias name="article" type="Namespace\Article" repository="doctrine_phpcr_odm" />
+        <cmf_resource_rest:enhance enhancer="my_enhancer" repository="my_repo" />
     </cmf_resource_rest:config>
 </container>

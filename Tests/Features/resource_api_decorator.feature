@@ -1,7 +1,7 @@
 Feature: Resource decoration
     In order to add additional data to resource REST responses
     As a developer
-    I need to be able to register decorators which do this
+    I need to be able to register enhancers which do this
 
     Background:
         Given the test application has the following configuration:
@@ -13,8 +13,10 @@ Feature: Resource decoration
                             basepath: /tests/cmf/articles
 
             cmf_resource_rest:
-                decorator_map:
-                    phpcr_repo: [ 'payload' ]
+                enhancer_map:
+                    -
+                        repository: phpcr_repo
+                        enhancer: payload
 
             """
 
