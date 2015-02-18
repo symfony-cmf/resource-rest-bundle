@@ -20,7 +20,7 @@ Feature: PHPCR-ODM resource repository
             """
 
 
-    Scenario: Retrieve a PHPCR-ODM resource with children
+    Scenario: Retrieve a PHPCR-ODM resource
         Given there exists a "Article" document at "/cmf/articles/foo":
             | title | Article 1 |
             | body | This is my article |
@@ -37,5 +37,34 @@ Feature: PHPCR-ODM resource repository
                 "path": "\/foo",
                 "repository_path": "\/foo",
                 "children": []
+            }
+            """
+
+    Scenario: Retrieve a PHPCR-ODM resource with children
+        Given there exists a "Article" document at "/cmf/articles/foo":
+            | title | Article 1 |
+            | body | This is my article |
+        And there exists a "Article" document at "/cmf/articles/foo/bar":
+            | title | Article child |
+            | body | There are many like it |
+        And there exists a "Article" document at "/cmf/articles/foo/boo":
+            | title | Article child |
+            | body | But this one is mine |
+        Then I send a GET request to "/api/phpcrodm_repo/foo"
+        And print response
+        And the response code should be 200
+        And the response should contain json:
+            """
+            {
+                "repository_alias": "phpcrodm_repo",
+                "repository_type": "doctrine_phpcr_odm",
+                "payload_alias": "article",
+                "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
+                "path": "\/foo",
+                "repository_path": "\/foo",
+                "children": {
+                    "bar": null,
+                    "boo": null
+                }
             }
             """

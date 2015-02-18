@@ -17,7 +17,6 @@ Feature: Resource enhancement
                     -
                         repository: phpcr_repo
                         enhancer: payload
-
             """
 
 

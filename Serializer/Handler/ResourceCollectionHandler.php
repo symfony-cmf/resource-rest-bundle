@@ -51,7 +51,9 @@ class ResourceCollectionHandler implements SubscribingHandlerInterface
     ) {
         $res = array();
         foreach ($collection as $resource) {
+            $context->startVisiting($resource);
             $res[$resource->getName()] = $context->accept($resource);
+            $context->stopVisiting($resource);
         }
 
         return $res;
