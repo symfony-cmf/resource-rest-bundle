@@ -11,6 +11,7 @@
     <services>
 
         <service id="cmf_resource_rest.enhancer.payload" class="%cmf_resource_rest.enhancer.payload.class%">
+            <argument type="service" id="jms_serializer.metadata_factory" />
             <tag name="cmf_resource_rest.enhancer" alias="payload" />
         </service>
 

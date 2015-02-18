@@ -65,8 +65,8 @@ class ResourceHandler implements SubscribingHandlerInterface
         array $type,
         Context $context
     ) {
-        $data = array();
 
+        $data = array();
         $repositoryAlias = $this->registry->getRepositoryAlias($resource->getRepository());
 
         $data['repository_alias'] = $repositoryAlias;
@@ -75,7 +75,8 @@ class ResourceHandler implements SubscribingHandlerInterface
         $data['payload_type'] = $resource->getPayloadType();
         $data['path'] = $resource->getPath();
         $data['repository_path'] = $resource->getRepositoryPath();
-        $data['children'] = $context->accept($resource->listChildren());
+        $children = $resource->listChildren();
+        $data['children'] = $context->accept($children);
 
         $enhancers = $this->enhancerRegistry->getEnhancers($repositoryAlias);
 
