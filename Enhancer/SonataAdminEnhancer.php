@@ -36,7 +36,7 @@ class SonataAdminEnhancer implements EnhancerInterface
     /**
      * {@inheritDoc}
      */
-    public function enhance(Context $context, Resource $resource)
+    public function enhance(array $data, Context $context, Resource $resource)
     {
         $object = $resource->getPayload();
 
@@ -60,8 +60,8 @@ class SonataAdminEnhancer implements EnhancerInterface
             $links[$routeName] = $url;
         }
 
-        $visitor->addData('_admin_label', $admin->getLabel());
-        $visitor->addData('_admin_links', $links);
+        $data['_admin_label'] = $admin->getLabel();
+        $data['_admin_links'] = $links;
     }
 }
 

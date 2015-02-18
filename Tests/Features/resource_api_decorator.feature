@@ -1,4 +1,4 @@
-Feature: Resource decoration
+Feature: Resource enhancement
     In order to add additional data to resource REST responses
     As a developer
     I need to be able to register enhancers which do this
@@ -46,11 +46,6 @@ Feature: Resource decoration
                     "phpcr:classparents": [],
                     "title": "Article 1",
                     "body": "This is my article"
-                },
-                "_links": {
-                    "self": {
-                        "href": "\/api\/phpcr_repo\/foo"
-                    }
                 }
             }
             """

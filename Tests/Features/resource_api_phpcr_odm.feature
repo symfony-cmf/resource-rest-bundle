@@ -1,4 +1,4 @@
-Feature: Request Resources from the REST API
+Feature: PHPCR-ODM resource repository
     In order to retrieve data from the resource webservice
     As a webservice user
     I need to be able to query the webservice
@@ -36,11 +36,6 @@ Feature: Request Resources from the REST API
                 "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
                 "path": "\/foo",
                 "repository_path": "\/foo",
-                "children": [],
-                "_links": {
-                    "self": {
-                        "href": "\/api\/phpcrodm_repo\/foo"
-                    }
-                }
+                "children": []
             }
             """

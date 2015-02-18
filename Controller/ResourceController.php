@@ -43,10 +43,13 @@ class ResourceController
         $repository = $this->registry->get($repositoryName);
         $resource = $repository->get('/' . $path);
 
+        $context = SerializationContext::create();
+        $context->enableMaxDepthChecks();
+        $context->setSerializeNull(true);
         $json = $this->serializer->serialize(
             $resource,
             'json',
-            SerializationContext::create()->enableMaxDepthChecks()
+            $context
         );
 
         return new Response($json);

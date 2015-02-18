@@ -24,9 +24,10 @@ class PayloadEnhancer implements EnhancerInterface
     /**
      * {@inheritDoc}
      */
-    public function enhance(Context $context, Resource $resource)
+    public function enhance(array $data, Context $context, Resource $resource)
     {
         $visitor = $context->getVisitor();
-        $visitor->addData('payload', $context->accept($resource->getPayload()));
+        $data['payload'] = $context->accept($resource->getPayload());
+        return $data;
     }
 }

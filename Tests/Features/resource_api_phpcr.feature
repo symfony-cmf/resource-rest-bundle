@@ -1,4 +1,4 @@
-Feature: Request Resources from the REST API
+Feature: PHPCR resource repository
     In order to retrieve data from the resource webservice
     As a webservice user
     I need to be able to query the webservice
@@ -30,11 +30,6 @@ Feature: Request Resources from the REST API
                 "payload_type": "nt:unstructured",
                 "path": "\/foo",
                 "repository_path": "\/foo",
-                "children": [],
-                "_links": {
-                    "self": {
-                        "href": "\/api\/phpcr_repo\/foo"
-                    }
-                }
+                "children": []
             }
             """
