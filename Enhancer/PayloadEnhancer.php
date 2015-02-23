@@ -29,9 +29,7 @@ class PayloadEnhancer implements EnhancerInterface
         $visitor = $context->getVisitor();
         $payload = $resource->getPayload();
 
-        $context->startVisiting($payload);
-        $data['payload'] = $context->accept($payload);
-        $context->stopVisiting($payload);
+        $data['payload'] = $payload;
 
         return $data;
     }
