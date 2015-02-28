@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Handler;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler;
 
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use JMS\Serializer\GraphNavigator;
@@ -19,6 +19,7 @@ use Puli\Repository\Api\Resource\Resource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry;
+use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
 
 /**
  * Handle PHPCR resource serialization
@@ -66,25 +67,40 @@ class ResourceHandler implements SubscribingHandlerInterface
         Context $context
     ) {
 
+        $data = $this->doSerializeResource($resource);
+        $context->accept($data);
+    }
+
+    private function doSerializeResource(Resource $resource)
+    {
         $data = array();
         $repositoryAlias = $this->registry->getRepositoryAlias($resource->getRepository());
 
         $data['repository_alias'] = $repositoryAlias;
         $data['repository_type'] = $this->registry->getRepositoryType($resource->getRepository());
         $data['payload_alias'] = $this->payloadAliasRegistry->getPayloadAlias($resource);
-        $data['payload_type'] = $resource->getPayloadType();
+
+        if ($resource instanceof CmfResource) {
+            $data['payload_type'] = $resource->getPayloadType();
+        }
+
         $data['path'] = $resource->getPath();
         $data['repository_path'] = $resource->getRepositoryPath();
         $children = $resource->listChildren();
-        $data['children'] = $context->accept($children);
 
         $enhancers = $this->enhancerRegistry->getEnhancers($repositoryAlias);
+
+        $children = array();
+        foreach ($resource->listChildren() as $name => $resource) {
+            $children[$name] = $this->doSerializeResource($resource);
+        }
+        $data['children'] = $children;
 
         foreach ($enhancers as $enhancer) {
             $data = $enhancer->enhance($data, $resource);
         }
 
-        $context->accept($data);
+        return $data;
     }
 }
 

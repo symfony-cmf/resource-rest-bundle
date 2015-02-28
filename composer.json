@@ -16,6 +16,7 @@
     },
     "require-dev": {
         "symfony-cmf/testing": "~1.1",
+        "symfony/serializer": "~2.7",
         "phpspec/prophecy-phpunit": "~1.0.0",
         "behat/behat": "~3.0.0",
         "behat/web-api-extension" : "~1.0",

@@ -8,7 +8,7 @@ Feature: Resource enhancement
             """
             cmf_resource:
                 repository:
-                    doctrine_phpcr:
+                    doctrine_phpcr_odm:
                         phpcr_repo:
                             basepath: /tests/cmf/articles
 

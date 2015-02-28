@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\EventSubscriber;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber;
 
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use PHPCR\NodeInterface;

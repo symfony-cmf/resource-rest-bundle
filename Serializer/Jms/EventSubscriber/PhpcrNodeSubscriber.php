@@ -9,25 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\EventSubscriber;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber;
 
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use PHPCR\NodeInterface;
 use JMS\Serializer\EventDispatcher\Events;
 use JMS\Serializer\EventDispatcher\PreSerializeEvent;
-use Puli\Repository\Api\ResourceCollection;
-use JMS\Serializer\EventDispatcher\ObjectEvent;
-use Puli\Repository\Api\Resource\Resource;
-use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry;
 
 /**
- * Force instaces of ResourceCollection to type "ResourceCollection"
+ * Force the type of PHPCR node instances to PHPCR\NodeInterface
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
-class ResourceSubscriber implements EventSubscriberInterface
+class PhpcrNodeSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
@@ -46,8 +40,8 @@ class ResourceSubscriber implements EventSubscriberInterface
     {
         $object = $event->getObject();
 
-        if ($object instanceof Resource) {
-            $event->setType('Puli\Repository\Api\Resource\Resource');
+        if ($object instanceof NodeInterface) {
+            $event->setType('PHPCR\NodeInterface');
         }
     }
 }

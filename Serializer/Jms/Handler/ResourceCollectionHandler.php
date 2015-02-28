@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Handler;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler;
 
 use Puli\Repository\Api\ResourceCollection;
 use Puli\Repository\Api\Resource\Resource;
@@ -51,9 +51,7 @@ class ResourceCollectionHandler implements SubscribingHandlerInterface
     ) {
         $res = array();
         foreach ($collection as $resource) {
-            $context->startVisiting($resource);
-            $res[$resource->getName()] = $context->accept($resource);
-            $context->stopVisiting($resource);
+            $res[$resource->getName()] = $context->accept($resource, array('name' => 'Puli\Repository\Api\Resource\Resource'));
         }
 
         return $res;

@@ -16,6 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Puli\Repository\Api\Resource\Resource;
 use Puli\Repository\Api\ResourceRepository;
+use Puli\Repository\Api\Resource\CompositeResource;
 
 /**
  * Registry for resource payload aliases
@@ -65,7 +66,10 @@ class PayloadAliasRegistry
             $resource->getRepository()
         );
 
-        $type = $resource->getPayloadType();
+        $type = null;
+        if ($resource instanceof CmfResource) {
+            $type = $resource->getPayloadType();
+        }
 
         if (null === $type) {
             return null;
