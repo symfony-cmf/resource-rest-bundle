@@ -81,7 +81,7 @@ class ResourceHandler implements SubscribingHandlerInterface
         $enhancers = $this->enhancerRegistry->getEnhancers($repositoryAlias);
 
         foreach ($enhancers as $enhancer) {
-            $data = $enhancer->enhance($data, $context, $resource);
+            $data = $enhancer->enhance($data, $resource);
         }
 
         $context->accept($data);

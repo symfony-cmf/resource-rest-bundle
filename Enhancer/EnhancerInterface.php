@@ -31,5 +31,5 @@ interface EnhancerInterface
      * @param Context Serialization context
      * @param Resource The resource being serialized
      */
-    public function enhance(array $data, Context $context, Resource $resource);
+    public function enhance(array $data, Resource $resource);
 }

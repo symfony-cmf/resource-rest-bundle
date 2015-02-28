@@ -36,7 +36,7 @@ class SonataAdminEnhancer implements EnhancerInterface
     /**
      * {@inheritDoc}
      */
-    public function enhance(array $data, Context $context, Resource $resource)
+    public function enhance(array $data, Resource $resource)
     {
         $object = $resource->getPayload();
 
@@ -48,7 +48,6 @@ class SonataAdminEnhancer implements EnhancerInterface
         }
 
         $admin = $this->pool->getAdminByClass($class);
-        $visitor = $context->getVisitor();
 
         $links = array();
         foreach (array_keys($admin->getRoutes()) as $routeName) {

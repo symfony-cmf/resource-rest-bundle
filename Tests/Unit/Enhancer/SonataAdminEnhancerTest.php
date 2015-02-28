@@ -24,11 +24,11 @@ class SonataAdminEnhancerTest extends ProphecyTestCase
     {
         $this->admin = $this->prophesize('Sonata\AdminBundle\Admin\Admin');
         $this->pool = $this->prophesize('Sonata\AdminBundle\Admin\Pool');
-        $this->context = $this->prophesize('JMS\Serializer\Context');
         $this->visitor = $this->prophesize('JMS\Serializer\GenericSerializationVisitor');
         $this->generator = $this->prophesize('Symfony\Component\Routing\Generator\UrlGeneratorInterface');
         $this->payload = new \stdClass;
         $this->resource = $this->prophesize('Puli\Repository\Api\Resource\Resource');
+        $this->route = $this->prophesize('Symfony\Component\Routing\Route');
 
         $this->enhancer = new SonataAdminEnhancer($this->pool->reveal(), $this->generator->reveal());
 
@@ -40,11 +40,9 @@ class SonataAdminEnhancerTest extends ProphecyTestCase
         $this->resource->getPayload()->willReturn($this->payload);
 
         $result = $this->enhancer->enhance(
-            $this->context->reveal(),
+            array(),
             $this->resource->reveal()
         );
-
-        $this->visitor->addData()->shouldNotBeCalled();
     }
 
     public function testEnhancer()
@@ -53,9 +51,18 @@ class SonataAdminEnhancerTest extends ProphecyTestCase
         $this->pool->getAdminByClass('stdClass')->willReturn($this->admin);
 
         $this->resource->getPayload()->willReturn($this->payload);
+        $data = array();
+        $this->admin->getRoutes()->willReturn(
+            array(
+                'foo' => $this->route
+            )
+        );
+        $this->admin->getIdParameter()->willReturn('id');
+        $this->admin->getUrlsafeIdentifier($this->payload)->willReturn(10);
+        $this->admin->getLabel()->willReturn('asd');
 
         $result = $this->enhancer->enhance(
-            $this->context->reveal(),
+            $data,
             $this->resource->reveal()
         );
 

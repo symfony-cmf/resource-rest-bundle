@@ -50,6 +50,7 @@ class CmfResourceRestExtensionTest extends AbstractExtensionTestCase
      */
     public function testExtension($config)
     {
+        $this->container->setParameter('kernel.bundles', array());
         $this->container->addCompilerPass(new EnhancerPass());
         $this->load($config);
         $this->compile();
