@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\EventSubscriber;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\Jms\EventSubscriber;
 
 use Prophecy\PhpUnit\ProphecyTestCase;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\EventSubscriber\PhpcrNodeSubscriber;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber\PhpcrNodeSubscriber;
 
 class PhpcrNodeSubscriberTest extends ProphecyTestCase
 {

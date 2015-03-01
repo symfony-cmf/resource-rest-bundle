@@ -63,8 +63,24 @@ Feature: PHPCR-ODM resource repository
                 "path": "\/foo",
                 "repository_path": "\/foo",
                 "children": {
-                    "bar": null,
-                    "boo": null
+                    "bar": {
+                        "repository_alias": "phpcrodm_repo",
+                        "repository_type": "doctrine_phpcr_odm",
+                        "payload_alias": "article",
+                        "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
+                        "path": "/foo/bar",
+                        "repository_path": "/foo/bar",
+                        "children": [ ]
+                    },
+                    "boo": {
+                        "repository_alias": "phpcrodm_repo",
+                        "repository_type": "doctrine_phpcr_odm",
+                        "payload_alias": "article",
+                        "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
+                        "path": "/foo/boo",
+                        "repository_path": "/foo/boo",
+                        "children": [ ]
+                    }
                 }
             }
             """

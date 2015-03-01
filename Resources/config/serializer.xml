@@ -21,10 +21,6 @@
             <tag name="jms_serializer.subscribing_handler"/>
         </service>
 
-        <service id="cmf_resource_rest.serializer.jms.handler.resource_collection" class="%cmf_resource_rest.serializer.jms.handler.resource_collection.class%">
-            <tag name="jms_serializer.subscribing_handler"/>
-        </service>
-
         <service id="cmf_resource_rest.serializer.jms.handler.phpcr_node" class="%cmf_resource_rest.serializer.jms.handler.phpcr_node.class%">
             <tag name="jms_serializer.subscribing_handler"/>
         </service>
@@ -36,14 +32,5 @@
         <service id="cmf_resource_rest.serializer.jms.subscriber.resource" class="%cmf_resource_rest.serializer.jms.subscriber.resource.class%">
             <tag name="jms_serializer.event_subscriber" />
         </service>
-
-        <service id="cmf_resource_rest.serializer.jms.subscriber.resource_collection" class="%cmf_resource_rest.serializer.jms.subscriber.resource_collection.class%">
-            <tag name="jms_serializer.event_subscriber" />
-        </service>
-
-        <service id="cmf_resource_rest.serializer.jms.subscriber.resource_collection" class="%cmf_resource_rest.serializer.jms.subscriber.resource_collection.class%">
-            <tag name="jms_serializer.event_subscriber" />
-        </service>
-
     </services>
 </container>

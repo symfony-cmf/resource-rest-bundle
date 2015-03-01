@@ -12,6 +12,11 @@ Feature: PHPCR resource repository
                         phpcr_repo:
                             basepath: /tests/cmf/articles
 
+            cmf_resource_rest:
+                enhancer_map:
+                    -
+                        repository: phpcr_repo
+                        enhancer: payload
             """
 
 

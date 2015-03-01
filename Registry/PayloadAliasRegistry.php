@@ -17,6 +17,7 @@ use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Puli\Repository\Api\Resource\Resource;
 use Puli\Repository\Api\ResourceRepository;
 use Puli\Repository\Api\Resource\CompositeResource;
+use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
 
 /**
  * Registry for resource payload aliases

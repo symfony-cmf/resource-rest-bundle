@@ -47,7 +47,6 @@ class ResourceController
         $context = SerializationContext::create();
         $context->enableMaxDepthChecks();
         $context->setSerializeNull(true);
-        $context->addExclusionStrategy(new GlobalDepthExclusionStrategy(2));
         $json = $this->serializer->serialize(
             $resource,
             'json',

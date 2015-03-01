@@ -19,34 +19,12 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-class CmfResourceRestExtension extends Extension implements PrependExtensionInterface
+class CmfResourceRestExtension extends Extension
 {
     private $nativeEnhancers = array(
         'payload',
         'sonata_admin',
     );
-
-    public function prepend(ContainerBuilder $container)
-    {
-        $container->prependExtensionConfig('jms_serializer', array(
-            'metadata' => array(
-                'directories' => array(
-                    array(
-                        'path' => __DIR__ . '/../Resources/config/serializer',
-                        'namespace_prefix' => 'Symfony\Cmf\Component\Resource\Repository\Resource',
-                    ),
-                    array(
-                        'path' => __DIR__ . '/../Resources/config/serializer',
-                        'namespace_prefix' => 'Puli\Repository\Resource',
-                    ),
-                    array(
-                        'path' => __DIR__ . '/../Resources/config/serializer',
-                        'namespace_prefix' => 'PHPCR',
-                    ),
-                ),
-            ),
-        ));
-    }
 
     /**
      * {@inheritDoc}

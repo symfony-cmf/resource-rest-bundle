@@ -12,7 +12,7 @@
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\Handler;
 
 use Prophecy\PhpUnit\ProphecyTestCase;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Handler\PhpcrNodeHandler;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\PhpcrNodeHandler;
 
 class PhpcrNodeHandlerTest extends ProphecyTestCase
 {
