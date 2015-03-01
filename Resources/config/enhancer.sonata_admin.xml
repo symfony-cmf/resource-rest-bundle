@@ -12,6 +12,7 @@
 
         <service id="cmf_resource_rest.enhancer.sonata_admin" class="%cmf_resource_rest.enhancer.sonata_admin.class%">
             <argument type="service" id="sonata.admin.pool" />
+            <argument type="service" id="router" />
             <tag name="cmf_resource_rest.enhancer" alias="sonata_admin" />
         </service>
 

@@ -71,7 +71,7 @@ class ResourceHandler implements SubscribingHandlerInterface
         $context->accept($data);
     }
 
-    private function doSerializeResource(Resource $resource)
+    private function doSerializeResource(Resource $resource, $depth = 0)
     {
         $data = array();
         $repositoryAlias = $this->registry->getRepositoryAlias($resource->getRepository());
@@ -92,7 +92,11 @@ class ResourceHandler implements SubscribingHandlerInterface
 
         $children = array();
         foreach ($resource->listChildren() as $name => $resource) {
-            $children[$name] = $this->doSerializeResource($resource);
+            $children[$name] = array();
+
+            if ($depth < 1) {
+                $children[$name] = $this->doSerializeResource($resource, $depth + 1);
+            }
         }
         $data['children'] = $children;
 

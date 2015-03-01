@@ -44,23 +44,30 @@ class SonataAdminEnhancer implements EnhancerInterface
         $class = ClassUtils::getClass($object);
 
         if (false === $this->pool->hasAdminByClass($class)) {
-            return;
+            return $data;
         }
 
         $admin = $this->pool->getAdminByClass($class);
 
         $links = array();
-        foreach (array_keys($admin->getRoutes()) as $routeName) {
-            $url = $this->urlGenerator->generate($routeName, array(
-                $admin->getIdParameter(),
-                $admin->getUrlsafeIdentifier($object)
-            ));
 
-            $links[$routeName] = $url;
+        $routeCollection = $admin->getRoutes();
+
+        foreach ($routeCollection->getElements() as $code => $route) {
+            $routeName = $route->getDefault('_sonata_name');
+            $url = $this->urlGenerator->generate($routeName, array(
+                $admin->getIdParameter() => $admin->getUrlsafeIdentifier($object)
+            ), true);
+
+            $routeRole = substr($code, strlen($admin->getCode()) + 1);
+
+            $links[$routeRole] = $url;
         }
 
-        $data['_admin_label'] = $admin->getLabel();
-        $data['_admin_links'] = $links;
+        $data['sonata_label'] = $admin->getLabel();
+        $data['sonata_links'] = $links;
+
+        return $data;
     }
 }
 
