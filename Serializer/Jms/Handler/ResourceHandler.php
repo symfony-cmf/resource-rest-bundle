@@ -79,6 +79,7 @@ class ResourceHandler implements SubscribingHandlerInterface
         $data['repository_alias'] = $repositoryAlias;
         $data['repository_type'] = $this->registry->getRepositoryType($resource->getRepository());
         $data['payload_alias'] = $this->payloadAliasRegistry->getPayloadAlias($resource);
+        $data['payload_type'] = null;
 
         if ($resource instanceof CmfResource) {
             $data['payload_type'] = $resource->getPayloadType();

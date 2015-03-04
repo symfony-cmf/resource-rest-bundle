@@ -41,8 +41,7 @@ before_script:
 
 script:
     - phpunit --coverage-text
-    - ./vendor/symfony-cmf/testing/bin/server &
-    - ./vendor/bin/behat
+    - ./Tests/Resources/bin/runtests.sh
 
 notifications:
   irc: "irc.freenode.org#symfony-cmf"
