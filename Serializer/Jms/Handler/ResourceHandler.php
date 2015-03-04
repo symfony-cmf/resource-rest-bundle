@@ -66,7 +66,6 @@ class ResourceHandler implements SubscribingHandlerInterface
         array $type,
         Context $context
     ) {
-
         $data = $this->doSerializeResource($resource);
         $context->accept($data);
     }

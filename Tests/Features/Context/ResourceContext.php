@@ -47,6 +47,10 @@ class ResourceContext implements Context, KernelAwareContext
 
         touch(__DIR__ . '/../../Resources/app/config/config.php');
 
+        $this->cacheClearer = $this->kernel->getContainer()->get('cache_clearer')->clear(
+            $this->kernel->getCacheDir()
+        );
+
         $this->manager = $this->kernel->getContainer()->get('doctrine_phpcr.odm.document_manager');
         $this->session = $this->manager->getPhpcrSession();
 
