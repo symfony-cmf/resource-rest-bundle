@@ -15,7 +15,6 @@
         <service id="cmf_resource_rest.controller.resource" class="%cmf_resource_rest.controller.resource.class%">
             <argument type="service" id="serializer" />
             <argument type="service" id="cmf_resource.registry" />
-            <argument type="service" id="hateoas.generator.symfony" />
         </service>
 
         <service id="cmf_resource_rest.registry.payload_alias" class="%cmf_resource_rest.registry.payload_alias.class%">

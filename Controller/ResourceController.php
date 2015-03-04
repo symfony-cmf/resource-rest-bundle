@@ -17,11 +17,6 @@ class ResourceController
     private $registry;
 
     /**
-     * @var UrlGeneratorInterface
-     */
-    private $urlGenerator;
-
-    /**
      * @var SerializerInterface
      */
     private $serializer;
@@ -31,12 +26,10 @@ class ResourceController
      */
     public function __construct(
         SerializerInterface $serializer,
-        RepositoryRegistryInterface $registry,
-        UrlGeneratorInterface $urlGenerator
+        RepositoryRegistryInterface $registry
     ) {
         $this->serializer = $serializer;
         $this->registry = $registry;
-        $this->urlGenerator = $urlGenerator;
     }
 
     public function resourceAction($repositoryName, $path)
