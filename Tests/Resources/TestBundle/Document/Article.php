@@ -7,7 +7,6 @@ use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * @PHPCR\Document()
- * @Hateoas\Relation("self", href="/path/to/this")
  */
 class Article
 {
