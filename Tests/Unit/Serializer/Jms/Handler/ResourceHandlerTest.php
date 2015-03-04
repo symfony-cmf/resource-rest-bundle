@@ -30,7 +30,7 @@ class ResourceHandlerTest extends ProphecyTestCase
         $this->childResource = $this->prophesize('Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource');
 
         $this->repository = $this->prophesize('Puli\Repository\Api\ResourceRepository');
-        $this->payload = new \stdClass;
+        $this->payload = new \stdClass();
         $this->context = $this->prophesize('JMS\Serializer\Context');
 
         $this->handler = new ResourceHandler(
@@ -51,7 +51,7 @@ class ResourceHandlerTest extends ProphecyTestCase
         $this->resource->getPath()->willReturn('/path/to');
         $this->resource->getRepositoryPath()->willReturn('/repository/path');
         $this->resource->listChildren()->willReturn(array(
-            $this->childResource
+            $this->childResource,
         ));
 
         $this->payloadAliasRegistry->getPayloadAlias($this->childResource->reveal())->willReturn('alias');
@@ -63,14 +63,14 @@ class ResourceHandlerTest extends ProphecyTestCase
         ));
 
         $this->enhancerRegistry->getEnhancers('repo')->willReturn(array(
-            $this->enhancer
+            $this->enhancer,
         ));
         $this->enhancer->enhance(Argument::type('array'), Argument::type('Puli\Repository\Api\Resource\Resource'))
             ->will(function ($data, $resource) {
                 return $data[0];
             });
 
-        $expected = array (
+        $expected = array(
             'repository_alias' => 'repo',
             'repository_type' => 'repo_type',
             'payload_alias' => 'alias',
@@ -78,14 +78,14 @@ class ResourceHandlerTest extends ProphecyTestCase
             'path' => '/path/to',
             'repository_path' => '/repository/path',
             'children' => array(
-                array (
+                array(
                     'repository_alias' => 'repo',
                     'repository_type' => 'repo_type',
                     'payload_alias' => 'alias',
                     'payload_type' => 'payload_type',
                     'path' => '/path/to/child',
                     'repository_path' => '/child/repository/path',
-                    'children' => array()
+                    'children' => array(),
                 ),
             ),
         );

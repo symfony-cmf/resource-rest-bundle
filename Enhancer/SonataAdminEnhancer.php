@@ -11,7 +11,6 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer;
 
-use JMS\Serializer\Context;
 use Puli\Repository\Api\Resource\Resource;
 use Sonata\AdminBundle\Admin\Pool;
 use Doctrine\Common\Util\ClassUtils;
@@ -69,7 +68,7 @@ class SonataAdminEnhancer implements EnhancerInterface
         foreach ($routeCollection->getElements() as $code => $route) {
             $routeName = $route->getDefault('_sonata_name');
             $url = $this->urlGenerator->generate($routeName, array(
-                $admin->getIdParameter() => $admin->getUrlsafeIdentifier($object)
+                $admin->getIdParameter() => $admin->getUrlsafeIdentifier($object),
             ), true);
 
             $routeRole = substr($code, strlen($admin->getCode()) + 1);
@@ -83,4 +82,3 @@ class SonataAdminEnhancer implements EnhancerInterface
         return $data;
     }
 }
-

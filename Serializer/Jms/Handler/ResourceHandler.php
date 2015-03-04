@@ -107,4 +107,3 @@ class ResourceHandler implements SubscribingHandlerInterface
         return $data;
     }
 }
-

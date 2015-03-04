@@ -11,12 +11,8 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Registry;
 
-use Symfony\Cmf\Component\Resource\RepositoryFactoryInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Puli\Repository\Api\Resource\Resource;
-use Puli\Repository\Api\ResourceRepository;
-use Puli\Repository\Api\Resource\CompositeResource;
 use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
 
 /**
@@ -73,15 +69,15 @@ class PayloadAliasRegistry
         }
 
         if (null === $type) {
-            return null;
+            return;
         }
 
         if (!isset($this->aliasesByRepository[$repositoryType])) {
-            return null;
+            return;
         }
 
         if (!isset($this->aliasesByRepository[$repositoryType][$type])) {
-            return null;
+            return;
         }
 
         return $this->aliasesByRepository[$repositoryType][$type];

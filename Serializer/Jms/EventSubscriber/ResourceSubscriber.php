@@ -12,15 +12,10 @@
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber;
 
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
-use PHPCR\NodeInterface;
 use JMS\Serializer\EventDispatcher\Events;
 use JMS\Serializer\EventDispatcher\PreSerializeEvent;
 use Puli\Repository\Api\ResourceCollection;
-use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Puli\Repository\Api\Resource\Resource;
-use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry;
 
 /**
  * Force instaces of ResourceCollection to type "ResourceCollection"

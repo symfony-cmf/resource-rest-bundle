@@ -36,4 +36,3 @@ class PhpcrNodeSubscriberTest extends ProphecyTestCase
         $this->subscriber->onPreSerialize($this->event->reveal());
     }
 }
-

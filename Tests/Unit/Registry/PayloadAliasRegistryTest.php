@@ -66,4 +66,3 @@ class PayloadAliasRegistryTest extends ProphecyTestCase
         return new PayloadAliasRegistry($this->repositoryRegistry->reveal(), $aliases);
     }
 }
-

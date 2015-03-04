@@ -11,7 +11,6 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer;
 
-use JMS\Serializer\Context;
 use Puli\Repository\Api\Resource\Resource;
 
 /**

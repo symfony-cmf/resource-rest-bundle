@@ -4,10 +4,8 @@ namespace Symfony\Cmf\Bundle\ResourceRestBundle\Controller;
 
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Hateoas\UrlGenerator\UrlGeneratorInterface;
 use JMS\Serializer\SerializerInterface;
 use JMS\Serializer\SerializationContext;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Exclusion\GlobalDepthExclusionStrategy;
 
 class ResourceController
 {

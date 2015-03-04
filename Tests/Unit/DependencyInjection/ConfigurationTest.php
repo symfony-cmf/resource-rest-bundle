@@ -44,7 +44,7 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
             'payload_alias_map' => array(
                 'article' => array(
                     'repository' => 'doctrine_phpcr_odm',
-                    'type' => 'Namespace\Article'
+                    'type' => 'Namespace\Article',
                 ),
             ),
             'enhancer_map' => array(

@@ -63,5 +63,3 @@ class EnhancerRegistryTest extends ProphecyTestCase
         return new EnhancerRegistry($this->container->reveal(), $enhancerMap, $aliasMap);
     }
 }
-
-

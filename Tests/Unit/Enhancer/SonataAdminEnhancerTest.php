@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
- 
+
 namespace Unit\Enhancer;
 
 use Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer\SonataAdminEnhancer;
@@ -26,7 +26,7 @@ class SonataAdminEnhancerTest extends ProphecyTestCase
         $this->pool = $this->prophesize('Sonata\AdminBundle\Admin\Pool');
         $this->visitor = $this->prophesize('JMS\Serializer\GenericSerializationVisitor');
         $this->generator = $this->prophesize('Symfony\Component\Routing\Generator\UrlGeneratorInterface');
-        $this->payload = new \stdClass;
+        $this->payload = new \stdClass();
         $this->resource = $this->prophesize('Puli\Repository\Api\Resource\Resource');
         $this->route1 = $this->prophesize('Symfony\Component\Routing\Route');
         $this->route2 = $this->prophesize('Symfony\Component\Routing\Route');
@@ -87,7 +87,7 @@ class SonataAdminEnhancerTest extends ProphecyTestCase
             'sonata_links' => array(
                 'edit' => 'http://edit',
                 'delete' => 'http://delete',
-            )
+            ),
         ), $result);
     }
 }

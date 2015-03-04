@@ -34,7 +34,6 @@ class AppKernel extends TestKernel
         $loader->load(__DIR__.'/config/config.php');
 
         if ($this->getEnvironment() !== 'behat' && file_exists(ResourceContext::getConfigurationFile())) {
-
             $loader->import(ResourceContext::getConfigurationFile());
         }
     }
