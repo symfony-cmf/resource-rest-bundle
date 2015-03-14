@@ -3,7 +3,7 @@
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2014 Symfony CMF
+ * (c) 2011-2015 Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,7 +12,7 @@
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\Handler;
 
 use Prophecy\PhpUnit\ProphecyTestCase;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Handler\PhpcrNodeHandler;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\PhpcrNodeHandler;
 
 class PhpcrNodeHandlerTest extends ProphecyTestCase
 {

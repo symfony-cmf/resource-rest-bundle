@@ -25,7 +25,6 @@ class AppKernel extends TestKernel
             new \Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\TestBundle(),
             new \Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle(),
             new \Symfony\Cmf\Bundle\ResourceBundle\CmfResourceBundle(),
-            new \Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new \JMS\SerializerBundle\JMSSerializerBundle(),
         ));
     }
@@ -35,7 +34,6 @@ class AppKernel extends TestKernel
         $loader->load(__DIR__.'/config/config.php');
 
         if ($this->getEnvironment() !== 'behat' && file_exists(ResourceContext::getConfigurationFile())) {
-
             $loader->import(ResourceContext::getConfigurationFile());
         }
     }

@@ -3,7 +3,7 @@
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2014 Symfony CMF
+ * (c) 2011-2015 Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,11 +11,8 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Registry;
 
-use Symfony\Cmf\Component\Resource\RepositoryFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Puli\Repository\Api\Resource\Resource;
-use Puli\Repository\Api\ResourceRepository;
 
 /**
  * Registry for resource enhancers
@@ -48,8 +45,7 @@ class EnhancerRegistry
         ContainerInterface $container,
         $enhancerMap = array(),
         $aliasMap = array()
-    )
-    {
+    ) {
         $this->container = $container;
         $this->enhancerMap = $enhancerMap;
         $this->aliasMap = $aliasMap;

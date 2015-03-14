@@ -3,16 +3,16 @@
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2014 Symfony CMF
+ * (c) 2011-2015 Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\EventSubscriber;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\Jms\EventSubscriber;
 
 use Prophecy\PhpUnit\ProphecyTestCase;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\EventSubscriber\PhpcrNodeSubscriber;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber\PhpcrNodeSubscriber;
 
 class PhpcrNodeSubscriberTest extends ProphecyTestCase
 {
@@ -36,4 +36,3 @@ class PhpcrNodeSubscriberTest extends ProphecyTestCase
         $this->subscriber->onPreSerialize($this->event->reveal());
     }
 }
-

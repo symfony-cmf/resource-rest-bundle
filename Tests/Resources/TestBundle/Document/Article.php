@@ -3,11 +3,9 @@
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
-use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * @PHPCR\Document()
- * @Hateoas\Relation("self", href="/path/to/this")
  */
 class Article
 {

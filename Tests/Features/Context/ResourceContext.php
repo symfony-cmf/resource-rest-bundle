@@ -10,6 +10,8 @@ use PHPCR\Util\PathHelper;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Behat\Behat\Context\Context;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 class ResourceContext implements Context, KernelAwareContext
 {
@@ -45,7 +47,7 @@ class ResourceContext implements Context, KernelAwareContext
             unlink(self::getConfigurationFile());
         }
 
-        touch(__DIR__ . '/../../Resources/app/config/config.php');
+        $this->clearDiCache();
 
         $this->manager = $this->kernel->getContainer()->get('doctrine_phpcr.odm.document_manager');
         $this->session = $this->manager->getPhpcrSession();
@@ -94,5 +96,15 @@ class ResourceContext implements Context, KernelAwareContext
 
         $this->manager->persist($document);
         $this->manager->flush();
+    }
+
+    private function clearDiCache()
+    {
+        $finder = new Finder();
+        $finder->in($this->kernel->getCacheDir());
+        $finder->name('*.php');
+        $finder->name('*.php.meta');
+        $filesystem = new Filesystem();
+        $filesystem->remove($finder);
     }
 }

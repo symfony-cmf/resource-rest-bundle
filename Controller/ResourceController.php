@@ -4,7 +4,6 @@ namespace Symfony\Cmf\Bundle\ResourceRestBundle\Controller;
 
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Hateoas\UrlGenerator\UrlGeneratorInterface;
 use JMS\Serializer\SerializerInterface;
 use JMS\Serializer\SerializationContext;
 
@@ -16,11 +15,6 @@ class ResourceController
     private $registry;
 
     /**
-     * @var UrlGeneratorInterface
-     */
-    private $urlGenerator;
-
-    /**
      * @var SerializerInterface
      */
     private $serializer;
@@ -30,12 +24,10 @@ class ResourceController
      */
     public function __construct(
         SerializerInterface $serializer,
-        RepositoryRegistryInterface $registry,
-        UrlGeneratorInterface $urlGenerator
+        RepositoryRegistryInterface $registry
     ) {
         $this->serializer = $serializer;
         $this->registry = $registry;
-        $this->urlGenerator = $urlGenerator;
     }
 
     public function resourceAction($repositoryName, $path)
@@ -43,10 +35,13 @@ class ResourceController
         $repository = $this->registry->get($repositoryName);
         $resource = $repository->get('/' . $path);
 
+        $context = SerializationContext::create();
+        $context->enableMaxDepthChecks();
+        $context->setSerializeNull(true);
         $json = $this->serializer->serialize(
             $resource,
             'json',
-            SerializationContext::create()->enableMaxDepthChecks()
+            $context
         );
 
         return new Response($json);
