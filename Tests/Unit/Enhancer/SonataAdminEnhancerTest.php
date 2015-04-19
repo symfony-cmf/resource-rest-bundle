@@ -76,6 +76,7 @@ class SonataAdminEnhancerTest extends ProphecyTestCase
 
         $this->admin->getIdParameter()->willReturn('id');
         $this->admin->getLabel()->willReturn('Admin Label');
+        $this->admin->toString($this->payload)->willReturn('Admin');
 
         $result = $this->enhancer->enhance(
             $data,
@@ -83,6 +84,7 @@ class SonataAdminEnhancerTest extends ProphecyTestCase
         );
 
         $this->assertEquals(array(
+            'label' => 'Admin',
             'sonata_label' => 'Admin Label',
             'sonata_links' => array(
                 'edit' => 'http://edit',

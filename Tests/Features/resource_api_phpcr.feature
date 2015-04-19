@@ -34,6 +34,8 @@ Feature: PHPCR resource repository
                 "payload_alias": null,
                 "payload_type": "nt:unstructured",
                 "path": "\/foo",
+                "node_name": "foo",
+                "label": "foo",
                 "repository_path": "\/foo",
                 "children": []
             }

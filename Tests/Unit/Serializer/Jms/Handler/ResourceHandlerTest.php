@@ -76,6 +76,8 @@ class ResourceHandlerTest extends ProphecyTestCase
             'payload_alias' => 'alias',
             'payload_type' => 'payload_type',
             'path' => '/path/to',
+            'node_name' => 'to',
+            'label' => 'to',
             'repository_path' => '/repository/path',
             'children' => array(
                 array(
@@ -84,6 +86,8 @@ class ResourceHandlerTest extends ProphecyTestCase
                     'payload_alias' => 'alias',
                     'payload_type' => 'payload_type',
                     'path' => '/path/to/child',
+                    'label' => 'child',
+                    'node_name' => 'child',
                     'repository_path' => '/child/repository/path',
                     'children' => array(),
                 ),
