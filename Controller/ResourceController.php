@@ -44,6 +44,9 @@ class ResourceController
             $context
         );
 
-        return new Response($json);
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
     }
 }
