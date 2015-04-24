@@ -7,10 +7,10 @@ Feature: PHPCR resource repository
         Given the test application has the following configuration:
             """
             cmf_resource:
-                repository:
-                    doctrine_phpcr:
-                        phpcr_repo:
-                            basepath: /tests/cmf/articles
+                repositories:
+                    phpcr_repo:
+                        type: doctrine_phpcr
+                        basepath: /tests/cmf/articles
 
             cmf_resource_rest:
                 enhancer_map:
