@@ -7,10 +7,10 @@ Feature: PHPCR-ODM resource repository
         Given the test application has the following configuration:
             """
             cmf_resource:
-                repository:
-                    doctrine_phpcr_odm:
-                        phpcrodm_repo:
-                            basepath: /tests/cmf/articles
+                repositories:
+                    phpcrodm_repo:
+                        type: doctrine_phpcr_odm
+                        basepath: /tests/cmf/articles
 
             cmf_resource_rest:
                 payload_alias_map:

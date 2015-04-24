@@ -86,16 +86,15 @@ class ResourceHandler implements SubscribingHandlerInterface
 
         $data['path'] = $resource->getPath();
         $data['repository_path'] = $resource->getRepositoryPath();
-        $children = $resource->listChildren();
 
         $enhancers = $this->enhancerRegistry->getEnhancers($repositoryAlias);
 
         $children = array();
-        foreach ($resource->listChildren() as $name => $resource) {
+        foreach ($resource->listChildren() as $name => $childResource) {
             $children[$name] = array();
 
-            if ($depth < 1) {
-                $children[$name] = $this->doSerializeResource($resource, $depth + 1);
+            if ($depth < 2) {
+                $children[$name] = $this->doSerializeResource($childResource, $depth + 1);
             }
         }
         $data['children'] = $children;
