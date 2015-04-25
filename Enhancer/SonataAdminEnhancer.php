@@ -76,6 +76,7 @@ class SonataAdminEnhancer implements EnhancerInterface
             $links[$routeRole] = $url;
         }
 
+        $data['label'] = $admin->toString($object);
         $data['sonata_label'] = $admin->getLabel();
         $data['sonata_links'] = $links;
 

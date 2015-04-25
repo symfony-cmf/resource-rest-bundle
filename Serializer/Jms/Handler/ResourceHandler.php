@@ -15,6 +15,7 @@ use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\JsonSerializationVisitor;
 use JMS\Serializer\Context;
 use PHPCR\NodeInterface;
+use PHPCR\Util\PathHelper;
 use Puli\Repository\Api\Resource\Resource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
@@ -85,6 +86,7 @@ class ResourceHandler implements SubscribingHandlerInterface
         }
 
         $data['path'] = $resource->getPath();
+        $data['label'] = $data['node_name'] = PathHelper::getNodeName($data['path']);
         $data['repository_path'] = $resource->getRepositoryPath();
 
         $enhancers = $this->enhancerRegistry->getEnhancers($repositoryAlias);

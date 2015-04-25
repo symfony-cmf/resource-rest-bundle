@@ -35,6 +35,8 @@ Feature: PHPCR-ODM resource repository
                 "payload_alias": "article",
                 "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
                 "path": "\/foo",
+                "node_name": "foo",
+                "label": "foo",
                 "repository_path": "\/foo",
                 "children": []
             }
@@ -61,6 +63,8 @@ Feature: PHPCR-ODM resource repository
                 "payload_alias": "article",
                 "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
                 "path": "\/foo",
+                "node_name": "foo",
+                "label": "foo",
                 "repository_path": "\/foo",
                 "children": {
                     "bar": {
@@ -69,6 +73,8 @@ Feature: PHPCR-ODM resource repository
                         "payload_alias": "article",
                         "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
                         "path": "/foo/bar",
+                        "node_name": "bar",
+                        "label": "bar",
                         "repository_path": "/foo/bar",
                         "children": [ ]
                     },
@@ -78,6 +84,8 @@ Feature: PHPCR-ODM resource repository
                         "payload_alias": "article",
                         "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
                         "path": "/foo/boo",
+                        "node_name": "boo",
+                        "label": "boo",
                         "repository_path": "/foo/boo",
                         "children": [ ]
                     }
