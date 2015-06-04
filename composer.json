@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "php": ">=5.3.9",
         "symfony-cmf/resource-bundle": "~1.0",
         "jms/serializer-bundle": "~0.13"
     },
