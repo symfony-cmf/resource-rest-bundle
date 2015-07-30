@@ -17,6 +17,9 @@ class ResourceContext implements Context, KernelAwareContext
 {
     private $session;
     private $manager;
+    /**
+     * @var KernelInterface
+     */
     private $kernel;
 
     /**
@@ -61,7 +64,7 @@ class ResourceContext implements Context, KernelAwareContext
     /**
      * @Given the test application has the following configuration:
      */
-    public function givenTheApplicationHasTheConfiguration(PyStringNode $config)
+    public function setApplicationConfig(PyStringNode $config)
     {
         file_put_contents(self::getConfigurationFile(), $config->getRaw());
     }
@@ -79,9 +82,9 @@ class ResourceContext implements Context, KernelAwareContext
     }
 
     /**
-     * @Given there exists a ":class" document at ":path":
+     * @Given there exists a :class document at :path:
      */
-    public function givenThereExistsDocument($class, $path, TableNode $fields)
+    public function createDocument($class, $path, TableNode $fields)
     {
         $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\' . $class;
         $path = '/tests' . $path;
