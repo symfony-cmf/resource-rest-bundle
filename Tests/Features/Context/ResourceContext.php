@@ -67,6 +67,18 @@ class ResourceContext implements Context, KernelAwareContext
     }
 
     /**
+     * @Given there is a file named :filename with:
+     */
+    public function createFile($filename, PyStringNode $content)
+    {
+        $filesytem = new Filesystem();
+        $file = str_replace('%kernel.root_dir%', $this->kernel->getRootDir(), $filename);
+        $filesytem->mkdir(dirname($file));
+
+        file_put_contents($file, (string) $content);
+    }
+
+    /**
      * @Given there exists a ":class" document at ":path":
      */
     public function givenThereExistsDocument($class, $path, TableNode $fields)
