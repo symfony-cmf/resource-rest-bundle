@@ -24,9 +24,8 @@ Feature: PHPCR resource repository
         Given there exists a "Article" document at "/cmf/articles/foo":
             | title | Article 1 |
             | body | This is my article |
-        Then I send a GET request to "/api/phpcr_repo/foo"
-        And print response
-        And the response should contain json:
+        When I send a GET request to "/api/phpcr_repo/foo"
+        Then the response should contain json:
             """
             {
                 "repository_alias": "phpcr_repo",

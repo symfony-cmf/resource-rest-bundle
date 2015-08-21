@@ -14,7 +14,7 @@ Feature: PHPCR-ODM resource repository
 
             cmf_resource_rest:
                 payload_alias_map:
-                    article: 
+                    article:
                         repository: doctrine_phpcr_odm
                         type: "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article"
             """
@@ -24,9 +24,8 @@ Feature: PHPCR-ODM resource repository
         Given there exists a "Article" document at "/cmf/articles/foo":
             | title | Article 1 |
             | body | This is my article |
-        Then I send a GET request to "/api/phpcrodm_repo/foo"
-        And print response
-        And the response code should be 200
+        When I send a GET request to "/api/phpcrodm_repo/foo"
+        Then the response code should be 200
         And the response should contain json:
             """
             {
@@ -52,9 +51,8 @@ Feature: PHPCR-ODM resource repository
         And there exists a "Article" document at "/cmf/articles/foo/boo":
             | title | Article child |
             | body | But this one is mine |
-        Then I send a GET request to "/api/phpcrodm_repo/foo"
-        And print response
-        And the response code should be 200
+        When I send a GET request to "/api/phpcrodm_repo/foo"
+        Then the response code should be 200
         And the response should contain json:
             """
             {
