@@ -17,6 +17,7 @@ class ResourceContext implements Context, KernelAwareContext
 {
     private $session;
     private $manager;
+
     /**
      * @var KernelInterface
      */
