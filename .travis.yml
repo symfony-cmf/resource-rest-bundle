@@ -1,19 +1,20 @@
 language: php
 
 php:
-    - 5.4
-    - 5.5
-    - 5.6
-    - hhvm
-    
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - hhvm
+  
 sudo: false
 
 cache:
-    directories:
-        - $HOME/.composer/cache
+  directories:
+    - $HOME/.composer/cache
 
 env:
-  - SYMFONY_VERSION=2.5.*
+  - SYMFONY_VERSION=2.7.*
 
 matrix:
   allow_failures:
@@ -21,28 +22,27 @@ matrix:
     - php: hhvm
   include:
     - php: 5.6
-      env: SYMFONY_VERSION=2.3.*
+      env: SYMFONY_VERSION=2.3.* SYMFONY_DEPRECATIONS_HELPER=weak
     - php: 5.6
-      env: SYMFONY_VERSION=2.6.*
-    - php: 5.6
-      env: SYMFONY_VERSION=2.7.*
+      env: SYMFONY_VERSION=2.8.*
     - php: 5.6
       env: SYMFONY_VERSION=3.0.*
   allow_failures:
-    - php: 5.6
-      env: SYMFONY_VERSION=2.7.*
-    - php: 5.6
-      env: SYMFONY_VERSION=3.0.*
+    - php: 7.0
+    - env: SYMFONY_VERSION=2.8.*
+    - env: SYMFONY_VERSION=3.0.*
+  fast_finish: true
 
-before_script:
-  - composer self-update
-  - composer require symfony/symfony:${SYMFONY_VERSION} --prefer-dist
-  - vendor/symfony-cmf/testing/bin/travis/phpcr_odm_doctrine_dbal.sh
+before_install: composer self-update
+
+install: composer require symfony/symfony:${SYMFONY_VERSION} --prefer-dist
+
+before_script: vendor/symfony-cmf/testing/bin/travis/phpcr_odm_doctrine_dbal.sh
 
 script:
-    - phpunit --coverage-text
-    - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then ./vendor/symfony-cmf/testing/bin/server & fi
-    - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then ./vendor/bin/behat; fi
+  - phpunit --coverage-text
+  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then ./vendor/symfony-cmf/testing/bin/server & fi
+  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then ./vendor/bin/behat; fi
 
 notifications:
   irc: "irc.freenode.org#symfony-cmf"
