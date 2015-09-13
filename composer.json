@@ -23,8 +23,8 @@
         "behat/behat": "^3.0",
         "behat/web-api-extension" : "^1.0",
         "behat/symfony2-extension": "^2.0@dev",
-        "matthiasnoback/symfony-dependency-injection-test": "^0.1",
-        "matthiasnoback/symfony-config-test": "^0.1",
+        "matthiasnoback/symfony-dependency-injection-test": "~0.1",
+        "matthiasnoback/symfony-config-test": "~0.1",
         "sonata-project/doctrine-phpcr-admin-bundle": "^1.2"
     },
     "suggest": {
