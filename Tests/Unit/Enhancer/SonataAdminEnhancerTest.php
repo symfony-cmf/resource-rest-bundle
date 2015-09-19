@@ -27,7 +27,7 @@ class SonataAdminEnhancerTest extends ProphecyTestCase
         $this->visitor = $this->prophesize('JMS\Serializer\GenericSerializationVisitor');
         $this->generator = $this->prophesize('Symfony\Component\Routing\Generator\UrlGeneratorInterface');
         $this->payload = new \stdClass();
-        $this->resource = $this->prophesize('Puli\Repository\Api\Resource\Resource');
+        $this->resource = $this->prophesize('Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource');
         $this->route1 = $this->prophesize('Symfony\Component\Routing\Route');
         $this->route2 = $this->prophesize('Symfony\Component\Routing\Route');
         $this->routeCollection = $this->prophesize('Sonata\AdminBundle\Route\RouteCollection');

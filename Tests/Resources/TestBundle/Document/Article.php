@@ -15,12 +15,12 @@ class Article
     public $id;
 
     /**
-     * @PHPCR\String()
+     * @PHPCR\Field(type="string")
      */
     public $title;
 
     /**
-     * @PHPCR\String()
+     * @PHPCR\Field(type="string")
      */
     public $body;
 }
