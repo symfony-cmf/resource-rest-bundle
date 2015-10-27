@@ -11,10 +11,9 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\Jms\EventSubscriber;
 
-use Prophecy\PhpUnit\ProphecyTestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber\PhpcrNodeSubscriber;
 
-class PhpcrNodeSubscriberTest extends ProphecyTestCase
+class PhpcrNodeSubscriberTest extends \PHPUnit_Framework_TestCase
 {
     private $node;
     private $event;

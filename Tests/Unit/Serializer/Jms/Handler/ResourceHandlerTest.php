@@ -11,11 +11,10 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\Handler;
 
-use Prophecy\PhpUnit\ProphecyTestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\ResourceHandler;
 use Prophecy\Argument;
 
-class ResourceHandlerTest extends ProphecyTestCase
+class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
