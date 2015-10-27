@@ -12,9 +12,8 @@
 namespace Unit\Enhancer;
 
 use Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer\SonataAdminEnhancer;
-use Prophecy\PhpUnit\ProphecyTestCase;
 
-class SonataAdminEnhancerTest extends ProphecyTestCase
+class SonataAdminEnhancerTest extends \PHPUnit_Framework_TestCase
 {
     private $enhancer;
     private $pool;

@@ -11,10 +11,9 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Registry;
 
-use Prophecy\PhpUnit\ProphecyTestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry;
 
-class EnhancerRegistryTest extends ProphecyTestCase
+class EnhancerRegistryTest extends \PHPUnit_Framework_TestCase
 {
     private $registry;
 
