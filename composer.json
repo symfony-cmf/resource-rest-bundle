@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=5.3.9",
+        "php": "^5.3.9|^7.0",
         "symfony-cmf/resource-bundle": "1.*",
         "jms/serializer-bundle": "1.*"
     },
