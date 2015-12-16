@@ -42,7 +42,7 @@ class ResourceController
     public function resourceAction($repositoryName, $path)
     {
         $repository = $this->registry->get($repositoryName);
-        $resource = $repository->get('/' . $path);
+        $resource = $repository->get('/'.$path);
 
         $context = SerializationContext::create();
         $context->enableMaxDepthChecks();
@@ -55,7 +55,7 @@ class ResourceController
 
         $response = new Response($json);
         $response->headers->set('Content-Type', 'application/json');
-        
+
         return $response;
     }
 }

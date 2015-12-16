@@ -33,18 +33,19 @@ class ResourceContext implements Context, KernelAwareContext
     private $kernel;
 
     /**
-     * Return the path of the configuration file used by the AppKernel
+     * Return the path of the configuration file used by the AppKernel.
      *
      * @static
+     *
      * @return string
      */
     public static function getConfigurationFile()
     {
-        return __DIR__ . '/../../Resources/app/cache/resource.yml';
+        return __DIR__.'/../../Resources/app/cache/resource.yml';
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setKernel(KernelInterface $kernel)
     {
@@ -96,8 +97,8 @@ class ResourceContext implements Context, KernelAwareContext
      */
     public function createDocument($class, $path, TableNode $fields)
     {
-        $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\' . $class;
-        $path = '/tests' . $path;
+        $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\'.$class;
+        $path = '/tests'.$path;
 
         $parentPath = PathHelper::getParentPath($path);
 

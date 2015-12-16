@@ -25,7 +25,7 @@ use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry;
 use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
 
 /**
- * Handle PHPCR resource serialization
+ * Handle PHPCR resource serialization.
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
@@ -59,9 +59,9 @@ class ResourceHandler implements SubscribingHandlerInterface
 
     /**
      * @param JsonSerializationVisitor $visitor
-     * @param NodeInterface $resourceInterface
-     * @param array $type
-     * @param Context $context
+     * @param NodeInterface            $resourceInterface
+     * @param array                    $type
+     * @param Context                  $context
      */
     public function serializeResource(
         JsonSerializationVisitor $visitor,

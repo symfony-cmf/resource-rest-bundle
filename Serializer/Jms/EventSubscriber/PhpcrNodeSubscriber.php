@@ -17,7 +17,7 @@ use JMS\Serializer\EventDispatcher\Events;
 use JMS\Serializer\EventDispatcher\PreSerializeEvent;
 
 /**
- * Force the type of PHPCR node instances to PHPCR\NodeInterface
+ * Force the type of PHPCR node instances to PHPCR\NodeInterface.
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */

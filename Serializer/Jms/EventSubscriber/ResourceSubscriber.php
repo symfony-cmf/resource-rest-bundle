@@ -18,7 +18,7 @@ use Puli\Repository\Api\ResourceCollection;
 use Puli\Repository\Api\Resource\Resource;
 
 /**
- * Force instaces of ResourceCollection to type "ResourceCollection"
+ * Force instaces of ResourceCollection to type "ResourceCollection".
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */

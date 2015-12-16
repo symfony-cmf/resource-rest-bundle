@@ -30,8 +30,8 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
     public function provideConfig()
     {
         return array(
-            array(__DIR__ . '/fixtures/config.xml'),
-            array(__DIR__ . '/fixtures/config.yml'),
+            array(__DIR__.'/fixtures/config.xml'),
+            array(__DIR__.'/fixtures/config.yml'),
         );
     }
 
