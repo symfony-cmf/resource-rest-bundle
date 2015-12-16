@@ -15,7 +15,7 @@ use JMS\Serializer\Context;
 use Puli\Repository\Api\Resource\Resource;
 
 /**
- * Enhancer classes enhance the REST response for resources
+ * Enhancer classes enhance the REST response for resources.
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
@@ -29,7 +29,7 @@ interface EnhancerInterface
      *     $context->addData('foobar', 'Some value');
      *
      * @param Context Serialization context
-     * @param Resource The resource being serialized
+     * @param resource The resource being serialized
      */
     public function enhance(array $data, Resource $resource);
 }

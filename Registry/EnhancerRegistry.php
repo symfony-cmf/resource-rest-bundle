@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Puli\Repository\Api\Resource\Resource;
 
 /**
- * Registry for resource enhancers
+ * Registry for resource enhancers.
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
@@ -37,9 +37,9 @@ class EnhancerRegistry
     private $container;
 
     /**
-     * @param ContainerInterface $container The service container
-     * @param array $enhancerMap Map of enhancer aliases to repository names
-     * @param array $aliasMap Serice ID map for enhancer aliases
+     * @param ContainerInterface $container   The service container
+     * @param array              $enhancerMap Map of enhancer aliases to repository names
+     * @param array              $aliasMap    Serice ID map for enhancer aliases
      */
     public function __construct(
         ContainerInterface $container,
@@ -56,6 +56,7 @@ class EnhancerRegistry
      * the repository with the given alias.
      *
      * @param string $repositoryAlias
+     *
      * @return EnhancerInterface[]
      */
     public function getEnhancers($repositoryAlias)

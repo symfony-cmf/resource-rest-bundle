@@ -17,7 +17,7 @@ use Doctrine\Common\Util\ClassUtils;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
- * Add links and meta-info from Sonata Admin
+ * Add links and meta-info from Sonata Admin.
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
@@ -34,9 +34,9 @@ class SonataAdminEnhancer implements EnhancerInterface
     private $urlGenerator;
 
     /**
-     * __construct
+     * __construct.
      *
-     * @param Pool $pool
+     * @param Pool                  $pool
      * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(Pool $pool, UrlGeneratorInterface $urlGenerator)
@@ -46,7 +46,7 @@ class SonataAdminEnhancer implements EnhancerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function enhance(array $data, Resource $resource)
     {
