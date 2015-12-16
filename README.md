@@ -1,6 +1,7 @@
 # Symfony CMF Resource REST API Bundle
 
 [![Build Status](https://secure.travis-ci.org/symfony-cmf/ResourceRestBundle.png?branch=master)](http://travis-ci.org/symfony-cmf/ResourceRestBundle)
+[![StyleCI](https://styleci.io/repos/29090266/shield)](https://styleci.io/repos/29090266)
 [![Latest Stable Version](https://poser.pugx.org/symfony-cmf/resource-rest-bundle/version.png)](https://packagist.org/packages/symfony-cmf/resource-rest-bundle)
 [![Total Downloads](https://poser.pugx.org/symfony-cmf/resource-rest-bundle/d/total.png)](https://packagist.org/packages/symfony-cmf/resource-rest-bundle)
 
