@@ -18,7 +18,7 @@ use JMS\Serializer\Context;
 use PHPCR\NodeInterface;
 
 /**
- * Handle PHPCR node serialization
+ * Handle PHPCR node serialization.
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
@@ -38,9 +38,9 @@ class PhpcrNodeHandler implements SubscribingHandlerInterface
 
     /**
      * @param JsonSerializationVisitor $visitor
-     * @param NodeInterface $nodeInterface
-     * @param array $type
-     * @param Context $context
+     * @param NodeInterface            $nodeInterface
+     * @param array                    $type
+     * @param Context                  $context
      */
     public function serializePhpcrNode(
         JsonSerializationVisitor $visitor,

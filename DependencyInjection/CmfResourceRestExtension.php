@@ -26,7 +26,7 @@ class CmfResourceRestExtension extends Extension
     );
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -45,11 +45,11 @@ class CmfResourceRestExtension extends Extension
 
     public function getNamespace()
     {
-        return 'http://cmf.symfony.com/schema/dic/' . $this->getAlias();
+        return 'http://cmf.symfony.com/schema/dic/'.$this->getAlias();
     }
 
     /**
-     * Automatically include native enhancers
+     * Automatically include native enhancers.
      */
     private function loadEnhancers(ContainerBuilder $container, LoaderInterface $loader, $enhancerMap)
     {
@@ -65,7 +65,7 @@ class CmfResourceRestExtension extends Extension
                 continue;
             }
 
-            $loader->load('enhancer.' . $enhancerName . '.xml');
+            $loader->load('enhancer.'.$enhancerName.'.xml');
             $loaded[$enhancerName] = true;
         }
 
