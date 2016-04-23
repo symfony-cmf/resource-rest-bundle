@@ -1,5 +1,5 @@
 _cmf_resource:
-    pattern: /api/{repositoryName}/{path}
+    path: /api/{repositoryName}/{path}
     requirements:
         path: .*
     defaults:
