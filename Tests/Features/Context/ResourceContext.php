@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Features\Context;
 
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
@@ -21,6 +22,7 @@ use Behat\Behat\Context\Context;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Webmozart\Assert\Assert;
 
 class ResourceContext implements Context, KernelAwareContext
 {
@@ -132,5 +134,25 @@ class ResourceContext implements Context, KernelAwareContext
         $finder->name('*.php.meta');
         $filesystem = new Filesystem();
         $filesystem->remove($finder);
+    }
+
+    /**
+     * @Given there is a :class document at :path
+     */
+    public function thereIsAClassTypeAtPath($class, $path)
+    {
+        $resourcePayload = $this->manager->find($class, $path);
+
+        Assert::notNull($resourcePayload);
+    }
+
+    /**
+     * @Given there is no :class document at :path
+     */
+    public function thereIsNotAClassTypeAtPath($class, $path)
+    {
+        $document = $this->manager->find($class, $path);
+
+        Assert::notNull($document);
     }
 }

@@ -10,10 +10,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "php": "^5.5.6|^7.0",
-        "symfony-cmf/resource-bundle": "1.*",
+        "symfony-cmf/resource-bundle": "dev-test_move_add_remove",
+        "puli/repository": "1.0.0-beta10",
         "jms/serializer-bundle": "1.*"
     },
     "require-dev": {

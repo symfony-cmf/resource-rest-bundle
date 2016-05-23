@@ -18,11 +18,11 @@ use JMS\Serializer\Context;
 use PHPCR\NodeInterface;
 use PHPCR\Util\PathHelper;
 use Puli\Repository\Api\Resource\BodyResource;
+use Puli\Repository\Api\Resource\PuliResource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry;
 use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
-use Puli\Repository\Api\Resource\PuliResource;
 
 /**
  * Handle PHPCR resource serialization.

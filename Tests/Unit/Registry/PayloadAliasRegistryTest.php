@@ -15,7 +15,9 @@ use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
 
 class PayloadAliasRegistryTest extends \PHPUnit_Framework_TestCase
 {
-    private $registry;
+    private $repositoryRegistry;
+    private $resource;
+    private $repository;
 
     public function setUp()
     {
