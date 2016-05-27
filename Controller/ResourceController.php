@@ -50,19 +50,7 @@ class ResourceController
         $repository = $this->registry->get($repositoryName);
         $resource = $repository->get('/'.$path);
 
-        $context = SerializationContext::create();
-        $context->enableMaxDepthChecks();
-        $context->setSerializeNull(true);
-        $json = $this->serializer->serialize(
-            $resource,
-            'json',
-            $context
-        );
-
-        $response = new Response($json);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        return $this->createResponse($resource);
     }
 
     /**
@@ -73,9 +61,11 @@ class ResourceController
      *
      * changing payload properties isn't supported yet.
      *
-     * @param string  $repositoryName
-     * @param string  $path
+     * @param string $repositoryName
+     * @param string $path
      * @param Request $request
+     *
+     * @return Response
      */
     public function patchResourceAction($repositoryName, $path, Request $request)
     {
@@ -84,12 +74,32 @@ class ResourceController
 
         $resourcePath = $request->get('path');
         $resourceName = $request->get('name');
+
+        $targetPath = null;
         if ($path !== $resourcePath) {
-            $repository->move($path, $resourcePath);
+            $targetPath = $resourcePath;
         } elseif ($resourceName !== PathHelper::getNodeName($path)) {
-            $targetPath = PathHelper::getParentPath($path).'/'.$resourceName;
-            $repository->move($path, $targetPath);
+            $targetPath = $targetPath = PathHelper::absolutizePath($repositoryName, PathHelper::getParentPath($path));
         }
+
+        if (null == $targetPath) {
+            return $this->badRequestRespons('Move and rename is supported only.');
+        }
+
+        $moved = 0;
+        try {
+            $moved = $repository->move($path, $targetPath);
+        } catch (\InvalidArgumentException $e) {
+            return $this->badRequestResponse($e->getMessage());
+        }
+
+        if (0 === $moved) {
+            return $this->badRequestResponse('Nothing moved or renamed');
+        }
+
+        $resource = $repository->get($targetPath);
+
+        return $this->createResponse($resource);
     }
 
     /**
@@ -107,10 +117,10 @@ class ResourceController
 
         $deleted = $repository->remove($path);
         if (0 === $deleted) {
-            return new Response('', Response::HTTP_BAD_REQUEST);
+            return $this->badRequestResponse('Nothing was deleted');
         }
 
-        return new Response('', Response::HTTP_NO_CONTENT);
+        return $this->createResponse('', Response::HTTP_NO_CONTENT);
     }
 
     private function failOnNotEditable(ResourceRepository $repository, $repositoryName)
@@ -118,5 +128,37 @@ class ResourceController
         if (!$repository instanceof EditableRepository) {
             throw new RouteNotFoundException(sprintf('Repository %s is not editable.', $repositoryName));
         }
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return Response
+     */
+    private function badRequestResponse($message)
+    {
+        return $this->createResponse(['message' => $message], Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * @param object|array $resource
+     * @param int $httpStatusCode
+     * @return Response
+     */
+    private function createResponse($resource, $httpStatusCode = Response::HTTP_OK)
+    {
+        $context = SerializationContext::create();
+        $context->enableMaxDepthChecks();
+        $context->setSerializeNull(true);
+        $json = $this->serializer->serialize(
+            $resource,
+            'json',
+            $context
+        );
+
+        $response = new Response($json, $httpStatusCode);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }
