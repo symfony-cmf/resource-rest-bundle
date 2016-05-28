@@ -11,10 +11,10 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer;
 
-use Puli\Repository\Api\Resource\Resource;
 use Sonata\AdminBundle\Admin\Pool;
 use Doctrine\Common\Util\ClassUtils;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Puli\Repository\Api\Resource\PuliResource;
 
 /**
  * Add links and meta-info from Sonata Admin.
@@ -48,7 +48,7 @@ class SonataAdminEnhancer implements EnhancerInterface
     /**
      * {@inheritdoc}
      */
-    public function enhance(array $data, Resource $resource)
+    public function enhance(array $data, PuliResource $resource)
     {
         $object = $resource->getPayload();
 

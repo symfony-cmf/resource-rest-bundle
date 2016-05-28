@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.4
   - 5.5
   - 5.6
   - 7.0
@@ -22,7 +21,7 @@ matrix:
     - php: hhvm
   include:
     - php: 5.6
-      env: SYMFONY_VERSION=2.3.* SYMFONY_DEPRECATIONS_HELPER=weak
+      env: SYMFONY_VERSION=2.7.* SYMFONY_DEPRECATIONS_HELPER=weak
     - php: 5.6
       env: SYMFONY_VERSION=2.8.*
     - php: 5.6
