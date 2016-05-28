@@ -12,8 +12,8 @@
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Registry;
 
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
-use Puli\Repository\Api\Resource\Resource;
 use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
+use Puli\Repository\Api\Resource\PuliResource;
 
 /**
  * Registry for resource payload aliases.
@@ -58,7 +58,7 @@ class PayloadAliasRegistry
      *
      * @return string
      */
-    public function getPayloadAlias(Resource $resource)
+    public function getPayloadAlias(PuliResource $resource)
     {
         $repositoryType = $this->repositoryRegistry->getRepositoryType(
             $resource->getRepository()

@@ -12,7 +12,6 @@
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Registry;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Puli\Repository\Api\Resource\Resource;
 
 /**
  * Registry for resource enhancers.
