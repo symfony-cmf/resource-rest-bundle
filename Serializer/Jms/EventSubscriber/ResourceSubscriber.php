@@ -15,7 +15,7 @@ use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\Events;
 use JMS\Serializer\EventDispatcher\PreSerializeEvent;
 use Puli\Repository\Api\ResourceCollection;
-use Puli\Repository\Api\Resource\Resource;
+use Puli\Repository\Api\Resource\PuliResource;
 
 /**
  * Force instaces of ResourceCollection to type "ResourceCollection".
@@ -41,8 +41,8 @@ class ResourceSubscriber implements EventSubscriberInterface
     {
         $object = $event->getObject();
 
-        if ($object instanceof Resource) {
-            $event->setType('Puli\Repository\Api\Resource\Resource');
+        if ($object instanceof PuliResource) {
+            $event->setType('Puli\Repository\Api\Resource\PuliResource');
         }
     }
 }
