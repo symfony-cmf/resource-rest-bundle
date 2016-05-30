@@ -86,15 +86,10 @@ class ResourceController
             return $this->badRequestRespons('Move and rename is supported only.');
         }
 
-        $moved = 0;
         try {
-            $moved = $repository->move($path, $targetPath);
+            $repository->move($path, $targetPath);
         } catch (\InvalidArgumentException $e) {
             return $this->badRequestResponse($e->getMessage());
-        }
-
-        if (0 === $moved) {
-            return $this->badRequestResponse('Nothing moved or renamed');
         }
 
         $resource = $repository->get($targetPath);
@@ -115,9 +110,10 @@ class ResourceController
         $repository = $this->registry->get($repositoryName);
         $this->failOnNotEditable($repository, $repositoryName);
 
-        $deleted = $repository->remove($path);
-        if (0 === $deleted) {
-            return $this->badRequestResponse('Nothing was deleted');
+        try {
+            $repository->remove($path);
+        } catch (\InvalidArgumentException $e) {
+            return $this->badRequestResponse($e->getMessage());
         }
 
         return $this->createResponse('', Response::HTTP_NO_CONTENT);

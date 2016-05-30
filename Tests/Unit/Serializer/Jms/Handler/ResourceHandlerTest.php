@@ -64,7 +64,7 @@ class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
         $this->enhancerRegistry->getEnhancers('repo')->willReturn(array(
             $this->enhancer,
         ));
-        $this->enhancer->enhance(Argument::type('array'), Argument::type('Puli\Repository\Api\Resource\PuliResource'))
+        $this->enhancer->enhance(Argument::type('array'), Argument::type('Puli\Repository\Api\Resource\Resource'))
             ->will(function ($data, $resource) {
                 return $data[0];
             });

@@ -11,7 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer;
 
-use Puli\Repository\Api\Resource\PuliResource;
+use Puli\Repository\Api\Resource\Resource;
 
 /**
  * Serialize the payload.
@@ -23,7 +23,7 @@ class PayloadEnhancer implements EnhancerInterface
     /**
      * {@inheritdoc}
      */
-    public function enhance(array $data, PuliResource $resource)
+    public function enhance(array $data, Resource $resource)
     {
         $payload = $resource->getPayload();
         $data['payload'] = $payload;
