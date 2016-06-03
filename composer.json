@@ -9,11 +9,20 @@
             "homepage": "https://github.com/symfony-cmf/symfony-cmf/contributors"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ElectricMaxxx/resource-bundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ElectricMaxxx/resource.git"
+        }
+    ],
     "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "php": "^5.5.6|^7.0",
-        "symfony-cmf/resource-bundle": "1.*",
+        "symfony-cmf/resource-bundle": "dev-test_move_add_remove",
         "jms/serializer-bundle": "1.*"
     },
     "require-dev": {

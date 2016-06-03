@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Registry;
 
+use Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer\EnhancerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -65,7 +66,8 @@ class EnhancerRegistry
         }
 
         $aliases = $this->enhancerMap[$repositoryAlias];
-
+        $enhancers = [];
+        
         foreach ($aliases as $alias) {
             if (!isset($this->aliasMap[$alias])) {
                 throw new \InvalidArgumentException(sprintf(
