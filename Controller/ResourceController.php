@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Controller;
 
+use PHPCR\PathNotFoundException;
 use PHPCR\Util\PathHelper;
 use Puli\Repository\Api\EditableRepository;
 use Puli\Repository\Api\ResourceRepository;
@@ -72,14 +73,13 @@ class ResourceController
         $repository = $this->registry->get($repositoryName);
         $this->failOnNotEditable($repository, $repositoryName);
 
-        $resourcePath = $request->get('path');
-        $resourceName = $request->get('name');
+        $resourceName = $request->get('node_name');
 
         $targetPath = null;
-        if ($path !== $resourcePath) {
-            $targetPath = $resourcePath;
-        } elseif ($resourceName !== PathHelper::getNodeName($path)) {
-            $targetPath = $targetPath = PathHelper::absolutizePath($repositoryName, PathHelper::getParentPath($path));
+        if ($path !== $path) {
+            $targetPath = $path;
+        } elseif ($resourceName !== PathHelper::getLocalNodeName(PathHelper::absolutizePath($path))) {
+            $targetPath = PathHelper::absolutizePath($repositoryName, PathHelper::getParentPath($path));
         }
 
         if (null == $targetPath) {
