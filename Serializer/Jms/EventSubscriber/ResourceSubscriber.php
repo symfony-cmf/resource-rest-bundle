@@ -41,7 +41,7 @@ class ResourceSubscriber implements EventSubscriberInterface
         $object = $event->getObject();
 
         if ($object instanceof PuliResource) {
-            $event->setType('Puli\Repository\Api\Resource\Resource');
+            $event->setType('Puli\Repository\Api\Resource\PuliResource');
         }
     }
 }

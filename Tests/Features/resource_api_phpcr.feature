@@ -21,9 +21,9 @@ Feature: PHPCR resource repository
 
 
     Scenario: Retrieve PHPCR resource with children
-        Given there exists a "Article" document at "/cmf/articles/foo":
-            | title | Article 1 |
-            | body | This is my article |
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
         When I send a GET request to "/api/phpcr_repo/foo"
         Then the response should contain json:
             """
@@ -41,37 +41,38 @@ Feature: PHPCR resource repository
             """
 
     Scenario: Rename a PHPCR resource
-        Given there exists a "Article" document at "/cmf/articles/foo":
-            | title | Article 1 |
-            | body | This is my article |
-        Then I set header "Content-Type" with value "application/json"
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
         When I send a PATCH request to "/api/phpcr_repo/foo" with body:
             """
-            {"node_name": "foo-bar"}
+            [{"operation": "move", "target": "/foo-bar"}]
             """
-        Then the response code should be 200
-        When I send a GET request to "/api/phpcr_repo/foo-bar"
-        Then the response code should be 200
-        And there is a "Article" document at "/api/phpcrodm_repo/bar/foo"
+        Then the response code should be 204
+        And there is an "Article" document at "/cmf/articles/foo-bar"
+            | title | Article 1          |
+            | body  | This is my article |
 
-    Scenario: Move a PHPCR-ODM resource
-        Given there exists a "Article" document at "/cmf/articles/foo":
-            | title | Article 1 |
-            | body | This is my article |
-        Then I set header "Content-Type" with value "application/json"
-        When I send a PATCH request to "/api/phpcrodm_repo/foo" with body:
+    Scenario: Move a PHPCR resource
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
+        And there exists a "Article" document at "/cmf/articles/bar":
+            | title | Article 2   |
+            | body  | Another one |
+        When I send a PATCH request to "/api/phpcr_repo/foo" with body:
             """
-            {"node_name": "foo", "path": "/bar"}
+            [{"operation": "move", "target": "/bar/foo"}]
             """
-        Then the response code should be 200
-        And there is a "Article" document at "/api/phpcrodm_repo/bar/foo"
+        Then the response code should be 204
+        And there is an "Article" document at "/cmf/articles/bar/foo"
+            | title | Article 1          |
+            | body  | This is my article |
 
-    Scenario: Remove a PHPCR-ODM resource
-        Given there exists a "Article" document at "/cmf/articles/foo":
-            | title | Article 1 |
-            | body | This is my article |
-        Then I set header "Content-Type" with value "application/json"
-        When I send a DELETE request to "/api/phpcrodm_repo/foo"
-        Then the response code should be 201
-        And there is no "Article" document at "/api/phpcrodm_repo/bar/foo"
-
+    Scenario: Remove a PHPCR resource
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
+        When I send a DELETE request to "/api/phpcr_repo/foo"
+        Then the response code should be 204
+        And there is no "Article" document at "/api/phpcr_repo/bar/foo"

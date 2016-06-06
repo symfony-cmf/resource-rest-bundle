@@ -9,11 +9,10 @@
             "homepage": "https://github.com/symfony-cmf/symfony-cmf/contributors"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": "^5.5.6|^7.0",
-        "symfony-cmf/resource-bundle": "dev-test_move_add_remove",
-        "puli/repository": "1.0.0-beta10",
+        "symfony-cmf/resource-bundle": "^1.0",
+        "puli/repository": "@beta",
         "jms/serializer-bundle": "1.*"
     },
     "require-dev": {
@@ -26,6 +25,8 @@
         "matthiasnoback/symfony-config-test": "~0.1",
         "sonata-project/doctrine-phpcr-admin-bundle": "^1.2"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "suggest": {
         "doctrine/phpcr-odm": "To enable support for the PHPCR ODM documents (^1.2)",
         "doctrine/phpcr-bundle": "To enable support for the PHPCR ODM documents"

@@ -11,8 +11,6 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Controller;
 
-use PHPCR\PathNotFoundException;
-use PHPCR\Util\PathHelper;
 use Puli\Repository\Api\EditableRepository;
 use Puli\Repository\Api\ResourceRepository;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
@@ -38,14 +36,18 @@ class ResourceController
      * @param SerializerInterface         $serializer
      * @param RepositoryRegistryInterface $registry
      */
-    public function __construct(
-        SerializerInterface $serializer,
-        RepositoryRegistryInterface $registry
-    ) {
+    public function __construct(SerializerInterface $serializer, RepositoryRegistryInterface $registry)
+    {
         $this->serializer = $serializer;
         $this->registry = $registry;
     }
 
+    /**
+     * Provides resource information.
+     *
+     * @param string $repositoryName
+     * @param string $path
+     */
     public function getResourceAction($repositoryName, $path)
     {
         $repository = $this->registry->get($repositoryName);
@@ -55,39 +57,58 @@ class ResourceController
     }
 
     /**
-     * There are two different changes that can currently be done on a cmf resource:
+     * Changes the current resource.
      *
-     * - move
-     * - rename
+     * The request body should contain a JSON list of operations
+     * like:
+     *
+     *     [{"operation": "move", "target": "/cms/new/id"}]
+     *
+     * Currently supported operations:
+     *
+     *  - move (options: target)
      *
      * changing payload properties isn't supported yet.
      *
-     * @param string $repositoryName
-     * @param string $path
+     * @param string  $repositoryName
+     * @param string  $path
      * @param Request $request
      *
      * @return Response
      */
-    function patchResourceAction($repositoryName, $path, Request $request)
+    public function patchResourceAction($repositoryName, $path, Request $request)
     {
         $repository = $this->registry->get($repositoryName);
         $this->failOnNotEditable($repository, $repositoryName);
 
-        $targetPath = $request->get('node_name'); // "id" seems like a better name for this
+        $path = '/'.ltrim($path, '/');
 
-        try {
-            $repository->move($path, $targetPath);
-        } catch (\Exception $e) {
-            return $this->createBadRequestResponse($e->getMessage()); // why not rely on Symfony's great error handler here?
+        $requestContent = json_decode($request->getContent(), true);
+        if (!$requestContent) {
+            return $this->badRequestResponse('Only JSON request bodies are supported.');
         }
 
-        $resource = $repository->get($targetPath);
+        foreach ($requestContent as $action) {
+            if (!isset($action['operation'])) {
+                return $this->badRequestResponse('Malformed request body. It should contain a list of operations.');
+            }
 
-        return $this->createResponse($resource); // not sure whether we should really return the resource here, I think we should sent a 200 response without body
+            switch ($action['operation']) {
+                case 'move':
+                    $targetPath = $action['target'];
+                    $repository->move($path, $targetPath);
+
+                    break;
+                default:
+                    return $this->badRequestResponse(sprintf('Only operation "%s" is not supported, supported operations: move.', $action['operation']));
+            }
+        }
+
+        return $this->createResponse('', Response::HTTP_NO_CONTENT);
     }
 
     /**
-     * Delete a resource of a repository.
+     * Deletes the resource.
      *
      * @param string $repositoryName
      * @param string $path
@@ -99,11 +120,9 @@ class ResourceController
         $repository = $this->registry->get($repositoryName);
         $this->failOnNotEditable($repository, $repositoryName);
 
-        try {
-            $repository->remove($path);
-        } catch (\InvalidArgumentException $e) {
-            return $this->badRequestResponse($e->getMessage());
-        }
+        $path = '/'.ltrim($path, '/');
+
+        $repository->remove($path);
 
         return $this->createResponse('', Response::HTTP_NO_CONTENT);
     }
@@ -111,7 +130,7 @@ class ResourceController
     private function failOnNotEditable(ResourceRepository $repository, $repositoryName)
     {
         if (!$repository instanceof EditableRepository) {
-            throw new RouteNotFoundException(sprintf('Repository %s is not editable.', $repositoryName));
+            throw new RouteNotFoundException(sprintf('Repository "%s" is not editable.', $repositoryName));
         }
     }
 
@@ -126,8 +145,9 @@ class ResourceController
     }
 
     /**
-     * @param object|array $resource
-     * @param int $httpStatusCode
+     * @param mixed $resource
+     * @param int   $httpStatusCode
+     *
      * @return Response
      */
     private function createResponse($resource, $httpStatusCode = Response::HTTP_OK)

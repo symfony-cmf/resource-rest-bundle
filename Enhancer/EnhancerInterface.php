@@ -27,8 +27,8 @@ interface EnhancerInterface
      *
      *     $context->addData('foobar', 'Some value');
      *
-     * @param []       $data        Context Serialization context
-     * @param Resource $resource    The resource being serialized
+     * @param array        $data     Context Serialization context
+     * @param PuliResource $resource The resource being serialized
      */
     public function enhance(array $data, PuliResource $resource);
 }

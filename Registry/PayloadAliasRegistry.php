@@ -36,10 +36,8 @@ class PayloadAliasRegistry
      * @param RepositoryRegistryInterface $repositoryRegistry
      * @param array                       $aliases
      */
-    public function __construct(
-        RepositoryRegistryInterface $repositoryRegistry,
-        array $aliases = array()
-    ) {
+    public function __construct(RepositoryRegistryInterface $repositoryRegistry, array $aliases = array())
+    {
         $this->repositoryRegistry = $repositoryRegistry;
 
         foreach ($aliases as $alias => $config) {
@@ -54,7 +52,7 @@ class PayloadAliasRegistry
     /**
      * Return the alias for the given PHPCR resource.
      *
-     * @param Resource $resource
+     * @param PuliResource $resource
      *
      * @return string
      */
