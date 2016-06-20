@@ -4,32 +4,23 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="cmf_resource_rest.serializer.jms.handler.resource_collection.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\ResourceCollectionHandler</parameter>
-        <parameter key="cmf_resource_rest.serializer.jms.handler.phpcr_node.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\PhpcrNodeHandler</parameter>
-        <parameter key="cmf_resource_rest.serializer.jms.handler.resource.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\ResourceHandler</parameter>
-        <parameter key="cmf_resource_rest.serializer.jms.subscriber.phpcr_node.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber\PhpcrNodeSubscriber</parameter>
-        <parameter key="cmf_resource_rest.serializer.jms.subscriber.resource_collection.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber\ResourceCollectionSubscriber</parameter>
-        <parameter key="cmf_resource_rest.serializer.jms.subscriber.resource.class">Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber\ResourceSubscriber</parameter>
-    </parameters>
-
     <services>
-        <service id="cmf_resource_rest.serializer.jms.handler.resource" class="%cmf_resource_rest.serializer.jms.handler.resource.class%">
+        <service id="cmf_resource_rest.serializer.jms.handler.resource" class="Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\ResourceHandler">
             <argument type="service" id="cmf_resource.registry" />
             <argument type="service" id="cmf_resource_rest.registry.payload_alias" />
             <argument type="service" id="cmf_resource_rest.registry.enhancer" />
             <tag name="jms_serializer.subscribing_handler"/>
         </service>
 
-        <service id="cmf_resource_rest.serializer.jms.handler.phpcr_node" class="%cmf_resource_rest.serializer.jms.handler.phpcr_node.class%">
+        <service id="cmf_resource_rest.serializer.jms.handler.phpcr_node" class="Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\PhpcrNodeHandler">
             <tag name="jms_serializer.subscribing_handler"/>
         </service>
 
-        <service id="cmf_resource_rest.serializer.jms.subscriber.phpcr_node" class="%cmf_resource_rest.serializer.jms.subscriber.phpcr_node.class%">
+        <service id="cmf_resource_rest.serializer.jms.subscriber.phpcr_node" class="Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber\PhpcrNodeSubscriber">
             <tag name="jms_serializer.event_subscriber" />
         </service>
 
-        <service id="cmf_resource_rest.serializer.jms.subscriber.resource" class="%cmf_resource_rest.serializer.jms.subscriber.resource.class%">
+        <service id="cmf_resource_rest.serializer.jms.subscriber.resource" class="Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber\ResourceSubscriber">
             <tag name="jms_serializer.event_subscriber" />
         </service>
     </services>

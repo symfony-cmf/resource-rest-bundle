@@ -4,25 +4,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="cmf_resource_rest.controller.resource.class">Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController</parameter>
-        <parameter key="cmf_resource_rest.registry.payload_alias.class">Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry</parameter>
-        <parameter key="cmf_resource_rest.registry.enhancer.class">Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry</parameter>
-    </parameters>
-
     <services>
 
-        <service id="cmf_resource_rest.controller.resource" class="%cmf_resource_rest.controller.resource.class%">
+        <service id="cmf_resource_rest.controller.resource" class="Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController">
             <argument type="service" id="serializer" />
             <argument type="service" id="cmf_resource.registry" />
         </service>
 
-        <service id="cmf_resource_rest.registry.payload_alias" class="%cmf_resource_rest.registry.payload_alias.class%">
+        <service id="cmf_resource_rest.registry.payload_alias" class="Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry">
             <argument type="service" id="cmf_resource.registry" />
             <argument type="collection" />
         </service>
 
-        <service id="cmf_resource_rest.registry.enhancer" class="%cmf_resource_rest.registry.enhancer.class%">
+        <service id="cmf_resource_rest.registry.enhancer" class="Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry">
             <argument type="service" id="service_container" />
             <argument type="collection" />
             <argument type="collection" />
