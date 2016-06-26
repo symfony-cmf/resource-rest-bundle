@@ -21,9 +21,9 @@ Feature: PHPCR resource repository
 
 
     Scenario: Retrieve PHPCR resource with children
-        Given there exists a "Article" document at "/cmf/articles/foo":
-            | title | Article 1 |
-            | body | This is my article |
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
         When I send a GET request to "/api/phpcr_repo/foo"
         Then the response should contain json:
             """
@@ -39,3 +39,40 @@ Feature: PHPCR resource repository
                 "children": []
             }
             """
+
+    Scenario: Rename a PHPCR resource
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
+        When I send a PATCH request to "/api/phpcr_repo/foo" with body:
+            """
+            [{"operation": "move", "target": "/foo-bar"}]
+            """
+        Then the response code should be 204
+        And there is an "Article" document at "/cmf/articles/foo-bar"
+            | title | Article 1          |
+            | body  | This is my article |
+
+    Scenario: Move a PHPCR resource
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
+        And there exists a "Article" document at "/cmf/articles/bar":
+            | title | Article 2   |
+            | body  | Another one |
+        When I send a PATCH request to "/api/phpcr_repo/foo" with body:
+            """
+            [{"operation": "move", "target": "/bar/foo"}]
+            """
+        Then the response code should be 204
+        And there is an "Article" document at "/cmf/articles/bar/foo"
+            | title | Article 1          |
+            | body  | This is my article |
+
+    Scenario: Remove a PHPCR resource
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
+        When I send a DELETE request to "/api/phpcr_repo/foo"
+        Then the response code should be 204
+        And there is no "Article" document at "/api/phpcr_repo/bar/foo"

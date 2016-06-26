@@ -11,9 +11,9 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Registry;
 
+use Puli\Repository\Api\Resource\PuliResource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
-use Puli\Repository\Api\Resource\PuliResource;
 
 /**
  * Registry for resource payload aliases.
@@ -36,10 +36,8 @@ class PayloadAliasRegistry
      * @param RepositoryRegistryInterface $repositoryRegistry
      * @param array                       $aliases
      */
-    public function __construct(
-        RepositoryRegistryInterface $repositoryRegistry,
-        array $aliases = array()
-    ) {
+    public function __construct(RepositoryRegistryInterface $repositoryRegistry, array $aliases = array())
+    {
         $this->repositoryRegistry = $repositoryRegistry;
 
         foreach ($aliases as $alias => $config) {
@@ -54,7 +52,7 @@ class PayloadAliasRegistry
     /**
      * Return the alias for the given PHPCR resource.
      *
-     * @param resource $resource
+     * @param PuliResource $resource
      *
      * @return string
      */

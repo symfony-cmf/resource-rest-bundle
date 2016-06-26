@@ -21,6 +21,7 @@ use Behat\Behat\Context\Context;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Webmozart\Assert\Assert;
 
 class ResourceContext implements Context, KernelAwareContext
 {
@@ -73,6 +74,14 @@ class ResourceContext implements Context, KernelAwareContext
     }
 
     /**
+     * @AfterScenario
+     */
+    public function refreshSession()
+    {
+        $this->session->refresh(true);
+    }
+
+    /**
      * @Given the test application has the following configuration:
      */
     public function setApplicationConfig(PyStringNode $config)
@@ -93,7 +102,7 @@ class ResourceContext implements Context, KernelAwareContext
     }
 
     /**
-     * @Given there exists a :class document at :path:
+     * @Given there exists a/an :class document at :path:
      */
     public function createDocument($class, $path, TableNode $fields)
     {
@@ -122,6 +131,59 @@ class ResourceContext implements Context, KernelAwareContext
 
         $this->manager->persist($document);
         $this->manager->flush();
+        $this->manager->clear();
+    }
+
+    /**
+     * @Then there is a/an :class document at :path
+     * @Then there is a/an :class document at :path:
+     */
+    public function thereIsADocumentAt($class, $path, TableNode $fields = null)
+    {
+        $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\'.$class;
+        $path = '/tests'.$path;
+
+        if (!class_exists($class)) {
+            throw new \InvalidArgumentException(sprintf(
+                'Class "%s" does not exist',
+                $class
+            ));
+        }
+
+        $document = $this->manager->find($class, $path);
+
+        Assert::notNull($document, sprintf('No "%s" document exists at "%s"', $class, $path));
+
+        if (null === $fields) {
+            return;
+        }
+
+        foreach ($fields->getRowsHash() as $field => $value) {
+            Assert::eq($document->$field, $value);
+        }
+    }
+
+    /**
+     * @Then there is no :class document at :path
+     */
+    public function thereIsNoDocumentAt($class, $path)
+    {
+        $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\'.$class;
+        $path = '/tests'.$path;
+
+        if (!class_exists($class)) {
+            throw new \InvalidArgumentException(sprintf(
+                'Class "%s" does not exist',
+                $class
+            ));
+        }
+
+        $this->session->refresh(true);
+        $this->manager->clear();
+
+        $document = $this->manager->find($class, $path);
+
+        Assert::null($document, sprintf('A "%s" document does exist at "%s".', $class, $path));
     }
 
     private function clearDiCache()

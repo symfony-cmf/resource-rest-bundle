@@ -21,9 +21,9 @@ Feature: PHPCR-ODM resource repository
 
 
     Scenario: Retrieve a PHPCR-ODM resource
-        Given there exists a "Article" document at "/cmf/articles/foo":
-            | title | Article 1 |
-            | body | This is my article |
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
         When I send a GET request to "/api/phpcrodm_repo/foo"
         Then the response code should be 200
         And the response should contain json:
@@ -42,15 +42,15 @@ Feature: PHPCR-ODM resource repository
             """
 
     Scenario: Retrieve a PHPCR-ODM resource with children
-        Given there exists a "Article" document at "/cmf/articles/foo":
-            | title | Article 1 |
-            | body | This is my article |
-        And there exists a "Article" document at "/cmf/articles/foo/bar":
-            | title | Article child |
-            | body | There are many like it |
-        And there exists a "Article" document at "/cmf/articles/foo/boo":
-            | title | Article child |
-            | body | But this one is mine |
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
+        And there exists an "Article" document at "/cmf/articles/foo/bar":
+            | title | Article child          |
+            | body  | There are many like it |
+        And there exists an "Article" document at "/cmf/articles/foo/boo":
+            | title | Article child        |
+            | body  | But this one is mine |
         When I send a GET request to "/api/phpcrodm_repo/foo"
         Then the response code should be 200
         And the response should contain json:
@@ -90,3 +90,40 @@ Feature: PHPCR-ODM resource repository
                 }
             }
             """
+
+    Scenario: Rename a PHPCR-ODM resource
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
+        When I send a PATCH request to "/api/phpcrodm_repo/foo" with body:
+            """
+            [{"operation": "move", "target": "/foo-bar"}]
+            """
+        Then the response code should be 204
+        And there is an "Article" document at "/cmf/articles/foo-bar":
+            | title | Article 1          |
+            | body  | This is my article |
+
+    Scenario: Move a PHPCR-ODM resource
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
+        And there exists an "Article" document at "/cmf/articles/bar":
+            | title | Article 2   |
+            | body  | Another one |
+        When I send a PATCH request to "/api/phpcrodm_repo/foo" with body:
+            """
+            [{"operation": "move", "target": "/bar/foo"}]
+            """
+        Then the response code should be 204
+        And there is an "Article" document at "/cmf/articles/bar/foo":
+            | title | Article 1          |
+            | body  | This is my article |
+
+    Scenario: Remove a PHPCR-ODM resource
+        Given there exists an "Article" document at "/cmf/articles/foo":
+            | title | Article 1          |
+            | body  | This is my article |
+        When I send a DELETE request to "/api/phpcrodm_repo/foo"
+        Then the response code should be 204
+        And there is no "Article" document at "/cmf/articles/foo"

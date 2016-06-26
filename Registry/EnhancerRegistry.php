@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Registry;
 
+use Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer\EnhancerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -40,11 +41,8 @@ class EnhancerRegistry
      * @param array              $enhancerMap Map of enhancer aliases to repository names
      * @param array              $aliasMap    Serice ID map for enhancer aliases
      */
-    public function __construct(
-        ContainerInterface $container,
-        $enhancerMap = array(),
-        $aliasMap = array()
-    ) {
+    public function __construct(ContainerInterface $container, $enhancerMap = array(), $aliasMap = array())
+    {
         $this->container = $container;
         $this->enhancerMap = $enhancerMap;
         $this->aliasMap = $aliasMap;
@@ -65,6 +63,7 @@ class EnhancerRegistry
         }
 
         $aliases = $this->enhancerMap[$repositoryAlias];
+        $enhancers = [];
 
         foreach ($aliases as $alias) {
             if (!isset($this->aliasMap[$alias])) {

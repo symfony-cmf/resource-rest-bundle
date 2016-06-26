@@ -1,7 +1,23 @@
-_cmf_resource:
+_cmf_delete_resource:
     path: /api/{repositoryName}/{path}
+    methods: ['delete']
     requirements:
         path: .*
     defaults:
-        _controller: cmf_resource_rest.controller.resource:resourceAction
-        _format: json
+        _controller: cmf_resource_rest.controller.resource:deleteResourceAction
+
+_cmf_patch_resource:
+    path: /api/{repositoryName}/{path}
+    methods: ['patch']
+    requirements:
+        path: .*
+    defaults:
+        _controller: cmf_resource_rest.controller.resource:patchResourceAction
+
+_cmf_get_resource:
+    path: /api/{repositoryName}/{path}
+    methods: ['get']
+    requirements:
+        path: .*
+    defaults:
+        _controller: cmf_resource_rest.controller.resource:getResourceAction
