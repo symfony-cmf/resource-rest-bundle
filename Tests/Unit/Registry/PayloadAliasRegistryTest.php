@@ -23,7 +23,7 @@ class PayloadAliasRegistryTest extends \PHPUnit_Framework_TestCase
     {
         $this->repositoryRegistry = $this->prophesize('Symfony\Cmf\Component\Resource\RepositoryRegistryInterface');
         $this->resource = $this->prophesize('Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource');
-        $this->repository = $this->prophesize('Puli\Repository\Api\ResourceRepository');
+        $this->repository = $this->prophesize('Symfony\Cmf\Component\Resource\Puli\Api\ResourceRepository');
     }
 
     public function provideRegistry()

@@ -11,7 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer;
 
-use Puli\Repository\Api\Resource\PuliResource;
+use Symfony\Cmf\Component\Resource\Puli\Api\PuliResource;
 
 /**
  * Enhancer classes enhance the REST response for resources.
