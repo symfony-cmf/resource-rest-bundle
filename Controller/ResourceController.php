@@ -18,11 +18,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\Serializer\SerializerInterface;
 use JMS\Serializer\SerializationContext;
 
 class ResourceController
 {
+    const ROLE_RESOURCE_READ = 'CMF_RESOURCE_READ';
+    const ROLE_RESOURCE_WRITE = 'CMF_RESOURCE_WRITE';
+
     /**
      * @var RepositoryRegistryInterface
      */
@@ -34,13 +39,19 @@ class ResourceController
     private $serializer;
 
     /**
+     * @var AuthorizationCheckerInterface|null
+     */
+    private $authorizationChecker;
+
+    /**
      * @param SerializerInterface         $serializer
      * @param RepositoryRegistryInterface $registry
      */
-    public function __construct(SerializerInterface $serializer, RepositoryRegistryInterface $registry)
+    public function __construct(SerializerInterface $serializer, RepositoryRegistryInterface $registry, AuthorizationCheckerInterface $authorizationChecker = null)
     {
         $this->serializer = $serializer;
         $this->registry = $registry;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     /**
@@ -51,6 +62,8 @@ class ResourceController
      */
     public function getResourceAction($repositoryName, $path)
     {
+        $this->guardAccess('read', $repositoryName, $path);
+
         try {
             $repository = $this->registry->get($repositoryName);
             $resource = $repository->get('/'.$path);
@@ -86,6 +99,8 @@ class ResourceController
      */
     public function patchResourceAction($repositoryName, $path, Request $request)
     {
+        $this->guardAccess('write', $repositoryName, $path);
+
         $repository = $this->registry->get($repositoryName);
 
         $path = '/'.ltrim($path, '/');
@@ -124,6 +139,8 @@ class ResourceController
      */
     public function deleteResourceAction($repositoryName, $path)
     {
+        $this->guardAccess('write', $repositoryName, $path);
+
         $repository = $this->registry->get($repositoryName);
 
         $path = '/'.ltrim($path, '/');
@@ -141,6 +158,18 @@ class ResourceController
     private function badRequestResponse($message)
     {
         return $this->createResponse(['message' => $message], Response::HTTP_BAD_REQUEST);
+    }
+
+    private function guardAccess($attribute, $repository, $path)
+    {
+        if (null !== $this->authorizationChecker
+            && !$this->authorizationChecker->isGranted(
+                'CMF_RESOURCE_'.strtoupper($attribute),
+                ['repository_name' => $repository, 'path' => $path]
+            )
+        ) {
+            throw new AccessDeniedException(sprintf('%s access denied for "%s".', ucfirst($attribute), $path));
+        }
     }
 
     /**
