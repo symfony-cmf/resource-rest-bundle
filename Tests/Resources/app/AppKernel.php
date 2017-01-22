@@ -12,6 +12,7 @@
 use Symfony\Cmf\Component\Testing\HttpKernel\TestKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Features\Context\ResourceContext;
+use Symfony\Bundle\WebServerBundle\WebServerBundle;
 
 /**
  * This is the kernel used by the application being tested.
@@ -30,6 +31,10 @@ class AppKernel extends TestKernel
         $this->requireBundleSets(array(
             'default', 'phpcr_odm',
         ));
+
+        if (class_exists(WebServerBundle::class)) {
+            $this->addBundle(new WebServerBundle());
+        }
 
         $this->addBundles(array(
             new \Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\TestBundle(),

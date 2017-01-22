@@ -13,7 +13,7 @@ cache:
 
 env:
   matrix: SYMFONY_VERSION=3.2.*
-  env: SYMFONY_PHPUNIT_DIR=.phpunit SYMFONY_PHPUNIT_REMOVE="symfony/yaml"
+  env: SYMFONY_PHPUNIT_DIR=.phpunit SYMFONY_PHPUNIT_REMOVE="symfony/yaml" SYMFONY_PHPUNIT_VERSION=5.7
 
 matrix:
   include:
