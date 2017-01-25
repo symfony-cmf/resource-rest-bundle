@@ -32,10 +32,6 @@ class AppKernel extends TestKernel
             'default', 'phpcr_odm',
         ));
 
-        if (class_exists(WebServerBundle::class)) {
-            $this->addBundle(new WebServerBundle());
-        }
-
         $this->addBundles(array(
             new \Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\TestBundle(),
             new \Symfony\Cmf\Bundle\ResourceRestBundle\CmfResourceRestBundle(),
