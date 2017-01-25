@@ -43,7 +43,7 @@ class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testHandler()
     {
-        $this->repositoryRegistry->getRepositoryAlias($this->repository)->willReturn('repo');
+        $this->repositoryRegistry->getRepositoryName($this->repository)->willReturn('repo');
         $this->repositoryRegistry->getRepositoryType($this->repository)->willReturn('repo_type');
         $this->payloadAliasRegistry->getPayloadAlias($this->resource->reveal())->willReturn('alias');
         $this->resource->getPayloadType()->willReturn('payload_type');

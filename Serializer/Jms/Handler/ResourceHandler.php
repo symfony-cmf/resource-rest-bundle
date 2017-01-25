@@ -75,7 +75,7 @@ class ResourceHandler implements SubscribingHandlerInterface
     private function doSerializeResource(PuliResource $resource, $depth = 0)
     {
         $data = array();
-        $repositoryAlias = $this->registry->getRepositoryAlias($resource->getRepository());
+        $repositoryAlias = $this->registry->getRepositoryName($resource->getRepository());
 
         $data['repository_alias'] = $repositoryAlias;
         $data['repository_type'] = $this->registry->getRepositoryType($resource->getRepository());
