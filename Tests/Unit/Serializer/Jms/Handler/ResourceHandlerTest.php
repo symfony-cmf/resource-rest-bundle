@@ -28,7 +28,7 @@ class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
         $this->resource = $this->prophesize('Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource');
         $this->childResource = $this->prophesize('Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource');
 
-        $this->repository = $this->prophesize('Puli\Repository\Api\ResourceRepository');
+        $this->repository = $this->prophesize('Symfony\Cmf\Component\Resource\Puli\Api\ResourceRepository');
         $this->payload = new \stdClass();
         $this->context = $this->prophesize('JMS\Serializer\Context');
 
@@ -43,7 +43,7 @@ class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testHandler()
     {
-        $this->repositoryRegistry->getRepositoryAlias($this->repository)->willReturn('repo');
+        $this->repositoryRegistry->getRepositoryName($this->repository)->willReturn('repo');
         $this->repositoryRegistry->getRepositoryType($this->repository)->willReturn('repo_type');
         $this->payloadAliasRegistry->getPayloadAlias($this->resource->reveal())->willReturn('alias');
         $this->resource->getPayloadType()->willReturn('payload_type');
@@ -64,7 +64,7 @@ class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
         $this->enhancerRegistry->getEnhancers('repo')->willReturn(array(
             $this->enhancer,
         ));
-        $this->enhancer->enhance(Argument::type('array'), Argument::type('Puli\Repository\Api\Resource\PuliResource'))
+        $this->enhancer->enhance(Argument::type('array'), Argument::type('Symfony\Cmf\Component\Resource\Puli\Api\PuliResource'))
             ->will(function ($data, $resource) {
                 return $data[0];
             });

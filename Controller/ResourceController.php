@@ -11,8 +11,8 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Controller;
 
-use Puli\Repository\Api\EditableRepository;
-use Puli\Repository\Api\ResourceRepository;
+use Symfony\Cmf\Component\Resource\Puli\Api\ResourceRepository;
+use Symfony\Cmf\Component\Resource\Puli\Api\ResourceNotFoundException;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +20,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use JMS\Serializer\SerializerInterface;
 use JMS\Serializer\SerializationContext;
-use Puli\Repository\Api\ResourceNotFoundException;
 
 class ResourceController
 {
@@ -88,7 +87,6 @@ class ResourceController
     public function patchResourceAction($repositoryName, $path, Request $request)
     {
         $repository = $this->registry->get($repositoryName);
-        $this->failOnNotEditable($repository, $repositoryName);
 
         $path = '/'.ltrim($path, '/');
 
@@ -127,20 +125,12 @@ class ResourceController
     public function deleteResourceAction($repositoryName, $path)
     {
         $repository = $this->registry->get($repositoryName);
-        $this->failOnNotEditable($repository, $repositoryName);
 
         $path = '/'.ltrim($path, '/');
 
         $repository->remove($path);
 
         return $this->createResponse('', Response::HTTP_NO_CONTENT);
-    }
-
-    private function failOnNotEditable(ResourceRepository $repository, $repositoryName)
-    {
-        if (!$repository instanceof EditableRepository) {
-            throw new RouteNotFoundException(sprintf('Repository "%s" is not editable.', $repositoryName));
-        }
     }
 
     /**

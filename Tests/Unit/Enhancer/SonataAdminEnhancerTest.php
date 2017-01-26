@@ -21,7 +21,7 @@ class SonataAdminEnhancerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->admin = $this->prophesize('Sonata\AdminBundle\Admin\Admin');
+        $this->admin = $this->prophesize('Sonata\AdminBundle\Admin\AbstractAdmin');
         $this->pool = $this->prophesize('Sonata\AdminBundle\Admin\Pool');
         $this->visitor = $this->prophesize('JMS\Serializer\GenericSerializationVisitor');
         $this->generator = $this->prophesize('Symfony\Component\Routing\Generator\UrlGeneratorInterface');

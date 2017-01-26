@@ -17,8 +17,7 @@ use JMS\Serializer\JsonSerializationVisitor;
 use JMS\Serializer\Context;
 use PHPCR\NodeInterface;
 use PHPCR\Util\PathHelper;
-use Puli\Repository\Api\Resource\BodyResource;
-use Puli\Repository\Api\Resource\PuliResource;
+use Symfony\Cmf\Component\Resource\Puli\Api\PuliResource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry;
@@ -76,7 +75,7 @@ class ResourceHandler implements SubscribingHandlerInterface
     private function doSerializeResource(PuliResource $resource, $depth = 0)
     {
         $data = array();
-        $repositoryAlias = $this->registry->getRepositoryAlias($resource->getRepository());
+        $repositoryAlias = $this->registry->getRepositoryName($resource->getRepository());
 
         $data['repository_alias'] = $repositoryAlias;
         $data['repository_type'] = $this->registry->getRepositoryType($resource->getRepository());
@@ -102,10 +101,6 @@ class ResourceHandler implements SubscribingHandlerInterface
             }
         }
         $data['children'] = $children;
-
-        if ($resource instanceof BodyResource) {
-            $data['body'] = $resource->getBody();
-        }
 
         foreach ($enhancers as $enhancer) {
             $data = $enhancer->enhance($data, $resource);

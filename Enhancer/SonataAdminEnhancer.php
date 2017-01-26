@@ -14,7 +14,7 @@ namespace Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer;
 use Sonata\AdminBundle\Admin\Pool;
 use Doctrine\Common\Util\ClassUtils;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Puli\Repository\Api\Resource\PuliResource;
+use Symfony\Cmf\Component\Resource\Puli\Api\PuliResource;
 
 /**
  * Add links and meta-info from Sonata Admin.

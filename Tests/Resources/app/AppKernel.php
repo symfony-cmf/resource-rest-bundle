@@ -12,6 +12,7 @@
 use Symfony\Cmf\Component\Testing\HttpKernel\TestKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Features\Context\ResourceContext;
+use Symfony\Bundle\WebServerBundle\WebServerBundle;
 
 /**
  * This is the kernel used by the application being tested.
