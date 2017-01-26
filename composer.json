@@ -33,9 +33,10 @@
         "doctrine/phpcr-bundle": "To enable support for the PHPCR ODM documents"
     },
     "autoload": {
-        "psr-4": {
-            "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\": ""
-        }
+        "psr-4": { "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\": "src" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\": "tests" }
     },
     "extra": {
         "branch-alias": {

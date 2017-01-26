@@ -7,25 +7,22 @@
 
     <testsuites>
         <testsuite name="CmfResourceRestBundle Test Suite">
-            <directory>./Tests</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory>.</directory>
+            <directory>src</directory>
             <exclude>
                 <file>*Bundle.php</file>
                 <directory>Resources/</directory>
-                <directory>Admin/</directory>
-                <directory>Tests/</directory>
-                <directory>vendor/</directory>
             </exclude>
         </whitelist>
     </filter>
 
     <php>
-        <server name="KERNEL_DIR" value="Tests/Resources/app" />
+        <server name="KERNEL_DIR" value="tests/Resources/app" />
     </php>
 
 </phpunit>

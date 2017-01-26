@@ -5,7 +5,7 @@ default:
                 - Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Features\Context\ResourceContext
                 - Behat\WebApiExtension\Context\WebApiContext
             paths:
-                - Tests/Features
+                - tests/Features
     extensions:
         Behat\WebApiExtension:
             base_url: http://localhost:8000/
