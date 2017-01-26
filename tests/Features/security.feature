@@ -9,7 +9,7 @@ Feature: Security
             cmf_resource:
                 repositories:
                     security:
-                        type: doctrine_phpcr
+                        type: phpcr/phpcr
                         basepath: /tests/cmf/articles
             """
         And there exists an "Article" document at "/private/foo":

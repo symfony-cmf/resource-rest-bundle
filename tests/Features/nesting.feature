@@ -9,7 +9,7 @@ Feature: Nesting resources
             cmf_resource:
                 repositories:
                     default:
-                        type: doctrine_phpcr_odm
+                        type: doctrine/phpcr-odm
                         basepath: /tests/cmf/articles
             """
         And there exists an "Article" document at "/cmf/articles/foo":
@@ -25,7 +25,7 @@ Feature: Nesting resources
             """
             {
                 "repository_alias": "default",
-                "repository_type": "doctrine_phpcr_odm",
+                "repository_type": "doctrine/phpcr-odm",
                 "payload_alias": null,
                 "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
                 "path": "\/foo",
@@ -35,7 +35,7 @@ Feature: Nesting resources
                 "children": {
                     "sub": {
                         "repository_alias": "default",
-                        "repository_type": "doctrine_phpcr_odm",
+                        "repository_type": "doctrine/phpcr-odm",
                         "payload_alias": null,
                         "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
                         "path": "\/foo\/sub",
@@ -54,7 +54,7 @@ Feature: Nesting resources
             """
             {
                 "repository_alias": "default",
-                "repository_type": "doctrine_phpcr_odm",
+                "repository_type": "doctrine/phpcr-odm",
                 "payload_alias": null,
                 "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
                 "path": "\/foo",
