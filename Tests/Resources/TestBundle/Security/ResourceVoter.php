@@ -15,7 +15,11 @@ class ResourceVoter extends Voter
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        if ('/cms/public' !== substr($subject['path'], 0, 11)) {
+        if ('security' !== $subject['repository_name']) {
+            return true;
+        }
+        
+        if ('/tests/cmf/articles/public' !== substr($subject['path'], 0, 27)) {
             return false;
         }
 

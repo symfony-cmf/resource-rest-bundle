@@ -62,11 +62,14 @@ class ResourceController
      */
     public function getResourceAction($repositoryName, $path)
     {
-        $this->guardAccess('read', $repositoryName, $path);
+        $path = '/'.ltrim($path, '/');
 
         try {
             $repository = $this->registry->get($repositoryName);
-            $resource = $repository->get('/'.$path);
+
+            $this->guardAccess('read', $repositoryName, $repository->resolvePath($path));
+
+            $resource = $repository->get($path);
 
             return $this->createResponse($resource);
         } catch (ResourceNotFoundException $e) {
