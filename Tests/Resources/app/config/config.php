@@ -9,9 +9,15 @@
  * file that was distributed with this source code.
  */
 
+use Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\Security\ResourceVoter;
+
 $container->setParameter('cmf_testing.bundle_fqn', 'Symfony\Cmf\Bundle\ResourceRestBundle');
 $loader->import(CMF_TEST_CONFIG_DIR.'/dist/parameters.yml');
 $loader->import(CMF_TEST_CONFIG_DIR.'/dist/framework.php');
 $loader->import(CMF_TEST_CONFIG_DIR.'/dist/monolog.yml');
 $loader->import(CMF_TEST_CONFIG_DIR.'/dist/doctrine.yml');
+$loader->import(CMF_TEST_CONFIG_DIR.'/dist/security.yml');
 $loader->import(CMF_TEST_CONFIG_DIR.'/phpcr_odm.php');
+
+$container->register('app.resource_voter', ResourceVoter::class)
+    ->addTag('security.voter');

@@ -7,10 +7,5 @@ default:
             paths:
                 - Tests/Features
     extensions:
-        Behat\Symfony2Extension:
-            kernel:
-                path: Tests/Resources/app/AppKernel.php
-                env: behat
-                bootstrap: vendor/symfony-cmf/testing/bootstrap/bootstrap.php
         Behat\WebApiExtension:
             base_url: http://localhost:8000/

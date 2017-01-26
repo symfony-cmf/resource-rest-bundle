@@ -23,7 +23,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Webmozart\Assert\Assert;
 
-class ResourceContext implements Context, KernelAwareContext
+class ResourceContext implements Context
 {
     private $session;
     private $manager;
@@ -32,6 +32,14 @@ class ResourceContext implements Context, KernelAwareContext
      * @var KernelInterface
      */
     private $kernel;
+
+    public function __construct()
+    {
+        require_once __DIR__.'/../../../vendor/symfony-cmf/testing/bootstrap/bootstrap.php';
+        require_once __DIR__.'/../../Resources/app/AppKernel.php';
+
+        $this->kernel = new \AppKernel('test', true);
+    }
 
     /**
      * Return the path of the configuration file used by the AppKernel.
@@ -46,14 +54,6 @@ class ResourceContext implements Context, KernelAwareContext
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function setKernel(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
-    }
-
-    /**
      * @BeforeScenario
      */
     public function beforeScenario(BeforeScenarioScope $scope)
@@ -63,6 +63,8 @@ class ResourceContext implements Context, KernelAwareContext
         }
 
         $this->clearDiCache();
+
+        $this->kernel->boot();
 
         $this->manager = $this->kernel->getContainer()->get('doctrine_phpcr.odm.document_manager');
         $this->session = $this->manager->getPhpcrSession();
@@ -79,6 +81,7 @@ class ResourceContext implements Context, KernelAwareContext
     public function refreshSession()
     {
         $this->session->refresh(true);
+        $this->kernel->shutdown();
     }
 
     /**
