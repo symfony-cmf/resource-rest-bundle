@@ -67,7 +67,8 @@ class ResourceController
         try {
             $repository = $this->registry->get($repositoryName);
 
-            $this->guardAccess('read', $repositoryName, $repository->resolvePath($path));
+            $fullPath = method_exists($repository, 'resolvePath') ? $repository->resolvePath($path) : $path;
+            $this->guardAccess('read', $repositoryName, $fullPath);
 
             $resource = $repository->get($path);
 
@@ -102,11 +103,12 @@ class ResourceController
      */
     public function patchResourceAction($repositoryName, $path, Request $request)
     {
-        $this->guardAccess('write', $repositoryName, $path);
-
+        $path = '/'.ltrim($path, '/');
         $repository = $this->registry->get($repositoryName);
 
-        $path = '/'.ltrim($path, '/');
+        $fullPath = method_exists($repository, 'resolvePath') ? $repository->resolvePath($path) : $path;
+        $this->guardAccess('write', $repositoryName, $fullPath);
+
 
         $requestContent = json_decode($request->getContent(), true);
         if (!$requestContent) {
@@ -142,11 +144,11 @@ class ResourceController
      */
     public function deleteResourceAction($repositoryName, $path)
     {
-        $this->guardAccess('write', $repositoryName, $path);
-
+        $path = '/'.ltrim($path, '/');
         $repository = $this->registry->get($repositoryName);
 
-        $path = '/'.ltrim($path, '/');
+        $fullPath = method_exists($repository, 'resolvePath') ? $repository->resolvePath($path) : $path;
+        $this->guardAccess('write', $repositoryName, $fullPath);
 
         $repository->remove($path);
 
