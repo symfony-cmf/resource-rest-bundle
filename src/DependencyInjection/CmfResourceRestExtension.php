@@ -48,6 +48,11 @@ class CmfResourceRestExtension extends Extension
         return 'http://cmf.symfony.com/schema/dic/'.$this->getAlias();
     }
 
+    public function getXsdValidationBasePath()
+    {
+        return __DIR__.'/../Resources/config/schema';
+    }
+
     /**
      * Automatically include native enhancers.
      */
