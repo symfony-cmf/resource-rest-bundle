@@ -35,6 +35,11 @@ class CmfResourceRestExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
 
+        $bundles = $container->getParameter('kernel.bundles');
+        if (!array_key_exists('JMSSerializerBundle', $bundles)) {
+            throw new \LogicException('The JMSSerializerBundle must be registered in order to use the CmfResourceRestBundle.');
+        }
+
         $container->setParameter('cmf_resource_rest.max_depth', $config['max_depth']);
 
         $loader->load('serializer.xml');
