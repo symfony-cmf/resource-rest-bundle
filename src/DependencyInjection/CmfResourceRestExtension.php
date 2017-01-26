@@ -35,6 +35,8 @@ class CmfResourceRestExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
 
+        $container->setParameter('cmf_resource_rest.max_depth', $config['max_depth']);
+
         $loader->load('serializer.xml');
         $loader->load('resource-rest.xml');
 
