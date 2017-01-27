@@ -42,9 +42,11 @@ Feature: Nesting resources
                         "node_name": "sub",
                         "label": "sub",
                         "repository_path": "\/foo\/sub",
-                        "children": []
+                        "children": [],
+                        "descriptors": []
                     }
-                }
+                },
+                "descriptors": []
             }
             """
 
@@ -63,6 +65,7 @@ Feature: Nesting resources
                 "repository_path": "\/foo",
                 "children": {
                     "sub": []
-                }
+                },
+                "descriptors": []
             }
             """

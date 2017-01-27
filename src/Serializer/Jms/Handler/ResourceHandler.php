@@ -17,11 +17,11 @@ use JMS\Serializer\JsonSerializationVisitor;
 use JMS\Serializer\Context;
 use PHPCR\NodeInterface;
 use PHPCR\Util\PathHelper;
+use Symfony\Cmf\Component\Resource\Description\DescriptionFactory;
 use Symfony\Cmf\Component\Resource\Puli\Api\PuliResource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry;
 use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
 
 /**
  * Handle PHPCR resource serialization.
@@ -32,19 +32,22 @@ class ResourceHandler implements SubscribingHandlerInterface
 {
     private $registry;
     private $payloadAliasRegistry;
-    private $enhancerRegistry;
+    private $descriptionFactory;
     private $maxDepth;
+    private $exposePayload;
 
     public function __construct(
         RepositoryRegistryInterface $registry,
         PayloadAliasRegistry $payloadAliasRegistry,
-        EnhancerRegistry $enhancerRegistry,
-        $maxDepth = 2
+        DescriptionFactory $descriptionFactory,
+        $maxDepth = 2,
+        $exposePayload = false
     ) {
         $this->registry = $registry;
         $this->payloadAliasRegistry = $payloadAliasRegistry;
-        $this->enhancerRegistry = $enhancerRegistry;
+        $this->descriptionFactory = $descriptionFactory;
         $this->maxDepth = $maxDepth;
+        $this->exposePayload = $exposePayload;
     }
 
     public static function getSubscribingMethods()
@@ -92,13 +95,15 @@ class ResourceHandler implements SubscribingHandlerInterface
 
         if ($resource instanceof CmfResource) {
             $data['payload_type'] = $resource->getPayloadType();
+
+            if ($this->exposePayload && null !== $resource->getPayload()) {
+                $data['payload'] = $resource->getPayload();
+            }
         }
 
         $data['path'] = $resource->getPath();
         $data['label'] = $data['node_name'] = PathHelper::getNodeName($data['path']);
         $data['repository_path'] = $resource->getRepositoryPath();
-
-        $enhancers = $this->enhancerRegistry->getEnhancers($repositoryAlias);
 
         $children = array();
         foreach ($resource->listChildren() as $name => $childResource) {
@@ -110,9 +115,8 @@ class ResourceHandler implements SubscribingHandlerInterface
         }
         $data['children'] = $children;
 
-        foreach ($enhancers as $enhancer) {
-            $data = $enhancer->enhance($data, $resource);
-        }
+        $description = $this->descriptionFactory->getPayloadDescriptionFor($resource);
+        $data['descriptors'] = $description->all();
 
         return $data;
     }

@@ -18,16 +18,5 @@
             <argument type="collection" />
         </service>
 
-        <service id="cmf_resource_rest.registry.enhancer" class="Symfony\Cmf\Bundle\ResourceRestBundle\Registry\EnhancerRegistry">
-            <argument type="service" id="service_container" />
-            <argument type="collection" />
-            <argument type="collection" />
-        </service>
-
-        <service id="cmf_resource_rest.enhancer.description" class="Symfony\Cmf\Bundle\ResourceRestBundle\Enhancer\DescriptionEnhancer">
-            <argument type="service" id="cmf_resource.description.factory" />
-            <tag name="cmf_resource_rest.enhancer" alias="description" />
-        </service>
-
     </services>
 </container>

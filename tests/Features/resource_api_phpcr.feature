@@ -7,16 +7,14 @@ Feature: PHPCR resource repository
         Given the test application has the following configuration:
             """
             cmf_resource:
+                description: { enhancers: [dummy] }
                 repositories:
                     phpcr_repo:
                         type: phpcr/phpcr
                         basepath: /tests/cmf/articles
 
             cmf_resource_rest:
-                enhancer_map:
-                    -
-                        repository: phpcr_repo
-                        enhancer: payload
+                expose_payload: true
             """
 
 
@@ -36,7 +34,10 @@ Feature: PHPCR resource repository
                 "node_name": "foo",
                 "label": "foo",
                 "repository_path": "\/foo",
-                "children": []
+                "children": [],
+                "descriptors": {
+                    "name_reverse": "oof"
+                }
             }
             """
 
