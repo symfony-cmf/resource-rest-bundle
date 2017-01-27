@@ -7,6 +7,7 @@ Feature: PHPCR-ODM resource repository
         Given the test application has the following configuration:
             """
             cmf_resource:
+                description: { enhancers: [dummy] }
                 repositories:
                     phpcrodm_repo:
                         type: doctrine/phpcr-odm
@@ -37,7 +38,10 @@ Feature: PHPCR-ODM resource repository
                 "node_name": "foo",
                 "label": "foo",
                 "repository_path": "\/foo",
-                "children": []
+                "children": [],
+                "descriptors": {
+                    "name_reverse": "oof"
+                }
             }
             """
 
@@ -74,7 +78,8 @@ Feature: PHPCR-ODM resource repository
                         "node_name": "bar",
                         "label": "bar",
                         "repository_path": "/foo/bar",
-                        "children": [ ]
+                        "children": [ ],
+                        "descriptors": { "name_reverse": "rab" }
                     },
                     "boo": {
                         "repository_alias": "phpcrodm_repo",
@@ -85,8 +90,12 @@ Feature: PHPCR-ODM resource repository
                         "node_name": "boo",
                         "label": "boo",
                         "repository_path": "/foo/boo",
-                        "children": [ ]
+                        "children": [ ],
+                        "descriptors": { "name_reverse": "oob" }
                     }
+                },
+                "descriptors": {
+                    "name_reverse": "oof"
                 }
             }
             """

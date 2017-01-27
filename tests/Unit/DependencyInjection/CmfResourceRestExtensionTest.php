@@ -13,7 +13,6 @@ namespace Symfony\Cmf\Bundle\ResourceBundle\Tests\Unit\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\CmfResourceRestExtension;
-use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\Compiler\EnhancerPass;
 
 class CmfResourceRestExtensionTest extends AbstractExtensionTestCase
 {
@@ -33,12 +32,6 @@ class CmfResourceRestExtensionTest extends AbstractExtensionTestCase
                             'type' => 'Article',
                         ),
                     ),
-                    'enhancer_map' => array(
-                        array(
-                            'repository' => 'some_repo',
-                            'enhancer' => 'payload',
-                        ),
-                    ),
                 ),
             ),
         );
@@ -50,7 +43,6 @@ class CmfResourceRestExtensionTest extends AbstractExtensionTestCase
     public function testExtension($config)
     {
         $this->container->setParameter('kernel.bundles', ['JMSSerializerBundle' => true]);
-        $this->container->addCompilerPass(new EnhancerPass());
 
         $this->load($config);
 

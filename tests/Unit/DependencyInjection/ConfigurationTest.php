@@ -47,13 +47,8 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
                     'type' => 'Namespace\Article',
                 ),
             ),
-            'enhancer_map' => array(
-                array(
-                    'repository' => 'my_repo',
-                    'enhancer' => 'my_enhancer',
-                ),
-            ),
             'max_depth' => 2,
+            'expose_payload' => false,
         ), array($source));
     }
 }
