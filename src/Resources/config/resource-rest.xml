@@ -9,6 +9,7 @@
         <service id="cmf_resource_rest.controller.resource" class="Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController">
             <argument type="service" id="serializer" />
             <argument type="service" id="cmf_resource.registry" />
+            <argument type="service" id="cmf_resource_rest.serializer.jms.handler.resource" />
             <argument type="service" id="security.authorization_checker" on-invalid="ignore" />
         </service>
 

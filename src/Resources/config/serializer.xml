@@ -9,6 +9,8 @@
             <argument type="service" id="cmf_resource.registry" />
             <argument type="service" id="cmf_resource_rest.registry.payload_alias" />
             <argument type="service" id="cmf_resource_rest.registry.enhancer" />
+            <argument>%cmf_resource_rest.max_depth%</argument>
+
             <tag name="jms_serializer.subscribing_handler"/>
         </service>
 

@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Controller;
 
+use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\ResourceHandler;
 use Symfony\Cmf\Component\Resource\Puli\Api\ResourceRepository;
 use Symfony\Cmf\Component\Resource\Puli\Api\ResourceNotFoundException;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
@@ -39,6 +40,11 @@ class ResourceController
     private $serializer;
 
     /**
+     * @var ResourceHandler
+     */
+    private $resourceHandler;
+
+    /**
      * @var AuthorizationCheckerInterface|null
      */
     private $authorizationChecker;
@@ -47,11 +53,12 @@ class ResourceController
      * @param SerializerInterface         $serializer
      * @param RepositoryRegistryInterface $registry
      */
-    public function __construct(SerializerInterface $serializer, RepositoryRegistryInterface $registry, AuthorizationCheckerInterface $authorizationChecker = null)
+    public function __construct(SerializerInterface $serializer, RepositoryRegistryInterface $registry, ResourceHandler $resourceHandler, AuthorizationCheckerInterface $authorizationChecker = null)
     {
         $this->serializer = $serializer;
         $this->registry = $registry;
         $this->authorizationChecker = $authorizationChecker;
+        $this->resourceHandler = $resourceHandler;
     }
 
     /**
@@ -60,8 +67,12 @@ class ResourceController
      * @param string $repositoryName
      * @param string $path
      */
-    public function getResourceAction($repositoryName, $path)
+    public function getResourceAction(Request $request, $repositoryName, $path)
     {
+        if ($request->query->has('depth')) {
+            $this->resourceHandler->setMaxDepth($request->query->getInt('depth'));
+        }
+
         $path = '/'.ltrim($path, '/');
 
         try {

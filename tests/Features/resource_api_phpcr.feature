@@ -9,7 +9,7 @@ Feature: PHPCR resource repository
             cmf_resource:
                 repositories:
                     phpcr_repo:
-                        type: doctrine_phpcr
+                        type: phpcr/phpcr
                         basepath: /tests/cmf/articles
 
             cmf_resource_rest:
@@ -29,7 +29,7 @@ Feature: PHPCR resource repository
             """
             {
                 "repository_alias": "phpcr_repo",
-                "repository_type": "doctrine_phpcr",
+                "repository_type": "phpcr/phpcr",
                 "payload_alias": null,
                 "payload_type": "nt:unstructured",
                 "path": "\/foo",

@@ -28,6 +28,7 @@ class Configuration implements ConfigurationInterface
             ->fixXmlConfig('payload_alias', 'payload_alias_map')
             ->fixXmlConfig('enhance', 'enhancer_map')
             ->children()
+                ->integerNode('max_depth')->defaultValue(2)->end()
                 ->arrayNode('payload_alias_map')
                     ->useAttributeAsKey('name')
                     ->prototype('array')

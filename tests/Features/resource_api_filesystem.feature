@@ -9,7 +9,7 @@ Feature: Filesystem resource repository
 #            cmf_resource:
 #                repositories:
 #                    default:
-#                        type: filesystem
+#                        type: puli/filesystem
 #                        base_dir: "%kernel.root_dir%/Resources/views/snippets"
 #            """
 #        And there is a file named "%kernel.root_dir%/Resources/views/snippets/snippet1.html" with:
@@ -24,7 +24,7 @@ Feature: Filesystem resource repository
 #            """
 #            {
 #                "repository_alias": "default",
-#                "repository_type": "filesystem",
+#                "repository_type": "puli/filesystem",
 #                "payload_alias": null,
 #                "payload_type": null,
 #                "path": "\/snippet1.html",

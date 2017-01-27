@@ -53,6 +53,7 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
                     'enhancer' => 'my_enhancer',
                 ),
             ),
+            'max_depth' => 2,
         ), array($source));
     }
 }

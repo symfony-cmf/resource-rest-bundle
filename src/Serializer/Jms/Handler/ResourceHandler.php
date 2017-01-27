@@ -33,15 +33,18 @@ class ResourceHandler implements SubscribingHandlerInterface
     private $registry;
     private $payloadAliasRegistry;
     private $enhancerRegistry;
+    private $maxDepth;
 
     public function __construct(
         RepositoryRegistryInterface $registry,
         PayloadAliasRegistry $payloadAliasRegistry,
-        EnhancerRegistry $enhancerRegistry
+        EnhancerRegistry $enhancerRegistry,
+        $maxDepth = 2
     ) {
         $this->registry = $registry;
         $this->payloadAliasRegistry = $payloadAliasRegistry;
         $this->enhancerRegistry = $enhancerRegistry;
+        $this->maxDepth = $maxDepth;
     }
 
     public static function getSubscribingMethods()
@@ -72,6 +75,11 @@ class ResourceHandler implements SubscribingHandlerInterface
         $context->accept($data);
     }
 
+    public function setMaxDepth($maxDepth)
+    {
+        $this->maxDepth = $maxDepth;
+    }
+
     private function doSerializeResource(PuliResource $resource, $depth = 0)
     {
         $data = array();
@@ -96,7 +104,7 @@ class ResourceHandler implements SubscribingHandlerInterface
         foreach ($resource->listChildren() as $name => $childResource) {
             $children[$name] = array();
 
-            if ($depth < 2) {
+            if ($depth < $this->maxDepth) {
                 $children[$name] = $this->doSerializeResource($childResource, $depth + 1);
             }
         }
