@@ -11,16 +11,16 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\Handler;
 
-use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\ResourceHandler;
-use Symfony\Cmf\Component\Resource\Description\DescriptionFactory;
-use Symfony\Cmf\Component\Resource\Description\Description;
-use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
-use JMS\Serializer\JsonSerializationVisitor;
 use JMS\Serializer\Context;
-use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
-use Symfony\Cmf\Component\Resource\Puli\Api\ResourceRepository;
+use JMS\Serializer\JsonSerializationVisitor;
 use Prophecy\Argument;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\ResourceHandler;
+use Symfony\Cmf\Component\Resource\Description\Description;
+use Symfony\Cmf\Component\Resource\Description\DescriptionFactory;
+use Symfony\Cmf\Component\Resource\Puli\Api\ResourceRepository;
+use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
+use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 
 class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -69,9 +69,9 @@ class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
         $this->resource->getPayload()->willReturn(null);
         $this->resource->getPath()->willReturn('/path/to');
         $this->resource->getRepositoryPath()->willReturn('/repository/path');
-        $this->resource->listChildren()->willReturn(array(
+        $this->resource->listChildren()->willReturn([
             $this->childResource,
-        ));
+        ]);
 
         $this->payloadAliasRegistry->getPayloadAlias($this->childResource->reveal())->willReturn('alias');
         $this->childResource->getPayloadType()->willReturn('payload_type');
@@ -79,10 +79,10 @@ class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
         $this->childResource->getPath()->willReturn('/path/to/child');
         $this->childResource->getRepositoryPath()->willReturn('/child/repository/path');
         $this->childResource->getRepository()->willReturn($this->repository->reveal());
-        $this->childResource->listChildren()->willReturn(array(
-        ));
+        $this->childResource->listChildren()->willReturn([
+        ]);
 
-        $expected = array(
+        $expected = [
             'repository_alias' => 'repo',
             'repository_type' => 'repo_type',
             'payload_alias' => 'alias',
@@ -91,8 +91,8 @@ class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
             'node_name' => 'to',
             'label' => 'to',
             'repository_path' => '/repository/path',
-            'children' => array(
-                array(
+            'children' => [
+                [
                     'repository_alias' => 'repo',
                     'repository_type' => 'repo_type',
                     'payload_alias' => 'alias',
@@ -101,19 +101,19 @@ class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
                     'label' => 'child',
                     'node_name' => 'child',
                     'repository_path' => '/child/repository/path',
-                    'children' => array(),
+                    'children' => [],
                     'descriptors' => [],
-                ),
-            ),
+                ],
+            ],
             'descriptors' => [],
-        );
+        ];
 
         $this->context->accept($expected)->shouldBeCalled();
 
         $this->handler->serializeResource(
             $this->visitor->reveal(),
             $this->resource->reveal(),
-            array(),
+            [],
             $this->context->reveal()
         );
     }

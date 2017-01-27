@@ -11,17 +11,17 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler;
 
-use JMS\Serializer\Handler\SubscribingHandlerInterface;
-use JMS\Serializer\GraphNavigator;
-use JMS\Serializer\JsonSerializationVisitor;
 use JMS\Serializer\Context;
+use JMS\Serializer\GraphNavigator;
+use JMS\Serializer\Handler\SubscribingHandlerInterface;
+use JMS\Serializer\JsonSerializationVisitor;
 use PHPCR\NodeInterface;
 use PHPCR\Util\PathHelper;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
 use Symfony\Cmf\Component\Resource\Description\DescriptionFactory;
 use Symfony\Cmf\Component\Resource\Puli\Api\PuliResource;
-use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
+use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 
 /**
  * Handle PHPCR resource serialization.
@@ -52,14 +52,14 @@ class ResourceHandler implements SubscribingHandlerInterface
 
     public static function getSubscribingMethods()
     {
-        return array(
-            array(
+        return [
+            [
                 'event' => GraphNavigator::DIRECTION_SERIALIZATION,
                 'format' => 'json',
                 'type' => 'Puli\Repository\Api\Resource\PuliResource',
                 'method' => 'serializeResource',
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -85,7 +85,7 @@ class ResourceHandler implements SubscribingHandlerInterface
 
     private function doSerializeResource(PuliResource $resource, $depth = 0)
     {
-        $data = array();
+        $data = [];
         $repositoryAlias = $this->registry->getRepositoryName($resource->getRepository());
 
         $data['repository_alias'] = $repositoryAlias;
@@ -105,9 +105,9 @@ class ResourceHandler implements SubscribingHandlerInterface
         $data['label'] = $data['node_name'] = PathHelper::getNodeName($data['path']);
         $data['repository_path'] = $resource->getRepositoryPath();
 
-        $children = array();
+        $children = [];
         foreach ($resource->listChildren() as $name => $childResource) {
-            $children[$name] = array();
+            $children[$name] = [];
 
             if ($depth < $this->maxDepth) {
                 $children[$name] = $this->doSerializeResource($childResource, $depth + 1);

@@ -11,18 +11,16 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Controller;
 
+use JMS\Serializer\SerializationContext;
+use JMS\Serializer\SerializerInterface;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\ResourceHandler;
-use Symfony\Cmf\Component\Resource\Puli\Api\ResourceRepository;
 use Symfony\Cmf\Component\Resource\Puli\Api\ResourceNotFoundException;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use JMS\Serializer\SerializerInterface;
-use JMS\Serializer\SerializationContext;
 
 class ResourceController
 {
@@ -119,7 +117,6 @@ class ResourceController
 
         $fullPath = method_exists($repository, 'resolvePath') ? $repository->resolvePath($path) : $path;
         $this->guardAccess('write', $repositoryName, $fullPath);
-
 
         $requestContent = json_decode($request->getContent(), true);
         if (!$requestContent) {

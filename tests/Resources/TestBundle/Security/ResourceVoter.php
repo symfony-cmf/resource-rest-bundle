@@ -2,9 +2,9 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\Security;
 
+use Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController;
 
 class ResourceVoter extends Voter
 {
@@ -18,7 +18,7 @@ class ResourceVoter extends Voter
         if ('security' !== $subject['repository_name']) {
             return true;
         }
-        
+
         if ('/tests/cmf/articles/public' !== substr($subject['path'], 0, 27)) {
             return false;
         }

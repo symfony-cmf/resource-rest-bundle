@@ -12,8 +12,8 @@
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Registry;
 
 use Symfony\Cmf\Component\Resource\Puli\Api\PuliResource;
-use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
+use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 
 /**
  * Registry for resource payload aliases.
@@ -25,7 +25,7 @@ class PayloadAliasRegistry
     /**
      * @var array
      */
-    private $aliasesByRepository = array();
+    private $aliasesByRepository = [];
 
     /**
      * @var RepositoryRegistryInterface
@@ -36,13 +36,13 @@ class PayloadAliasRegistry
      * @param RepositoryRegistryInterface $repositoryRegistry
      * @param array                       $aliases
      */
-    public function __construct(RepositoryRegistryInterface $repositoryRegistry, array $aliases = array())
+    public function __construct(RepositoryRegistryInterface $repositoryRegistry, array $aliases = [])
     {
         $this->repositoryRegistry = $repositoryRegistry;
 
         foreach ($aliases as $alias => $config) {
             if (!isset($this->aliasesByRepository[$config['repository']])) {
-                $this->aliasesByRepository[$config['repository']] = array();
+                $this->aliasesByRepository[$config['repository']] = [];
             }
 
             $this->aliasesByRepository[$config['repository']][$config['type']] = $alias;

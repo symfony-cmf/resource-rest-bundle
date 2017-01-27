@@ -11,16 +11,15 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Features\Context;
 
-use Behat\Gherkin\Node\PyStringNode;
+use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use PHPCR\Util\NodeHelper;
 use PHPCR\Util\PathHelper;
-use Behat\Symfony2Extension\Context\KernelAwareContext;
-use Behat\Behat\Context\Context;
-use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Webmozart\Assert\Assert;
 
 class ResourceContext implements Context

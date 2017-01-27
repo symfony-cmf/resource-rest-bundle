@@ -11,10 +11,10 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler;
 
-use JMS\Serializer\Handler\SubscribingHandlerInterface;
-use JMS\Serializer\GraphNavigator;
-use JMS\Serializer\JsonSerializationVisitor;
 use JMS\Serializer\Context;
+use JMS\Serializer\GraphNavigator;
+use JMS\Serializer\Handler\SubscribingHandlerInterface;
+use JMS\Serializer\JsonSerializationVisitor;
 use PHPCR\NodeInterface;
 
 /**
@@ -26,14 +26,14 @@ class PhpcrNodeHandler implements SubscribingHandlerInterface
 {
     public static function getSubscribingMethods()
     {
-        return array(
-            array(
+        return [
+            [
                 'event' => GraphNavigator::DIRECTION_SERIALIZATION,
                 'format' => 'json',
                 'type' => 'PHPCR\NodeInterface',
                 'method' => 'serializePhpcrNode',
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -48,7 +48,7 @@ class PhpcrNodeHandler implements SubscribingHandlerInterface
         array $type,
         Context $context
     ) {
-        $res = array();
+        $res = [];
 
         foreach ($node->getProperties() as $name => $property) {
             $res[$name] = $property->getValue();

@@ -35,21 +35,21 @@ class PhpcrNodeHandlerTest extends \PHPUnit_Framework_TestCase
     {
         $this->property1->getValue()->willReturn('hello');
         $this->property2->getValue()->willReturn('world');
-        $this->node->getProperties()->willReturn(array(
+        $this->node->getProperties()->willReturn([
             'a' => $this->property1,
             'b' => $this->property2,
-        ));
+        ]);
 
         $res = $this->handler->serializePhpcrNode(
             $this->visitor->reveal(),
             $this->node->reveal(),
-            array(),
+            [],
             $this->context->reveal()
         );
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             'a' => 'hello',
             'b' => 'world',
-        ), $res);
+        ], $res);
     }
 }
