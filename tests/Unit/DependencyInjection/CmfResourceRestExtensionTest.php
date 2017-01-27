@@ -18,23 +18,23 @@ class CmfResourceRestExtensionTest extends AbstractExtensionTestCase
 {
     protected function getContainerExtensions()
     {
-        return array(new CmfResourceRestExtension());
+        return [new CmfResourceRestExtension()];
     }
 
     public function provideExtension()
     {
-        return array(
-            array(
-                array(
-                    'payload_alias_map' => array(
-                        'article' => array(
+        return [
+            [
+                [
+                    'payload_alias_map' => [
+                        'article' => [
                             'repository' => 'doctrine_phpcr_odm',
                             'type' => 'Article',
-                        ),
-                    ),
-                ),
-            ),
-        );
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 
     /**

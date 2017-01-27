@@ -28,21 +28,21 @@ class PayloadAliasRegistryTest extends \PHPUnit_Framework_TestCase
 
     public function provideRegistry()
     {
-        return array(
-            array(
-                array(
-                    'article' => array(
+        return [
+            [
+                [
+                    'article' => [
                         'repository' => 'doctrine_phpcr_odm',
                         'type' => 'Article',
-                    ),
-                ),
-                array(
+                    ],
+                ],
+                [
                     'type' => null,
                     'repository' => 'doctrine_phpcr_odm',
-                ),
+                ],
                 null,
-            ),
-        );
+            ],
+        ];
     }
 
     /**

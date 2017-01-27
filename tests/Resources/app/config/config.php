@@ -9,8 +9,8 @@
  * file that was distributed with this source code.
  */
 
-use Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\Security\ResourceVoter;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\Description\DummyEnhancer;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\Security\ResourceVoter;
 
 $container->setParameter('cmf_testing.bundle_fqn', 'Symfony\Cmf\Bundle\ResourceRestBundle');
 $loader->import(CMF_TEST_CONFIG_DIR.'/dist/parameters.yml');

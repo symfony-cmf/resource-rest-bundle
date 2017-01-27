@@ -11,8 +11,8 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber;
 
-use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\Events;
+use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\PreSerializeEvent;
 use Symfony\Cmf\Component\Resource\Puli\Api\PuliResource;
 
@@ -25,12 +25,12 @@ class ResourceSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
-        return array(
-            array(
+        return [
+            [
                 'event' => Events::PRE_SERIALIZE,
                 'method' => 'onPreSerialize',
-            ),
-        );
+            ],
+        ];
     }
 
     /**

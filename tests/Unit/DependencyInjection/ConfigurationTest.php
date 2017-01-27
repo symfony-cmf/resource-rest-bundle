@@ -11,9 +11,9 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Unit\DependencyInjection;
 
+use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionConfigurationTestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\CmfResourceRestExtension;
 use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\Configuration;
-use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionConfigurationTestCase;
 
 class ConfigurationTest extends AbstractExtensionConfigurationTestCase
 {
@@ -29,10 +29,10 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
 
     public function provideConfig()
     {
-        return array(
-            array(__DIR__.'/fixtures/config.xml'),
-            array(__DIR__.'/fixtures/config.yml'),
-        );
+        return [
+            [__DIR__.'/fixtures/config.xml'],
+            [__DIR__.'/fixtures/config.yml'],
+        ];
     }
 
     /**
@@ -40,15 +40,15 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
      */
     public function testConfig($source)
     {
-        $this->assertProcessedConfigurationEquals(array(
-            'payload_alias_map' => array(
-                'article' => array(
+        $this->assertProcessedConfigurationEquals([
+            'payload_alias_map' => [
+                'article' => [
                     'repository' => 'doctrine_phpcr_odm',
                     'type' => 'Namespace\Article',
-                ),
-            ),
+                ],
+            ],
             'max_depth' => 2,
             'expose_payload' => false,
-        ), array($source));
+        ], [$source]);
     }
 }

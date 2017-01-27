@@ -11,12 +11,11 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\Definition\Processor;
-use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class CmfResourceRestExtension extends Extension
 {
@@ -53,7 +52,6 @@ class CmfResourceRestExtension extends Extension
     {
         return __DIR__.'/../Resources/config/schema';
     }
-
 
     private function configurePayloadAliasRegistry(ContainerBuilder $container, $aliasMap)
     {

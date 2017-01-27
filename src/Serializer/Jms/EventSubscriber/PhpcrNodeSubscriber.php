@@ -11,10 +11,10 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber;
 
-use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
-use PHPCR\NodeInterface;
 use JMS\Serializer\EventDispatcher\Events;
+use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\PreSerializeEvent;
+use PHPCR\NodeInterface;
 
 /**
  * Force the type of PHPCR node instances to PHPCR\NodeInterface.
@@ -25,12 +25,12 @@ class PhpcrNodeSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
-        return array(
-            array(
+        return [
+            [
                 'event' => Events::PRE_SERIALIZE,
                 'method' => 'onPreSerialize',
-            ),
-        );
+            ],
+        ];
     }
 
     /**
