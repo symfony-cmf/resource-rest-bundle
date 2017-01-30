@@ -9,6 +9,7 @@
     <xsd:complexType name="config">
         <xsd:sequence>
             <xsd:element name="payload-alias" type="payload_alias" minOccurs="0" />
+            <xsd:element name="rule" type="rule" minOccurs="0" />
         </xsd:sequence>
 
         <xsd:attribute name="max-depth" type="xsd:integer" default="2" />
@@ -17,6 +18,18 @@
     <xsd:complexType name="payload_alias">
         <xsd:attribute name="repository" type="xsd:string" />
         <xsd:attribute name="type" type="xsd:string" />
+    </xsd:complexType>
+
+    <xsd:complexType name="rule">
+        <xsd:sequence>
+            <xsd:element name="require" type="xsd:string" minOccurs="0" />
+            <xsd:element name="attribute" type="xsd:string" minOccurs="0" />
+        </xsd:sequence>
+
+        <xsd:attribute name="pattern" type="xsd:string" />
+        <xsd:attribute name="repository" type="xsd:string" />
+        <xsd:attribute name="require" type="xsd:string" />
+        <xsd:attribute name="attribute" type="xsd:string" />
     </xsd:complexType>
 
 </xsd:schema>

@@ -18,6 +18,9 @@ Feature: PHPCR-ODM resource repository
                     article:
                         repository: doctrine/phpcr-odm
                         type: "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article"
+                security:
+                    access_control:
+                        - { pattern: '^/', require: IS_AUTHENTICATED_ANONYMOUSLY }
             """
 
 

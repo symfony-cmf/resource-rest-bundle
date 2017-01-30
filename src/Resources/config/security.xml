@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="cmf_resource_rest.security.resource_path_voter" class="Symfony\Cmf\Bundle\ResourceRestBundle\Security\ResourcePathVoter" public="false">
+            <argument type="service" id="security.access.decision_manager" />
+            <argument>%cmf_resource_rest.security.access_map%</argument>
+
+            <tag name="security.voter"/>
+        </service>
+    </services>
+</container>
