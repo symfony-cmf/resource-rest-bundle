@@ -49,7 +49,7 @@ Feature: PHPCR resource repository
             """
             [{"operation": "move", "target": "/foo-bar"}]
             """
-        Then the response code should be 204
+        Then the response code should be 200
         And there is an "Article" document at "/cmf/articles/foo-bar"
             | title | Article 1          |
             | body  | This is my article |
@@ -65,7 +65,7 @@ Feature: PHPCR resource repository
             """
             [{"operation": "move", "target": "/bar/foo"}]
             """
-        Then the response code should be 204
+        Then the response code should be 200
         And there is an "Article" document at "/cmf/articles/bar/foo"
             | title | Article 1          |
             | body  | This is my article |

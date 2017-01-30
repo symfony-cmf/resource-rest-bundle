@@ -133,13 +133,17 @@ class ResourceController
                     $targetPath = $action['target'];
                     $repository->move($path, $targetPath);
 
+                    $resource = $repository->get($targetPath);
+
                     break;
                 default:
-                    return $this->badRequestResponse(sprintf('Only operation "%s" is not supported, supported operations: move.', $action['operation']));
+                    return $this->badRequestResponse(sprintf('Operation "%s" is not supported, supported operations: move.', $action['operation']));
             }
         }
 
-        return $this->createResponse('', Response::HTTP_NO_CONTENT);
+        $this->resourceHandler->setMaxDepth(0);
+
+        return $this->createResponse($resource, Response::HTTP_OK);
     }
 
     /**

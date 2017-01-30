@@ -108,7 +108,7 @@ Feature: PHPCR-ODM resource repository
             """
             [{"operation": "move", "target": "/foo-bar"}]
             """
-        Then the response code should be 204
+        Then the response code should be 200
         And there is an "Article" document at "/cmf/articles/foo-bar":
             | title | Article 1          |
             | body  | This is my article |
@@ -124,7 +124,21 @@ Feature: PHPCR-ODM resource repository
             """
             [{"operation": "move", "target": "/bar/foo"}]
             """
-        Then the response code should be 204
+        Then the response code should be 200
+        And the response should contain json:
+            """
+            {
+                "repository_alias": "phpcrodm_repo",
+                "repository_type": "doctrine/phpcr-odm",
+                "payload_alias": "article",
+                "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
+                "path": "\/bar\/foo",
+                "node_name": "foo",
+                "label": "foo",
+                "repository_path": "\/bar\/foo",
+                "children": []
+            }
+            """
         And there is an "Article" document at "/cmf/articles/bar/foo":
             | title | Article 1          |
             | body  | This is my article |
