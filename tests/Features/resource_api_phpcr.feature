@@ -15,6 +15,9 @@ Feature: PHPCR resource repository
 
             cmf_resource_rest:
                 expose_payload: true
+                security:
+                    access_control:
+                        - { pattern: '^/', require: IS_AUTHENTICATED_ANONYMOUSLY }
             """
 
 

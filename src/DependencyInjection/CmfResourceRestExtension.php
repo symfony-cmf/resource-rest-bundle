@@ -41,6 +41,18 @@ class CmfResourceRestExtension extends Extension
         $loader->load('resource-rest.xml');
 
         $this->configurePayloadAliasRegistry($container, $config['payload_alias_map']);
+        $this->configureSecurityVoter($loader, $container, $config['security']);
+    }
+
+    private function configureSecurityVoter(XmlFileLoader $loader, ContainerBuilder $container, array $config)
+    {
+        if ([] === $config['access_control']) {
+            return;
+        }
+
+        $container->setParameter('cmf_resource_rest.security.access_map', $config['access_control']);
+
+        $loader->load('security.xml');
     }
 
     public function getNamespace()

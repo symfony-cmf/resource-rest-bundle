@@ -11,6 +11,11 @@ Feature: Security
                     security:
                         type: phpcr/phpcr
                         basepath: /tests/cmf/articles
+
+            cmf_resource_rest:
+                security:
+                    access_control:
+                        - { pattern: '^/tests/cmf/articles/private', repository: security, require: ROLE_ADMIN }
             """
         And there exists an "Article" document at "/private/foo":
             | title | Article 1          |

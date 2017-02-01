@@ -3,3 +3,9 @@ cmf_resource_rest:
         article:
             repository: doctrine_phpcr_odm
             type: Namespace\Article
+
+    security:
+        access_control:
+            - { pattern: ^/cms/public, attributes: [CMF_RESOURCE_READ], require: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { pattern: ^/cms/members-only, attributes: [CMF_RESOURCE_READ], require: ROLE_USER }
+            - { pattern: ^/, attributes: [CMF_RESOURCE_WRITE], require: ROLE_ADMIN }

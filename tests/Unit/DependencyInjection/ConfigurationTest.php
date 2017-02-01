@@ -49,6 +49,13 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
             ],
             'max_depth' => 2,
             'expose_payload' => false,
+            'security' => [
+                'access_control' => [
+                    ['pattern' => '^/cms/public', 'attributes' => ['CMF_RESOURCE_READ'], 'require' => ['IS_AUTHENTICATED_ANONYMOUSLY'], 'repository' => null],
+                    ['pattern' => '^/cms/members-only', 'attributes' => ['CMF_RESOURCE_READ'], 'require' => ['ROLE_USER'], 'repository' => null],
+                    ['pattern' => '^/', 'attributes' => ['CMF_RESOURCE_WRITE'], 'require' => ['ROLE_ADMIN'], 'repository' => null],
+                ],
+            ],
         ], [$source]);
     }
 }

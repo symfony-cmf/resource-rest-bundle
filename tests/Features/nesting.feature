@@ -11,6 +11,11 @@ Feature: Nesting resources
                     default:
                         type: doctrine/phpcr-odm
                         basepath: /tests/cmf/articles
+
+            cmf_resource_rest:
+                security:
+                    access_control:
+                        - { pattern: '^/', require: IS_AUTHENTICATED_ANONYMOUSLY }
             """
         And there exists an "Article" document at "/cmf/articles/foo":
             | title | Article 1          |
