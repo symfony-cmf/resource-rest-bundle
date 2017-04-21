@@ -102,3 +102,8 @@ for a guide to running the tests.
 Thanks to
 [everyone who has contributed](https://github.com/symfony-cmf/ResourceRestBundle/contributors) already.
 ## Running the tests
+
+### Behat
+- Setup database: `./vendor/symfony-cmf/testing/bin/travis/phpcr_odm_doctrine_dbal.sh`
+- Run server: `./vendor/symfony-cmf/testing/bin/server`
+- Run tests: `./vendor/bin/behat`
