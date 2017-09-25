@@ -5,7 +5,7 @@
 [![Latest Stable Version](https://poser.pugx.org/symfony-cmf/resource-rest-bundle/version.png)](https://packagist.org/packages/symfony-cmf/resource-rest-bundle)
 [![Total Downloads](https://poser.pugx.org/symfony-cmf/resource-rest-bundle/d/total.png)](https://packagist.org/packages/symfony-cmf/resource-rest-bundle)
 
-This Bundle provides a REST API to [Puli](https://github.com/puliphp/puli)
+This Bundle provides a REST API to [Puli](https://github.com/puli/repository)
 resources as provided by the
 [CmfResource](https://github.com/symfony-cmf/Resource) component.
 
