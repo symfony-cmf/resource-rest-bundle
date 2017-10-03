@@ -19,6 +19,7 @@
         "symfony-cmf/testing": "^2.0",
         "symfony/phpunit-bridge": "^3.2",
         "doctrine/phpcr-odm": "^1.3",
+        "jms/serializer": "^1.2",
         "behat/behat": "^3.0.6",
         "behat/web-api-extension" : "^1.0@dev",
         "matthiasnoback/symfony-dependency-injection-test": "~0.6",
