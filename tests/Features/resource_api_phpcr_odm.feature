@@ -17,7 +17,7 @@ Feature: PHPCR-ODM resource repository
                 payload_alias_map:
                     article:
                         repository: doctrine/phpcr-odm
-                        type: "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article"
+                        type: "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Fixtures\\App\\Document\\Article"
                 security:
                     access_control:
                         - { pattern: '^/', require: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -36,7 +36,7 @@ Feature: PHPCR-ODM resource repository
                 "repository_alias": "phpcrodm_repo",
                 "repository_type": "doctrine/phpcr-odm",
                 "payload_alias": "article",
-                "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
+                "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Fixtures\\App\\Document\\Article",
                 "path": "\/foo",
                 "node_name": "foo",
                 "label": "foo",
@@ -66,7 +66,7 @@ Feature: PHPCR-ODM resource repository
                 "repository_alias": "phpcrodm_repo",
                 "repository_type": "doctrine/phpcr-odm",
                 "payload_alias": "article",
-                "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
+                "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Fixtures\\App\\Document\\Article",
                 "path": "\/foo",
                 "node_name": "foo",
                 "label": "foo",
@@ -76,7 +76,7 @@ Feature: PHPCR-ODM resource repository
                         "repository_alias": "phpcrodm_repo",
                         "repository_type": "doctrine/phpcr-odm",
                         "payload_alias": "article",
-                        "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
+                        "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Fixtures\\App\\Document\\Article",
                         "path": "/foo/bar",
                         "node_name": "bar",
                         "label": "bar",
@@ -88,7 +88,7 @@ Feature: PHPCR-ODM resource repository
                         "repository_alias": "phpcrodm_repo",
                         "repository_type": "doctrine/phpcr-odm",
                         "payload_alias": "article",
-                        "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
+                        "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Fixtures\\App\\Document\\Article",
                         "path": "/foo/boo",
                         "node_name": "boo",
                         "label": "boo",
@@ -134,7 +134,7 @@ Feature: PHPCR-ODM resource repository
                 "repository_alias": "phpcrodm_repo",
                 "repository_type": "doctrine/phpcr-odm",
                 "payload_alias": "article",
-                "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\Article",
+                "payload_type": "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Fixtures\\App\\Document\\Article",
                 "path": "\/bar\/foo",
                 "node_name": "foo",
                 "label": "foo",

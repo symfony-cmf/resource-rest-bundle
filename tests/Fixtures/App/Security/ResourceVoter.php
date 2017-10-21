@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\Security;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Fixtures\App\Security;
 
 use Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;

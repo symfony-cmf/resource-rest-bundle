@@ -13,17 +13,22 @@
 # file that was distributed with this source code.                         #
 ############################################################################
 
+TESTING_SCRIPTS_DIR=vendor/symfony-cmf/testing/bin
+CONSOLE=${TESTING_SCRIPTS_DIR}/console
+VERSION=dev-master
+ifdef BRANCH
+	VERSION=dev-${BRANCH}
+endif
+PACKAGE=symfony-cmf/resource-rest-bundle
+export KERNEL_CLASS=Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Fixtures\App\Kernel
+list:
+	@echo 'test:                    will run all tests'
+	@echo 'unit_tests:               will run unit tests only'
 
-preset: symfony
 
-enabled:
-  - combine_consecutive_unsets
-  - short_array_syntax
-  - newline_after_open_tag
-  - no_php4_constructor
-  - no_useless_else
-  - ordered_use
-  - strict
-  - php_unit_construct
+	@echo 'test_installation:    will run installation test'
+include ${TESTING_SCRIPTS_DIR}/make/unit_tests.mk
+include ${TESTING_SCRIPTS_DIR}/make/test_installation.mk
 
-disabled: [single_line_class_definition]
+.PHONY: test
+test: unit_tests
