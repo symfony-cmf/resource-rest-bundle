@@ -12,7 +12,7 @@ Branch | Travis | Coveralls |
 ------ | ------ | --------- |
 master | [![Build Status][travis_unstable_badge]][travis_unstable_link] | [![Coverage Status][coveralls_unstable_badge]][coveralls_unstable_link] |
 
-This bundle is part of the [Symfony Content Management Framework (CMF)](http://cmf.symfony.com/) and licensed
+This package is part of the [Symfony Content Management Framework (CMF)](http://cmf.symfony.com/) and licensed
 under the [MIT License](LICENSE).
 
 This Bundle provides a REST API to Puli resources as provided by the CmfResource component.
@@ -34,78 +34,6 @@ See also:
 
 * [All Symfony CMF documentation](http://symfony.com/doc/master/cmf/index.html) - complete Symfony CMF reference
 * [Symfony CMF Website](http://cmf.symfony.com/) - introduction, live demo, support and community links
-## Example
-
-````bash
-$ curl http://localhost:8000/api/phpcrodm_repo/foo | python -m json.tool
-{
-    "_links": {
-        "self": {
-            "href": "/api/phpcrodm_repo/foo"
-        }
-    },
-    "children": {
-        "bar": {
-            "_links": {
-                "self": {
-                    "href": "/api/phpcrodm_repo/foo/bar"
-                }
-            },
-            "children": [],
-            "document": {
-                "_links": {
-                    "self": {
-                        "href": "/path/to/this"
-                    }
-                },
-                "body": "This is my second article",
-                "id": "/tests/cmf/articles/foo/bar",
-                "title": "Article 2"
-            },
-            "path": "/foo/bar",
-            "repo_path": "/foo/bar"
-        },
-        "boo": {
-            "_links": {
-                "self": {
-                    "href": "/api/phpcrodm_repo/foo/boo"
-                }
-            },
-            "children": [],
-            "document": {
-                "_links": {
-                    "self": {
-                        "href": "/path/to/this"
-                    }
-                },
-                "body": "This is my third article",
-                "id": "/tests/cmf/articles/foo/boo",
-                "title": "Article 2"
-            },
-            "path": "/foo/boo",
-            "repo_path": "/foo/boo"
-        }
-    },
-    "document": {
-        "_links": {
-            "self": {
-                "href": "/path/to/this"
-            }
-        },
-        "body": "This is my article",
-        "id": "/tests/cmf/articles/foo",
-        "title": "Article 1"
-    },
-    "path": "/foo",
-    "repo_path": "/foo"
-}
-````
-## Running the tests
-
-### Behat
-- Setup database: `./vendor/symfony-cmf/testing/bin/travis/phpcr_odm_doctrine_dbal.sh`
-- Run server: `./vendor/symfony-cmf/testing/bin/server`
-- Run tests: `./vendor/bin/behat`
 
 ## Support
 
@@ -117,7 +45,7 @@ Pull requests are welcome. Please see our
 [CONTRIBUTING](https://github.com/symfony-cmf/symfony-cmf/blob/master/CONTRIBUTING.md)
 guide.
 
-Unit and/or functional tests exist for this bundle. See the
+Unit and/or functional tests exist for this package. See the
 [Testing documentation](http://symfony.com/doc/master/cmf/components/testing.html)
 for a guide to running the tests.
 
