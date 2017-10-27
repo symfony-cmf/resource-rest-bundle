@@ -65,7 +65,7 @@ before_install:
 install: travis_wait composer update --prefer-dist $COMPOSER_FLAGS
 
 script:
-  - vendor/bin/simple-phpunit --verbose --testdox
+  - if [ "${TEST_INSTALLATION}" == true ]; then make test_installation; else make test; fi
 
 notifications:
   irc: "irc.freenode.org#symfony-cmf"
