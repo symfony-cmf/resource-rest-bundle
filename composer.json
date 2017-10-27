@@ -43,6 +43,7 @@
         }
     },
     "conflict":{
-        "sebastian/exporter": "<2.0.0"
+        "sebastian/exporter": "<2.0.0",
+        "sebastianbergmann/environment": "<3.1.0"
     }
 }
