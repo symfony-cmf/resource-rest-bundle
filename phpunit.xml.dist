@@ -4,6 +4,7 @@
     colors="true"
     bootstrap="vendor/symfony-cmf/testing/bootstrap/bootstrap.php"
     verbose="true"
+    testdox="true"
     >
 
     <testsuites>
