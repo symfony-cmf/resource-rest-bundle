@@ -21,7 +21,7 @@ This Bundle provides a REST API to Puli resources as provided by the CmfResource
 ## Requirements
 
 * PHP 7.0 / 7.1
-* Symfony 2.8 / 3.1 / 3.2 / 3.3
+* Symfony 2.8 / 3.1 / 3.2 / 3.3 / ^3.4@dev
 * See also the `require` section of [composer.json](composer.json)
 
 ## Documentation
