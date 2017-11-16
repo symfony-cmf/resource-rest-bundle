@@ -17,6 +17,7 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use PHPCR\Util\NodeHelper;
 use PHPCR\Util\PathHelper;
+use Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Fixtures\App\Kernel;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -35,9 +36,9 @@ class ResourceContext implements Context
     public function __construct()
     {
         require_once __DIR__.'/../../../vendor/symfony-cmf/testing/bootstrap/bootstrap.php';
-        require_once __DIR__.'/../../Resources/app/AppKernel.php';
+        require_once __DIR__.'/../../Fixtures/App/Kernel.php';
 
-        $this->kernel = new \AppKernel('test', true);
+        $this->kernel = new Kernel('test', true);
     }
 
     /**
@@ -49,7 +50,7 @@ class ResourceContext implements Context
      */
     public static function getConfigurationFile()
     {
-        return __DIR__.'/../../Resources/app/cache/resource.yml';
+        return __DIR__.'/../../Fixtures/App/var/cache/resource.yml';
     }
 
     /**
@@ -108,7 +109,7 @@ class ResourceContext implements Context
      */
     public function createDocument($class, $path, TableNode $fields)
     {
-        $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\'.$class;
+        $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Fixtures\\App\\Document\\'.$class;
         $path = '/tests'.$path;
 
         $parentPath = PathHelper::getParentPath($path);
@@ -142,7 +143,7 @@ class ResourceContext implements Context
      */
     public function thereIsADocumentAt($class, $path, TableNode $fields = null)
     {
-        $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\'.$class;
+        $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Fixtures\\App\\Document\\'.$class;
         $path = '/tests'.$path;
 
         if (!class_exists($class)) {
@@ -170,7 +171,7 @@ class ResourceContext implements Context
      */
     public function thereIsNoDocumentAt($class, $path)
     {
-        $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Resources\\TestBundle\\Document\\'.$class;
+        $class = 'Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\Fixtures\\App\\Document\\'.$class;
         $path = '/tests'.$path;
 
         if (!class_exists($class)) {
@@ -191,7 +192,11 @@ class ResourceContext implements Context
     private function clearDiCache()
     {
         $finder = new Finder();
-        $finder->in($this->kernel->getCacheDir());
+        $dirs = $this->kernel->getCacheDir();
+        if (!is_dir($dirs)) {
+            return;
+        }
+        $finder->in($dirs);
         $finder->name('*.php');
         $finder->name('*.php.meta');
         $filesystem = new Filesystem();

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Resources\TestBundle\Description;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Fixtures\App\Description;
 
 use Symfony\Cmf\Component\Resource\Description\Description;
 use Symfony\Cmf\Component\Resource\Description\DescriptionEnhancerInterface;

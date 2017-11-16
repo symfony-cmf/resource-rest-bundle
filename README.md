@@ -17,11 +17,22 @@ under the [MIT License](LICENSE).
 
 This Bundle provides a REST API to Puli resources as provided by the CmfResource component.
 
+#### Running Behat
+
+1. Run web server:
+```
+KERNEL_CLASS="Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Fixtures\App\Kernel" ./vendor/symfony-cmf/testing/bin/console server:run -d vendor/symfony-cmf/testing/resources/web/ 8000
+```
+2. Run the behat tests:
+```
+KERNEL_CLASS="Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Fixtures\App\Kernel" ./vendor/bin/behat
+```
+
 
 ## Requirements
 
-* PHP 7.0 / 7.1
-* Symfony 2.8 / 3.1 / 3.2 / 3.3 / ^3.4@dev
+* PHP 7.1
+* Symfony 2.8 / 3.3 / ^3.4@dev
 * See also the `require` section of [composer.json](composer.json)
 
 ## Documentation
