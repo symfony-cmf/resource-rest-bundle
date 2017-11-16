@@ -21,10 +21,6 @@ ifdef BRANCH
 endif
 PACKAGE=symfony-cmf/resource-rest-bundle
 export KERNEL_CLASS=Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Fixtures\App\Kernel
-<<<<<<< HEAD
-
-=======
->>>>>>> 9dd8c2b... DevKit updates
 list:
 	@echo 'test:                    will run all tests'
 	@echo 'unit_tests:               will run unit tests only'

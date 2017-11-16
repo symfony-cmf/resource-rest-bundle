@@ -29,6 +29,7 @@
         "symfony/translation": "^2.8|^3.3"
     },
     "minimum-stability":"dev",
+
     "prefer-stable": true,
     "suggest": {
         "doctrine/phpcr-odm": "To enable support for the PHPCR ODM documents (^1.2)",
