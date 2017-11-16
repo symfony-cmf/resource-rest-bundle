@@ -36,7 +36,7 @@ class ResourceContext implements Context
     public function __construct()
     {
         require_once __DIR__.'/../../../vendor/symfony-cmf/testing/bootstrap/bootstrap.php';
-        require_once __DIR__ . '/../../Fixtures/App/Kernel.php';
+        require_once __DIR__.'/../../Fixtures/App/Kernel.php';
 
         $this->kernel = new Kernel('test', true);
     }

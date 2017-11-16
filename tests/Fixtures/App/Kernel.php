@@ -31,9 +31,9 @@ class Kernel extends TestKernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__ . '/config/config.php');
+        $loader->load(__DIR__.'/config/config.php');
 
-        if ($this->getEnvironment() !== 'behat' && file_exists(ResourceContext::getConfigurationFile())) {
+        if ('behat' !== $this->getEnvironment() && file_exists(ResourceContext::getConfigurationFile())) {
             $loader->import(ResourceContext::getConfigurationFile());
         }
     }

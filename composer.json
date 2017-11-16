@@ -12,8 +12,7 @@
     "require": {
         "php": "^5.6|^7.0",
         "symfony-cmf/resource-bundle": "^1.0",
-        "jms/serializer-bundle": "^1.0 | ^2.0",
-        "symfony/translation": "^2.8|^3.3"
+        "jms/serializer-bundle": "^1.0 | ^2.0"
     },
     "require-dev": {
         "symfony-cmf/testing": "^2.1@dev",
@@ -25,8 +24,9 @@
         "symfony/validator": "^2.8|^3.3",
         "symfony/asset": "^2.8|^3.3",
         "symfony/templating": "^2.8|^3.3",
-        "symfony/form": "^3.3",
-        "symfony/web-server-bundle": "^3.3"
+        "symfony/form": "^2.8|^3.3",
+        "symfony/web-server-bundle": "^2.8|^3.3",
+        "symfony/translation": "^2.8|^3.3"
     },
     "minimum-stability":"dev",
     "prefer-stable": true,
