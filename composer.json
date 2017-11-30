@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^5.6|^7.0",
+        "php": "^7.0",
         "symfony-cmf/resource-bundle": "^1.0",
         "jms/serializer-bundle": "^1.0 | ^2.0",
         "symfony/translation": "^2.8|^3.0"
@@ -21,7 +21,7 @@
         "doctrine/phpcr-odm": "^1.4|^2.0",
         "jms/serializer": "^1.2",
         "behat/behat": "^3.0.6",
-        "behat/web-api-extension" : "^1.0@dev",
+        "behat/web-api-extension": "^1.0@dev",
         "matthiasnoback/symfony-dependency-injection-test": "^1.1",
         "matthiasnoback/symfony-config-test": "^2.1",
         "symfony/twig-bundle": "^2.8|^3.3",
@@ -33,25 +33,28 @@
         "symfony/web-server-bundle": "^2.8|^3.3",
         "symfony/translation": "^2.8|^3.3"
     },
-    "minimum-stability":"dev",
-
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "suggest": {
         "doctrine/phpcr-odm": "To enable support for the PHPCR ODM documents (^1.2)",
         "doctrine/phpcr-bundle": "To enable support for the PHPCR ODM documents"
     },
     "autoload": {
-        "psr-4": { "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\": "src" }
+        "psr-4": {
+            "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\": "src"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\": "tests" }
+        "psr-4": {
+            "Symfony\\Cmf\\Bundle\\ResourceRestBundle\\Tests\\": "tests"
+        }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.1-dev"
         }
     },
-    "conflict":{
+    "conflict": {
         "sebastian/environment": "<1.3.4",
         "sebastian/exporter": "<2.0.0"
     }
