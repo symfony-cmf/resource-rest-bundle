@@ -33,8 +33,6 @@
         "symfony/web-server-bundle": "^2.8 || ^3.3 || ^4.0",
         "symfony/translation": "^2.8 || ^3.3 || ^4.0"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "suggest": {
         "doctrine/phpcr-odm": "To enable support for the PHPCR ODM documents (^1.2)",
         "doctrine/phpcr-bundle": "To enable support for the PHPCR ODM documents"
