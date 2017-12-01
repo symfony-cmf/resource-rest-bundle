@@ -53,7 +53,7 @@ For general support and questions, please use [StackOverflow](http://stackoverfl
 ## Contributing
 
 Pull requests are welcome. Please see our
-[CONTRIBUTING](https://github.com/symfony-cmf/symfony-cmf/blob/master/CONTRIBUTING.md)
+[CONTRIBUTING](https://github.com/symfony-cmf/blob/master/CONTRIBUTING.md)
 guide.
 
 Unit and/or functional tests exist for this package. See the
@@ -67,16 +67,16 @@ Thanks to
 
 This package is available under the [MIT license](src/Resources/meta/LICENSE).
 
-[travis_legacy_badge]: https://travis-ci.org/symfony-cmf/resource-rest-bundle.svg?branch=master
-[travis_legacy_link]: https://travis-ci.org/symfony-cmf/symfony-cmf/resource-rest-bundle
-[travis_stable_badge]: https://travis-ci.org/symfony-cmf/resource-rest-bundle.svg?branch=master
-[travis_stable_link]: https://travis-ci.org/symfony-cmf/symfony-cmf/resource-rest-bundle
-[travis_unstable_badge]: https://travis-ci.org/symfony-cmf/resource-rest-bundle.svg?branch=master
-[travis_unstable_link]: https://travis-ci.org/symfony-cmf/symfony-cmf/resource-rest-bundle
+[travis_legacy_badge]: https://travis-ci.org/resource-rest-bundle.svg?branch=master
+[travis_legacy_link]: https://travis-ci.org/symfony-cmf/resource-rest-bundle
+[travis_stable_badge]: https://travis-ci.org/resource-rest-bundle.svg?branch=master
+[travis_stable_link]: https://travis-ci.org/symfony-cmf/resource-rest-bundle
+[travis_unstable_badge]: https://travis-ci.org/resource-rest-bundle.svg?branch=master
+[travis_unstable_link]: https://travis-ci.org/symfony-cmf/resource-rest-bundle
 
-[coveralls_legacy_badge]: https://coveralls.io/repos/github/symfony-cmf/resource-rest-bundle/badge.svg?branch=master
-[coveralls_legacy_link]: https://coveralls.io/github/symfony-cmf/resource-rest-bundle?branch=master
-[coveralls_stable_badge]: https://coveralls.io/repos/github/symfony-cmf/resource-rest-bundle/badge.svg?branch=master
-[coveralls_stable_link]: https://coveralls.io/github/symfony-cmf/resource-rest-bundle?branch=master
-[coveralls_unstable_badge]: https://coveralls.io/repos/github/symfony-cmf/resource-rest-bundle/badge.svg?branch=master
-[coveralls_unstable_link]: https://coveralls.io/github/symfony-cmf/resource-rest-bundle?branch=master
+[coveralls_legacy_badge]: https://coveralls.io/repos/github/resource-rest-bundle/badge.svg?branch=master
+[coveralls_legacy_link]: https://coveralls.io/github/resource-rest-bundle?branch=master
+[coveralls_stable_badge]: https://coveralls.io/repos/github/resource-rest-bundle/badge.svg?branch=master
+[coveralls_stable_link]: https://coveralls.io/github/resource-rest-bundle?branch=master
+[coveralls_unstable_badge]: https://coveralls.io/repos/github/resource-rest-bundle/badge.svg?branch=master
+[coveralls_unstable_link]: https://coveralls.io/github/resource-rest-bundle?branch=master
