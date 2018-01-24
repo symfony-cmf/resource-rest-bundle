@@ -6,7 +6,7 @@
 
     <services>
 
-        <service id="cmf_resource_rest.controller.resource" class="Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController">
+        <service id="cmf_resource_rest.controller.resource" class="Symfony\Cmf\Bundle\ResourceRestBundle\Controller\ResourceController" public="true">
             <argument type="service" id="jms_serializer" />
             <argument type="service" id="cmf_resource.registry" />
             <argument type="service" id="cmf_resource_rest.serializer.jms.handler.resource" />
