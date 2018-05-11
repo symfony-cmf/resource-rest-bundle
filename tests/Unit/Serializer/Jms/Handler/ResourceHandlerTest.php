@@ -25,14 +25,23 @@ use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
 {
     private $repositoryRegistry;
+
     private $payloadAliasRegistry;
+
     private $descriptionFactory;
+
     private $visitor;
+
     private $resource;
+
     private $childResource;
+
     private $repository;
+
     private $context;
+
     private $handler;
+
     private $description;
 
     protected function setUp()
