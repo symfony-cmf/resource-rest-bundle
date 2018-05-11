@@ -25,6 +25,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class ResourceController
 {
     const ROLE_RESOURCE_READ = 'CMF_RESOURCE_READ';
+
     const ROLE_RESOURCE_WRITE = 'CMF_RESOURCE_WRITE';
 
     /**

@@ -31,9 +31,13 @@ use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 class ResourceHandler implements SubscribingHandlerInterface
 {
     private $registry;
+
     private $payloadAliasRegistry;
+
     private $descriptionFactory;
+
     private $maxDepth;
+
     private $exposePayload;
 
     public function __construct(

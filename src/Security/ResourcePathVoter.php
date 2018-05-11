@@ -22,6 +22,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 class ResourcePathVoter extends Voter
 {
     private $accessDecisionManager;
+
     private $accessMap;
 
     public function __construct(AccessDecisionManagerInterface $accessDecisionManager, array $accessMap)

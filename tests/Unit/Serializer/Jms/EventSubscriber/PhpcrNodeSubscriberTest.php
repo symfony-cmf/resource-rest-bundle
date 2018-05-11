@@ -16,7 +16,9 @@ use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber\PhpcrNo
 class PhpcrNodeSubscriberTest extends \PHPUnit_Framework_TestCase
 {
     private $node;
+
     private $event;
+
     private $subscriber;
 
     public function setUp()

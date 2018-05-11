@@ -16,7 +16,9 @@ use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\PhpcrNodeHandle
 class PhpcrNodeHandlerTest extends \PHPUnit_Framework_TestCase
 {
     private $handler;
+
     private $property1;
+
     private $property2;
 
     public function setUp()
