@@ -26,6 +26,7 @@ use Webmozart\Assert\Assert;
 class ResourceContext implements Context
 {
     private $session;
+
     private $manager;
 
     /**
