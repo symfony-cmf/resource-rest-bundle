@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -30,7 +32,7 @@ class CmfResourceRestExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
 
         $bundles = $container->getParameter('kernel.bundles');
-        if (!array_key_exists('JMSSerializerBundle', $bundles)) {
+        if (!\array_key_exists('JMSSerializerBundle', $bundles)) {
             throw new \LogicException('The JMSSerializerBundle must be registered in order to use the CmfResourceRestBundle.');
         }
 
@@ -44,6 +46,16 @@ class CmfResourceRestExtension extends Extension
         $this->configureSecurityVoter($loader, $container, $config['security']);
     }
 
+    public function getNamespace()
+    {
+        return 'http://cmf.symfony.com/schema/dic/'.$this->getAlias();
+    }
+
+    public function getXsdValidationBasePath()
+    {
+        return __DIR__.'/../Resources/config/schema';
+    }
+
     private function configureSecurityVoter(XmlFileLoader $loader, ContainerBuilder $container, array $config)
     {
         if ([] === $config['access_control']) {
@@ -53,16 +65,6 @@ class CmfResourceRestExtension extends Extension
         $container->setParameter('cmf_resource_rest.security.access_map', $config['access_control']);
 
         $loader->load('security.xml');
-    }
-
-    public function getNamespace()
-    {
-        return 'http://cmf.symfony.com/schema/dic/'.$this->getAlias();
-    }
-
-    public function getXsdValidationBasePath()
-    {
-        return __DIR__.'/../Resources/config/schema';
     }
 
     private function configurePayloadAliasRegistry(ContainerBuilder $container, $aliasMap)

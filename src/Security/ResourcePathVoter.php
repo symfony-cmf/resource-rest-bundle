@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -36,8 +38,8 @@ class ResourcePathVoter extends Voter
      */
     protected function supports($attribute, $subject)
     {
-        return in_array($attribute, [ResourceController::ROLE_RESOURCE_READ, ResourceController::ROLE_RESOURCE_WRITE])
-            && is_array($subject) && isset($subject['repository_name']) && isset($subject['path']);
+        return \in_array($attribute, [ResourceController::ROLE_RESOURCE_READ, ResourceController::ROLE_RESOURCE_WRITE], true)
+            && \is_array($subject) && isset($subject['repository_name'], $subject['path']);
     }
 
     /**
@@ -60,7 +62,7 @@ class ResourcePathVoter extends Voter
 
     private function ruleMatches($rule, $attribute, $subject)
     {
-        if (!in_array($attribute, $rule['attributes'])) {
+        if (!\in_array($attribute, $rule['attributes'], true)) {
             return false;
         }
 

@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -100,7 +102,7 @@ class ResourceContext implements Context
     {
         $filesytem = new Filesystem();
         $file = str_replace('%kernel.root_dir%', $this->kernel->getRootDir(), $filename);
-        $filesytem->mkdir(dirname($file));
+        $filesytem->mkdir(\dirname($file));
 
         file_put_contents($file, (string) $content);
     }

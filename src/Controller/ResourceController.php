@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Symfony CMF package.
  *
- * (c) 2011-2017 Symfony CMF
+ * (c) Symfony CMF
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,9 +26,9 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ResourceController
 {
-    const ROLE_RESOURCE_READ = 'CMF_RESOURCE_READ';
+    public const ROLE_RESOURCE_READ = 'CMF_RESOURCE_READ';
 
-    const ROLE_RESOURCE_WRITE = 'CMF_RESOURCE_WRITE';
+    public const ROLE_RESOURCE_WRITE = 'CMF_RESOURCE_WRITE';
 
     /**
      * @var RepositoryRegistryInterface

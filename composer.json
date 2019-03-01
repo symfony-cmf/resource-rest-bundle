@@ -12,13 +12,13 @@
     "require": {
         "php": "^7.1",
         "symfony-cmf/resource-bundle": "^1.0",
-        "jms/serializer-bundle": "^1.0 | ^2.0",
+        "jms/serializer-bundle": "^1.0 || ^2.0",
         "symfony/translation": "^3.4 || ^4.1"
     },
     "require-dev": {
-        "symfony-cmf/testing": "^2.1@dev",
+        "symfony-cmf/testing": "^2.1.11",
         "symfony/phpunit-bridge": "^4.2.2",
-        "doctrine/phpcr-odm": "^1.4|^2.0",
+        "doctrine/phpcr-odm": "^1.4 || ^2.0",
         "jms/serializer": "^1.2",
         "behat/behat": "^3.0.6",
         "behat/web-api-extension": "^1.0@dev",
@@ -30,8 +30,7 @@
         "symfony/asset": "^3.4 || ^4.1",
         "symfony/templating": "^3.4 || ^4.1",
         "symfony/form": "^3.4 || ^4.1",
-        "symfony/web-server-bundle": "^3.4 || ^4.1",
-        "symfony/translation": "^3.4 || ^4.1"
+        "symfony/web-server-bundle": "^3.4 || ^4.1"
     },
     "suggest": {
         "doctrine/phpcr-odm": "To enable support for the PHPCR ODM documents (^1.2)",
