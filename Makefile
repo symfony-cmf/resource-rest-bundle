@@ -25,7 +25,7 @@ HAS_XDEBUG=$(shell php --modules|grep --quiet xdebug;echo $$?)
 list:
 	@echo 'test:                    will run all tests'
 	@echo 'unit_tests:               will run unit tests only'
-
+	@echo 'functional_tests_phpcr:  will run functional tests with PHPCR'
 
 	@echo 'test_installation:    will run installation test'TEST_DEPENDENCIES := ""
 EXTRA_INCLUDES:=$(wildcard ${TESTING_SCRIPTS_DIR}/make/unit_tests.mk)
@@ -33,6 +33,12 @@ ifneq ($(strip $(EXTRA_INCLUDES)),)
   contents :=  $(shell echo including extra rules $(EXTRA_INCLUDES))
   include $(EXTRA_INCLUDES)
     TEST_DEPENDENCIES := $(TEST_DEPENDENCIES)" unit_tests"
+  endif
+EXTRA_INCLUDES:=$(wildcard ${TESTING_SCRIPTS_DIR}/make/functional_tests_phpcr.mk)
+ifneq ($(strip $(EXTRA_INCLUDES)),)
+  contents :=  $(shell echo including extra rules $(EXTRA_INCLUDES))
+  include $(EXTRA_INCLUDES)
+    TEST_DEPENDENCIES := $(TEST_DEPENDENCIES)" functional_tests_phpcr"
   endif
 EXTRA_INCLUDES:=$(wildcard ${TESTING_SCRIPTS_DIR}/make/test_installation.mk)
 ifneq ($(strip $(EXTRA_INCLUDES)),)
@@ -44,6 +50,9 @@ ifneq ($(strip $(EXTRA_INCLUDES)),)
 test: build/xdebug-filter.php$
 ifneq ($(strip $(wildcard ${TESTING_SCRIPTS_DIR}/make/unit_tests.mk)),)
 	@make unit_tests
+endif
+ifneq ($(strip $(wildcard ${TESTING_SCRIPTS_DIR}/make/functional_tests_phpcr.mk)),)
+	@make functional_tests_phpcr
 endif
 
 lint-php:
