@@ -12,7 +12,9 @@
 		<testsuite name="unit tests">
             <directory>./tests/Unit</directory>
         </testsuite>
-                        
+		<testsuite name="functional tests">
+			<directory>./tests/Functional</directory>
+		</testsuite>
 	</testsuites>
 
 	<filter>
