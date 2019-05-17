@@ -180,7 +180,7 @@ class ResourceController
 
     private function guardAccess($attribute, $repository, $path)
     {
-        if (null !== $this->authorizationChecker
+        if (null === $this->authorizationChecker
             && !$this->authorizationChecker->isGranted(
                 'CMF_RESOURCE_'.strtoupper($attribute),
                 ['repository_name' => $repository, 'path' => $path]
