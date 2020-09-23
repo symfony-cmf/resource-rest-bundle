@@ -48,10 +48,6 @@ class ResourceController
      */
     private $authorizationChecker;
 
-    /**
-     * @param SerializerInterface         $serializer
-     * @param RepositoryRegistryInterface $registry
-     */
     public function __construct(SerializerInterface $serializer, RepositoryRegistryInterface $registry, ResourceHandler $resourceHandler, AuthorizationCheckerInterface $authorizationChecker = null)
     {
         $this->serializer = $serializer;
@@ -84,10 +80,7 @@ class ResourceController
 
             return $this->createResponse($resource);
         } catch (ResourceNotFoundException $e) {
-            throw new NotFoundHttpException(
-                sprintf('No resource found at path "%s" for repository "%s"', $path, $repositoryName),
-                $e
-            );
+            throw new NotFoundHttpException(sprintf('No resource found at path "%s" for repository "%s"', $path, $repositoryName), $e);
         }
     }
 
@@ -105,9 +98,8 @@ class ResourceController
      *
      * changing payload properties isn't supported yet.
      *
-     * @param string  $repositoryName
-     * @param string  $path
-     * @param Request $request
+     * @param string $repositoryName
+     * @param string $path
      *
      * @return Response
      */
