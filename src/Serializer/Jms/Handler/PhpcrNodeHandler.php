@@ -37,10 +37,7 @@ class PhpcrNodeHandler implements SubscribingHandlerInterface
     }
 
     /**
-     * @param JsonSerializationVisitor $visitor
-     * @param NodeInterface            $nodeInterface
-     * @param array                    $type
-     * @param Context                  $context
+     * @param NodeInterface $nodeInterface
      */
     public function serializePhpcrNode(
         JsonSerializationVisitor $visitor,

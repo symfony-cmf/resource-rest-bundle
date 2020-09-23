@@ -67,10 +67,7 @@ class ResourceHandler implements SubscribingHandlerInterface
     }
 
     /**
-     * @param JsonSerializationVisitor $visitor
-     * @param NodeInterface            $resourceInterface
-     * @param array                    $type
-     * @param Context                  $context
+     * @param NodeInterface $resourceInterface
      */
     public function serializeResource(
         JsonSerializationVisitor $visitor,

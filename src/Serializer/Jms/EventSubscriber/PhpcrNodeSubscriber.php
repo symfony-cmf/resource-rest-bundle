@@ -33,9 +33,6 @@ class PhpcrNodeSubscriber implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param PreSerializeEvent $event
-     */
     public function onPreSerialize(PreSerializeEvent $event)
     {
         $object = $event->getObject();
