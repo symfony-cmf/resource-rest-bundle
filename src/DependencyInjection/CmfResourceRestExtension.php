@@ -30,7 +30,7 @@ class CmfResourceRestExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
 
         $bundles = $container->getParameter('kernel.bundles');
-        if (!array_key_exists('JMSSerializerBundle', $bundles)) {
+        if (!\array_key_exists('JMSSerializerBundle', $bundles)) {
             throw new \LogicException('The JMSSerializerBundle must be registered in order to use the CmfResourceRestBundle.');
         }
 

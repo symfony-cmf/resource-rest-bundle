@@ -100,7 +100,7 @@ class ResourceContext implements Context
     {
         $filesytem = new Filesystem();
         $file = str_replace('%kernel.root_dir%', $this->kernel->getRootDir(), $filename);
-        $filesytem->mkdir(dirname($file));
+        $filesytem->mkdir(\dirname($file));
 
         file_put_contents($file, (string) $content);
     }
@@ -120,10 +120,7 @@ class ResourceContext implements Context
         }
 
         if (!class_exists($class)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Class "%s" does not exist',
-                $class
-            ));
+            throw new \InvalidArgumentException(sprintf('Class "%s" does not exist', $class));
         }
 
         $document = new $class();
@@ -148,10 +145,7 @@ class ResourceContext implements Context
         $path = '/tests'.$path;
 
         if (!class_exists($class)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Class "%s" does not exist',
-                $class
-            ));
+            throw new \InvalidArgumentException(sprintf('Class "%s" does not exist', $class));
         }
 
         $document = $this->manager->find($class, $path);
@@ -176,10 +170,7 @@ class ResourceContext implements Context
         $path = '/tests'.$path;
 
         if (!class_exists($class)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Class "%s" does not exist',
-                $class
-            ));
+            throw new \InvalidArgumentException(sprintf('Class "%s" does not exist', $class));
         }
 
         $this->session->refresh(true);

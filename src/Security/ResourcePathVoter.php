@@ -36,8 +36,8 @@ class ResourcePathVoter extends Voter
      */
     protected function supports($attribute, $subject)
     {
-        return in_array($attribute, [ResourceController::ROLE_RESOURCE_READ, ResourceController::ROLE_RESOURCE_WRITE])
-            && is_array($subject) && isset($subject['repository_name']) && isset($subject['path']);
+        return \in_array($attribute, [ResourceController::ROLE_RESOURCE_READ, ResourceController::ROLE_RESOURCE_WRITE])
+            && \is_array($subject) && isset($subject['repository_name']) && isset($subject['path']);
     }
 
     /**
@@ -60,7 +60,7 @@ class ResourcePathVoter extends Voter
 
     private function ruleMatches($rule, $attribute, $subject)
     {
-        if (!in_array($attribute, $rule['attributes'])) {
+        if (!\in_array($attribute, $rule['attributes'])) {
             return false;
         }
 

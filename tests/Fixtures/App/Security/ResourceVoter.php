@@ -19,7 +19,7 @@ class ResourceVoter extends Voter
 {
     protected function supports($attribute, $subject)
     {
-        return in_array($attribute, [ResourceController::ROLE_RESOURCE_READ, ResourceController::ROLE_RESOURCE_WRITE]);
+        return \in_array($attribute, [ResourceController::ROLE_RESOURCE_READ, ResourceController::ROLE_RESOURCE_WRITE]);
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
