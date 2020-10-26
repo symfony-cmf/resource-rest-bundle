@@ -14,15 +14,17 @@ namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Unit\DependencyInjection;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionConfigurationTestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\CmfResourceRestExtension;
 use Symfony\Cmf\Bundle\ResourceRestBundle\DependencyInjection\Configuration;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 class ConfigurationTest extends AbstractExtensionConfigurationTestCase
 {
-    protected function getContainerExtension()
+    protected function getContainerExtension(): ExtensionInterface
     {
         return new CmfResourceRestExtension();
     }
 
-    protected function getConfiguration()
+    protected function getConfiguration(): ConfigurationInterface
     {
         return new Configuration();
     }

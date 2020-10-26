@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\Handler;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Unit\Serializer\Jms\Handler;
 
 use JMS\Serializer\Context;
 use JMS\Serializer\JsonSerializationVisitor;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\ResourceHandler;
@@ -22,7 +23,7 @@ use Symfony\Cmf\Component\Resource\Puli\Api\ResourceRepository;
 use Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource;
 use Symfony\Cmf\Component\Resource\RepositoryRegistryInterface;
 
-class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
+class ResourceHandlerTest extends TestCase
 {
     private $repositoryRegistry;
 
@@ -44,7 +45,7 @@ class ResourceHandlerTest extends \PHPUnit_Framework_TestCase
 
     private $description;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->repositoryRegistry = $this->prophesize(RepositoryRegistryInterface::class);
         $this->payloadAliasRegistry = $this->prophesize(PayloadAliasRegistry::class);

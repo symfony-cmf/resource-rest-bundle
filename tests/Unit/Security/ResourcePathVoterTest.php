@@ -9,18 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Security;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Unit\Security;
 
+use PHPUnit\Framework\TestCase;
+use stdClass;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Security\ResourcePathVoter;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter as V;
 
-class ResourcePathVoterTest extends \PHPUnit_Framework_TestCase
+class ResourcePathVoterTest extends TestCase
 {
     private $accessDecisionManager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->accessDecisionManager = $this->prophesize(AccessDecisionManagerInterface::class);
     }
@@ -37,7 +39,7 @@ class ResourcePathVoterTest extends \PHPUnit_Framework_TestCase
 
         $voter = new ResourcePathVoter($this->accessDecisionManager->reveal(), $rules);
 
-        $this->assertSame($result, $voter->vote($token, $subject, $attributes));
+        self::assertSame($result, $voter->vote($token, $subject, $attributes));
     }
 
     public function provideVoteData()
@@ -61,7 +63,7 @@ class ResourcePathVoterTest extends \PHPUnit_Framework_TestCase
             // Unsupported attributes or subjects
             [[], $this->buildSubject('/cms/articles'), ['CMF_RESOURCE_READ'], V::ACCESS_DENIED],
             [[$this->buildRule('^/')], $this->buildSubject('/cms/articles'), ['ROLE_USER'], V::ACCESS_ABSTAIN],
-            [[$this->buildRule('^/')], new \stdClass(), ['CMF_RESOURCE_READ'], V::ACCESS_ABSTAIN],
+            [[$this->buildRule('^/')], new stdClass(), ['CMF_RESOURCE_READ'], V::ACCESS_ABSTAIN],
 
             // Repository name matching
             [[$this->buildRule('^/')], $this->buildSubject('/cms/articles', 'other_repo'), ['CMF_RESOURCE_READ'], V::ACCESS_DENIED],
