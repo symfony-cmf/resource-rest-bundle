@@ -30,9 +30,14 @@ KERNEL_CLASS="Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Fixtures\App\Kernel" .
 
 
 ## Requirements
-
+Version <= 1.1:
 * PHP 7.1 / 7.2
 * Symfony 2.8 / 3.3 / 3.4 / 4.0
+* See also the `require` section of [composer.json](composer.json)
+
+Version 1.2-dev:
+* PHP 7.2 / 7.3 / 7.4
+* Symfony 4.*
 * See also the `require` section of [composer.json](composer.json)
 
 ## Documentation
