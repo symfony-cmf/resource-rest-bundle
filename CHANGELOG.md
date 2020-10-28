@@ -3,7 +3,7 @@ Changelog
 
 1.2.0
 -----
-* Increased minimum version PHP to 7.1.
+* Increased minimum version PHP to 7.2.
 * Updated several packages
 * Added support for PHP 7.4
 
