@@ -22,7 +22,6 @@ cache:
     - $HOME/.composer/cache/files
 
 env:
-  matrix: SYMFONY_VERSION=4.*
   global:
     - SYMFONY_DEPRECATIONS_HELPER="/.*each.*/"
     - SYMFONY_PHPUNIT_DIR=.phpunit SYMFONY_PHPUNIT_REMOVE="symfony/yaml"
@@ -30,6 +29,10 @@ env:
     - TEST_INSTALLATION=false
 
 matrix:
+  include:
+    - PHP: 7.2
+      env: COMPOSER_FLAGS="--prefer-lowest"
+    - env: TEST_INSTALLATION=true
   fast_finish: true
   allow_failures:
     - env: TEST_INSTALLATION=true
@@ -37,7 +40,6 @@ matrix:
 before_install:
   - phpenv config-rm xdebug.ini || true
   - composer self-update
-  - if [ "$SYMFONY_VERSION" != "" ]; then composer require symfony/symfony:${SYMFONY_VERSION} --no-update; fi
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
 
 install: COMPOSER_MEMORY_LIMIT=-1 travis_wait composer update --prefer-dist $COMPOSER_FLAGS
