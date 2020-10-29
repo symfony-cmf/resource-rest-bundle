@@ -9,11 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\Handler;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Unit\Serializer\Jms\Handler;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\PhpcrNodeHandler;
 
-class PhpcrNodeHandlerTest extends \PHPUnit_Framework_TestCase
+class PhpcrNodeHandlerTest extends TestCase
 {
     private $handler;
 
@@ -21,7 +22,7 @@ class PhpcrNodeHandlerTest extends \PHPUnit_Framework_TestCase
 
     private $property2;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

@@ -9,11 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Serializer\Jms\EventSubscriber;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Unit\Serializer\Jms\EventSubscriber;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\EventSubscriber\PhpcrNodeSubscriber;
 
-class PhpcrNodeSubscriberTest extends \PHPUnit_Framework_TestCase
+class PhpcrNodeSubscriberTest extends TestCase
 {
     private $node;
 
@@ -21,7 +22,7 @@ class PhpcrNodeSubscriberTest extends \PHPUnit_Framework_TestCase
 
     private $subscriber;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

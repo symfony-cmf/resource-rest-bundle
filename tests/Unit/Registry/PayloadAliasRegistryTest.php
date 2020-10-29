@@ -9,11 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Registry;
+namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Unit\Registry;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
 
-class PayloadAliasRegistryTest extends \PHPUnit_Framework_TestCase
+class PayloadAliasRegistryTest extends TestCase
 {
     private $repositoryRegistry;
 
@@ -21,7 +22,7 @@ class PayloadAliasRegistryTest extends \PHPUnit_Framework_TestCase
 
     private $repository;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->repositoryRegistry = $this->prophesize('Symfony\Cmf\Component\Resource\RepositoryRegistryInterface');
         $this->resource = $this->prophesize('Symfony\Cmf\Component\Resource\Repository\Resource\CmfResource');
@@ -61,7 +62,7 @@ class PayloadAliasRegistryTest extends \PHPUnit_Framework_TestCase
         $this->resource->getRepository()->willReturn($this->repository);
 
         $alias = $registry->getPayloadAlias($this->resource->reveal());
-        $this->assertEquals($expectedAlias, $alias);
+        self::assertEquals($expectedAlias, $alias);
     }
 
     private function createRegistry($aliases)
