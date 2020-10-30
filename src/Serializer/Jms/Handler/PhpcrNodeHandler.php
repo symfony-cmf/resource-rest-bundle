@@ -14,7 +14,7 @@ namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler;
 use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
-use JMS\Serializer\JsonSerializationVisitor;
+use JMS\Serializer\Visitor\SerializationVisitorInterface;
 use PHPCR\NodeInterface;
 
 /**
@@ -40,7 +40,7 @@ class PhpcrNodeHandler implements SubscribingHandlerInterface
      * @param NodeInterface $nodeInterface
      */
     public function serializePhpcrNode(
-        JsonSerializationVisitor $visitor,
+        SerializationVisitorInterface $visitor,
         NodeInterface $node,
         array $type,
         Context $context
