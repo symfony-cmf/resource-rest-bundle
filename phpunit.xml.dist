@@ -20,4 +20,9 @@
             </exclude>
         </whitelist>
     </filter>
+
+    <php>
+        <env name="SYMFONY_PHPUNIT_VERSION" value="8.5"/>
+    </php>
+    
 </phpunit>
