@@ -12,7 +12,8 @@
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Unit\Serializer\Jms\Handler;
 
 use JMS\Serializer\Context;
-use JMS\Serializer\JsonSerializationVisitor;
+use JMS\Serializer\GraphNavigatorInterface;
+use JMS\Serializer\Visitor\SerializationVisitorInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
@@ -45,16 +46,19 @@ class ResourceHandlerTest extends TestCase
 
     private $description;
 
+    private $navigator;
+
     protected function setUp(): void
     {
         $this->repositoryRegistry = $this->prophesize(RepositoryRegistryInterface::class);
         $this->payloadAliasRegistry = $this->prophesize(PayloadAliasRegistry::class);
-        $this->visitor = $this->prophesize(JsonSerializationVisitor::class);
+        $this->visitor = $this->prophesize(SerializationVisitorInterface::class);
         $this->resource = $this->prophesize(CmfResource::class);
         $this->childResource = $this->prophesize(CmfResource::class);
 
         $this->repository = $this->prophesize(ResourceRepository::class);
         $this->context = $this->prophesize(Context::class);
+        $this->navigator = $this->prophesize(GraphNavigatorInterface::class);
 
         $this->description = $this->prophesize(Description::class);
         $this->description->all()->willReturn([]);
@@ -118,7 +122,8 @@ class ResourceHandlerTest extends TestCase
             'descriptors' => [],
         ];
 
-        $this->context->accept($expected)->shouldBeCalled();
+        $this->context->getNavigator()->willReturn($this->navigator);
+        $this->navigator->accept($expected)->willReturn($this->context);
 
         $this->handler->serializeResource(
             $this->visitor->reveal(),

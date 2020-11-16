@@ -14,7 +14,7 @@ namespace Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler;
 use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
-use JMS\Serializer\JsonSerializationVisitor;
+use JMS\Serializer\Visitor\SerializationVisitorInterface;
 use PHPCR\NodeInterface;
 use PHPCR\Util\PathHelper;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Registry\PayloadAliasRegistry;
@@ -70,13 +70,13 @@ class ResourceHandler implements SubscribingHandlerInterface
      * @param NodeInterface $resourceInterface
      */
     public function serializeResource(
-        JsonSerializationVisitor $visitor,
+        SerializationVisitorInterface $visitor,
         PuliResource $resource,
         array $type,
         Context $context
     ) {
         $data = $this->doSerializeResource($resource);
-        $context->accept($data);
+        $context->getNavigator()->accept($data);
     }
 
     public function setMaxDepth($maxDepth)

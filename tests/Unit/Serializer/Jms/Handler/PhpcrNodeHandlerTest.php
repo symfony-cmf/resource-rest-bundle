@@ -11,6 +11,7 @@
 
 namespace Symfony\Cmf\Bundle\ResourceRestBundle\Tests\Unit\Serializer\Jms\Handler;
 
+use JMS\Serializer\Visitor\SerializationVisitorInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Cmf\Bundle\ResourceRestBundle\Serializer\Jms\Handler\PhpcrNodeHandler;
 
@@ -29,7 +30,7 @@ class PhpcrNodeHandlerTest extends TestCase
         $this->node = $this->prophesize('PHPCR\NodeInterface');
         $this->property1 = $this->prophesize('PHPCR\PropertyInterface');
         $this->property2 = $this->prophesize('PHPCR\PropertyInterface');
-        $this->visitor = $this->prophesize('JMS\Serializer\JsonSerializationVisitor');
+        $this->visitor = $this->prophesize(SerializationVisitorInterface::class);
         $this->context = $this->prophesize('JMS\Serializer\Context');
         $this->handler = new PhpcrNodeHandler();
     }
