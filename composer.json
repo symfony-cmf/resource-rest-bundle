@@ -51,6 +51,7 @@
         }
     },
     "conflict": {
+        "jms/serializer": "<2.2.0",
         "sebastian/environment": "<1.3.4",
         "sebastian/exporter": "<2.0.0"
     },

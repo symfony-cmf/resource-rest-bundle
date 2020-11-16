@@ -49,15 +49,13 @@ class CmfResourceRestExtensionTest extends AbstractExtensionTestCase
         $this->compile();
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage The JMSSerializerBundle must be registered
-     */
     public function testNoJmsSerializerBundleRegistered()
     {
         $this->container->setParameter('kernel.bundles', []);
 
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('The JMSSerializerBundle must be registered');
+
         $this->load([]);
-        $this->compile();
     }
 }
