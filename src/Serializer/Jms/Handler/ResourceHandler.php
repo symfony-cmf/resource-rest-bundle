@@ -77,6 +77,8 @@ class ResourceHandler implements SubscribingHandlerInterface
     ) {
         $data = $this->doSerializeResource($resource);
         $context->getNavigator()->accept($data);
+
+        return $data;
     }
 
     public function setMaxDepth($maxDepth)
