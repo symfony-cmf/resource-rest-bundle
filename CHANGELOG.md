@@ -1,5 +1,9 @@
 Changelog
 =========
+1.2.2
+-----
+
+* Fixed missing return in ResourceHandler for JMS serializer.
 
 1.2.1
 -----
